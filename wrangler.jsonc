@@ -6,6 +6,16 @@
     "nodejs_compat"
   ],
   "main": "vinext/server/fetch-handler",
+  "routes": [
+    {
+      "pattern": "puttbrothers.com/*",
+      "zone_name": "puttbrothers.com"
+    },
+    {
+      "pattern": "www.puttbrothers.com/*",
+      "zone_name": "puttbrothers.com"
+    }
+  ],
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",
