@@ -12,7 +12,7 @@ export function Footer() {
 
   useEffect(() => {
     // Email: sales@puttbrothers.com (reversed and encoded)
-    const e = "moc.srehtorbtup@selas".split("").reverse().join("")
+    const e = "moc.srehtorbttup@selas".split("").reverse().join("")
     // Phone: +64 27 777 3322 (encoded)
     const p = String.fromCharCode(43, 54, 52, 32, 50, 55, 32, 55, 55, 55, 32, 51, 51, 50, 50)
 

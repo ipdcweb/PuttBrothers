@@ -13,11 +13,11 @@ export function AppPreviewCarousel({ images }: AppPreviewCarouselProps) {
 
   // Default images if none provided
   const defaultImages = [
-    "/images/PBApp/app-screen-01.jpg",
-    "/images/PBApp/app-screen-02.jpg",
-    "/images/PBApp/app-screen-03.jpg",
-    "/images/PBApp/app-screen-04.jpg",
-    "/images/PBApp/app-screen-05.jpg",
+    "/images/PBApp/Picture1.png",
+    "/images/PBApp/Picture2.png",
+    "/images/PBApp/Picture3.png",
+    "/images/PBApp/Picture4.png",
+    "/images/PBApp/Picture5.png",
   ]
 
   const carouselImages = images && images.length > 0 ? images : defaultImages

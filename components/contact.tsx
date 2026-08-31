@@ -59,7 +59,22 @@ export function Contact() {
       setCaptchaError(true)
       return
     }
-    console.log("Form submitted:", formData)
+
+    const findUs = formData.FindUs === "Others" ? formData.FindUsOther : formData.FindUs
+    const subject = `Website enquiry from ${formData.firstName} ${formData.lastName}`
+    const body = [
+      `Name: ${formData.firstName} ${formData.lastName}`,
+      `Email: ${formData.email}`,
+      `Mobile: ${formData.mobile}`,
+      `How they found us: ${findUs}`,
+      `Industry: ${formData.industry}`,
+      `Business status: ${formData.businessStatus}`,
+      "",
+      "Message:",
+      formData.message,
+    ].join("\n")
+
+    window.location.href = `mailto:sales@puttbrothers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
   return (
@@ -350,6 +365,9 @@ export function Contact() {
                 >
                   Send Message
                 </Button>
+                <p className="text-center text-sm text-gray-600">
+                  Submitting opens your email app with the enquiry ready to send to sales@puttbrothers.com.
+                </p>
               </form>
             </div>
 

@@ -77,7 +77,7 @@ const countries: Country[] = [
   { code: "MX", name: "Mexico", dialCode: "+52", flag: "🇲🇽" },
   { code: "MD", name: "Moldova", dialCode: "+373", flag: "🇲🇩" },
   { code: "MN", name: "Mongolia", dialCode: "+976", flag: "🇲🇳" },
-  { code: "ME", name: "Montenegro", dialCode: "+382", flag: "����🇪" },
+  { code: "ME", name: "Montenegro", dialCode: "+382", flag: "🇲🇪" },
   { code: "MA", name: "Morocco", dialCode: "+212", flag: "🇲🇦" },
   { code: "MM", name: "Myanmar", dialCode: "+95", flag: "🇲🇲" },
   { code: "NL", name: "Netherlands", dialCode: "+31", flag: "🇳🇱" },
@@ -131,7 +131,9 @@ interface PhoneInputProps {
 }
 
 export function PhoneInput({ value, onChange, onFocus, onBlur, required }: PhoneInputProps) {
-  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]) // Default to USA
+  const [selectedCountry, setSelectedCountry] = useState<Country>(
+    countries.find((country) => country.code === "US") ?? countries[0],
+  )
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const dropdownRef = useRef<HTMLDivElement>(null)

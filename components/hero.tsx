@@ -54,7 +54,7 @@ export function Hero() {
     <section id="home" className="relative w-full h-screen overflow-hidden" style={{ backgroundColor: "#41059a" }}>
       <div className="absolute inset-0">
         <video ref={videoRef} autoPlay loop muted playsInline className="w-full h-full object-cover">
-          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HeroSlide01-m7AcInryOyL89aOUyqgiKXWi6CZ6gl.mp4" type="video/mp4" />
+          <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/50" />

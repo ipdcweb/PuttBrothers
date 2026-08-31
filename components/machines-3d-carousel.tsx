@@ -28,7 +28,7 @@ export function Machines3DCarousel({ machines = defaultMachines }: { machines?: 
   const [startX, setStartX] = useState(0)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const ringRef = useRef<HTMLDivElement>(null)
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number | null>(null)
 
   const totalSlides = machines.length
   const angleStep = 360 / totalSlides
@@ -56,7 +56,7 @@ export function Machines3DCarousel({ machines = defaultMachines }: { machines?: 
     }
 
     return () => {
-      if (animationFrameRef.current) {
+      if (animationFrameRef.current !== null) {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }

@@ -201,7 +201,7 @@ export function AppSection() {
                       <div className="lg:sticky lg:top-8 flex items-center justify-center bg-transparent">
                         <div className="relative w-full max-w-md bg-transparent">
                           <video
-                            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BigShow2-waTewFAVQGx6Tjpwq52gPPDW7nEPVp.mp4"
+                            src="/videos/big-show.mp4"
                             autoPlay
                             loop
                             muted
