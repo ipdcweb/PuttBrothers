@@ -27,11 +27,16 @@ export function Machines3DCarousel({ machines = defaultMachines }: { machines?: 
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [isClient, setIsClient] = useState(false)
   const ringRef = useRef<HTMLDivElement>(null)
   const animationFrameRef = useRef<number | null>(null)
 
   const totalSlides = machines.length
   const angleStep = 360 / totalSlides
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -56,7 +61,7 @@ export function Machines3DCarousel({ machines = defaultMachines }: { machines?: 
     }
 
     return () => {
-      if (animationFrameRef.current !== null) {
+      if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
@@ -113,10 +118,8 @@ export function Machines3DCarousel({ machines = defaultMachines }: { machines?: 
 
   const progressPercentage = ((((ringRotation % 360) + 360) % 360) / 360) * 100
 
-  if (prefersReducedMotion) {
-    return (
-      null
-    )
+  if (!isClient || prefersReducedMotion) {
+    return null
   }
 
   return (
@@ -124,7 +127,7 @@ export function Machines3DCarousel({ machines = defaultMachines }: { machines?: 
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#513bb2] mb-4">Our Mini-Golf Machines</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#41059a] mb-4">Our Mini-Golf Machines</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Explore our premium collection of interactive mini-golf machines. Drag or scroll to rotate.
           </p>
@@ -311,14 +314,14 @@ export function Machines3DCarousel({ machines = defaultMachines }: { machines?: 
                 />
               </div>
 
-              <h3 className="text-3xl font-bold text-[#513bb2] mb-4">{selectedMachine.name}</h3>
+              <h3 className="text-3xl font-bold text-[#41059a] mb-4">{selectedMachine.name}</h3>
               <p className="text-gray-600 text-lg leading-relaxed">{selectedMachine.description}</p>
 
               <div className="mt-8 flex gap-4">
-                <button className="flex-1 bg-[#513bb2] hover:bg-[#41059a] text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                <button className="flex-1 bg-[#41059a] hover:bg-[#41059a]/90 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
                   Request Quote
                 </button>
-                <button className="flex-1 bg-[#ffcc00] hover:bg-[#e6b800] text-[#513bb2] font-semibold py-3 px-6 rounded-lg transition-colors">
+                <button className="flex-1 bg-[#ffcc00] hover:bg-[#e6b800] text-[#41059a] font-semibold py-3 px-6 rounded-lg transition-colors">
                   Learn More
                 </button>
               </div>

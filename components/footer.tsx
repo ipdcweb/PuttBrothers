@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Facebook, Instagram, Linkedin, Home, Package, Info, Mail } from "lucide-react"
+import { Facebook, Instagram, Linkedin, Home, Package, Info, Mail, Link as LinkIcon, Share2 } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 
@@ -12,9 +12,9 @@ export function Footer() {
 
   useEffect(() => {
     // Email: sales@puttbrothers.com (reversed and encoded)
-    const e = "moc.srehtorbttup@selas".split("").reverse().join("")
-    // Phone: +64 27 777 3322 (encoded)
-    const p = String.fromCharCode(43, 54, 52, 32, 50, 55, 32, 55, 55, 55, 32, 51, 51, 50, 50)
+    const e = "moc.srehtrorbttup@selas".split("").reverse().join("")
+    // Phone: +64 210 225 3621 (encoded)
+    const p = String.fromCharCode(43, 54, 52, 32, 50, 49, 48, 32, 50, 50, 53, 32, 51, 54, 50, 49)
 
     if (emailRef.current) {
       emailRef.current.textContent = e
@@ -38,7 +38,7 @@ export function Footer() {
           {/* Brand - Left */}
           <div className="lg:w-1/3">
             <Image
-              src="/images/design-mode/Logo%20White.webp"
+              src="/images/design-mode/Logo-White.webp"
               alt="PuttBrothers Logo"
               width={180}
               height={50}
@@ -49,10 +49,13 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links - Center */}
-          <div className="lg:w-1/3 lg:text-center">
-            <h3 className="font-bold text-lg mb-4 text-[#ffcc00]">Quick Links</h3>
-            <ul className="space-y-3 lg:inline-block lg:text-left">
+          {/* Quick Links - Left */}
+          <div className="lg:w-1/3 lg:text-left">
+            <h3 className="font-bold text-lg mb-4 text-[#ffcc00] flex items-center gap-2 justify-start">
+              <LinkIcon className="h-5 w-5 text-[#ffcc00]" />
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
               {navItems.map((item) => {
                 const Icon = item.icon
                 return (
@@ -70,10 +73,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Social - Right */}
-          <div className="lg:w-1/3 lg:text-right">
-            <h3 className="font-bold text-lg mb-4 text-[#ffcc00]">Social Medias</h3>
-            <div className="flex gap-4 lg:justify-end mb-6">
+          {/* Social - Left */}
+          <div className="lg:w-1/3 lg:text-left">
+            <h3 className="font-bold text-lg mb-4 text-[#ffcc00] flex items-center gap-2 justify-start">
+              <Share2 className="h-5 w-5 text-[#ffcc00]" />
+              Social Medias
+            </h3>
+            <div className="flex gap-4 lg:justify-start mb-6">
               <a
                 href="https://www.facebook.com/profile.php?id=61551240330686"
                 target="_blank"
@@ -100,17 +106,17 @@ export function Footer() {
               </a>
             </div>
 
-            <div className="space-y-2 text-sm text-background/70 select-none lg:text-right">
+            <div className="space-y-2 text-sm text-background/70 select-none lg:text-left">
               <div
                 ref={emailRef}
                 className="cursor-default"
-                style={{ userSelect: "none", WebkitUserSelect: "none", MozUserSelect: "none" }}
+                style={{
+                  userSelect: "none",
+                  WebkitUserSelect: "none",
+                  MozUserSelect: "none",
+                }}
               />
-              <div
-                ref={phoneRef}
-                className="cursor-default"
-                style={{ userSelect: "none", WebkitUserSelect: "none", MozUserSelect: "none" }}
-              />
+              
             </div>
           </div>
         </div>

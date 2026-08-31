@@ -162,10 +162,13 @@ export default function MissionVisionValues() {
     <section ref={sectionRef} className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Mission */}
-        <div ref={missionRef} className="mb-20 bg-white rounded-2xl p-8 md:p-12 shadow-lg border-l-8 border-[#ffcc00] px-2.5 py-5">
+        <div
+          ref={missionRef}
+          className="mb-20 bg-white rounded-2xl p-8 md:p-12 shadow-lg border-l-8 border-[#ffcc00] px-2.5 py-5"
+        >
           <div className="flex flex-col md:flex-row items-start gap-6">
             <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#ffcc00] flex items-center justify-center">
-              <Target className="w-8 h-8 text-[#513bb2]" />
+              <Target className="w-8 h-8 text-[#41059a]" />
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#41059a] mb-4 text-primary">Our Mission</h2>
@@ -180,9 +183,12 @@ export default function MissionVisionValues() {
         </div>
 
         {/* Vision */}
-        <div ref={visionRef} className="mb-20 bg-white rounded-2xl p-8 md:p-12 shadow-lg border-r-8 border-[#513bb2] py-5 px-2.5">
+        <div
+          ref={visionRef}
+          className="mb-20 bg-white rounded-2xl p-8 md:p-12 shadow-lg border-r-8 border-[#41059a] py-5 px-2.5"
+        >
           <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#513bb2] flex items-center justify-center">
+            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#41059a] flex items-center justify-center">
               <Eye className="w-8 h-8 text-[#ffcc00]" />
             </div>
             <div>
@@ -205,7 +211,7 @@ export default function MissionVisionValues() {
           </div>
 
           <div ref={featuredCardRef} className="max-w-3xl mx-auto mb-12">
-            <div className="bg-gradient-to-br from-[#513bb2] to-[#5a1a8b] rounded-2xl p-8 md:p-10 shadow-2xl border-4 border-[#ffcc00] relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#41059a] to-[#5a1a8b] rounded-2xl p-8 md:p-10 shadow-2xl border-4 border-[#ffcc00] relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#ffcc00] opacity-10 rounded-full -mr-16 -mt-16"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#ffcc00] opacity-10 rounded-full -ml-12 -mb-12"></div>
               <div className="relative z-10">
@@ -232,7 +238,7 @@ export default function MissionVisionValues() {
                   }}
                   className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#ffcc00]"
                 >
-                  <div className="w-14 h-14 rounded-full bg-[#513bb2] group-hover:bg-[#ffcc00] flex items-center justify-center mb-4 transition-colors duration-300">
+                  <div className="w-14 h-14 rounded-full bg-[#41059a] group-hover:bg-[#ffcc00] flex items-center justify-center mb-4 transition-colors duration-300">
                     {value.emoji ? (
                       <span className="text-3xl">{value.emoji}</span>
                     ) : (
@@ -241,7 +247,7 @@ export default function MissionVisionValues() {
                       )
                     )}
                   </div>
-                  <h3 className="text-xl font-bold text-[#513bb2] mb-3">{value.title}</h3>
+                  <h3 className="text-xl font-bold text-[#41059a] mb-3">{value.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{value.description}</p>
                 </div>
               )

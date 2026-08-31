@@ -181,3 +181,135 @@
 .gradient-purple-orange {
   background: linear-gradient(135deg, oklch(0.45 0.18 285) 0%, oklch(0.65 0.22 15) 50%, oklch(0.75 0.18 65) 100%);
 }
+
+/* Changed pulse animation from box-shadow to text-shadow for blinking text effect */
+@keyframes pulse-yellow {
+  0%,
+  100% {
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.8), 0 0 12px rgba(255, 204, 0, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 204, 0, 1), 0 0 30px rgba(255, 204, 0, 0.8);
+  }
+}
+
+.animate-pulse-yellow {
+  animation: pulse-yellow 2s ease-in-out infinite;
+}
+
+/* Smooth expand animation for layout planner section */
+@keyframes expandFromButton {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: scaleY(0.9);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes collapseToButton {
+  from {
+    opacity: 1;
+    max-height: 2000px;
+    transform: scaleY(1);
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+    transform: scaleY(0.9);
+    transform-origin: top;
+  }
+}
+
+.animate-expand-button {
+  animation: expandFromButton 0.5s ease-out forwards;
+}
+
+.animate-collapse-button {
+  animation: collapseToButton 0.5s ease-in forwards;
+}
+
+/* Pulsing glow animation for button shadow only */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px rgba(255, 204, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px rgba(255, 204, 0, 0.8);
+  }
+}
+
+.animate-glow-pulse {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Layout planner utilities */
+.machines-scroll::-webkit-scrollbar {
+  width: 2px;
+}
+
+.machines-scroll::-webkit-scrollbar-track {
+  background: #41059a;
+  border-radius: 4px;
+}
+
+.machines-scroll::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 4px;
+}
+
+.machines-scroll::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+.machines-scroll {
+  scrollbar-color: #fbbf24 #41059a;
+}
+
+@keyframes onboarding-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 204, 0, 0);
+  }
+}
+
+.onboarding-pulse {
+  animation: onboarding-pulse 2s infinite;
+}
+
+@keyframes checkbox-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(65, 5, 154, 0.6), 0 4px 12px rgba(65, 5, 154, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(65, 5, 154, 0), 0 4px 12px rgba(65, 5, 154, 0.3);
+  }
+}
+
+.checkbox-glow {
+  animation: checkbox-glow 3.5s ease-in-out infinite;
+}
+
+@keyframes pdf-button-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7), 0 4px 16px rgba(251, 191, 36, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(251, 191, 36, 0), 0 4px 16px rgba(251, 191, 36, 0.3);
+  }
+}
+
+.pdf-button-glow {
+  animation: pdf-button-glow 3.5s ease-in-out infinite;
+}
+
+[data-radix-tooltip-content] [data-radix-tooltip-arrow] {
+  display: none;
+}

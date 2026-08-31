@@ -4,7 +4,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 bg-primary">
+      <section className="relative pt-32 pb-20 px-4 bg-[#41059a]">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">About US</h1>
           <div className="w-24 h-1 bg-[#ffcc00] mx-auto"></div>

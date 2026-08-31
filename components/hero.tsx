@@ -1,5 +1,5 @@
-"use client"
-import { useState, useEffect, useRef } from "react"
+"use client";
+import { useState, useEffect, useRef } from "react";
 
 const slides = [
   {
@@ -9,100 +9,107 @@ const slides = [
   },
   {
     title: "Turnkey Design to Installation",
-    subtitle: "From concept to completion we design, manufacture, and install complete entertainment experiences.",
+    subtitle:
+      "From concept to completion we design, manufacture, and install complete entertainment experiences.",
   },
   {
     title: "Global Reach, Local Expertise",
-    subtitle: "With factories in New Zealand and Brazil, we deliver world-class attractions worldwide.",
+    subtitle:
+      "With factories in New Zealand and Brazil, we deliver world-class attractions worldwide.",
   },
   {
     title: null,
     subtitle: null,
   },
-]
+];
 
 export function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoSrc, setVideoSrc] = useState("");
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setWindowSize({ width, height: window.innerHeight });
+
+      if (width < 768) {
+        setVideoSrc("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_WGQRPfpfvZbMt2fyH6hYTiR5f2uR/Yry8kVs6Oj8D51n8xC87cI/public/videos/mobile.mp4");
+      } else if (width >= 768 && width <= 1024) {
+        setVideoSrc("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_WGQRPfpfvZbMt2fyH6hYTiR5f2uR/RDuv2HGFCaqvVDdJ0W3EIr/public/videos/tablet.mp4");
+      } else {
+        setVideoSrc("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_WGQRPfpfvZbMt2fyH6hYTiR5f2uR/uq0lhiyjRi314HaXVDZAH-/public/videos/desktop.mp4");
+      }
+    };
+
+    handleResize(); // Set initial video source and window size
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIsTransitioning(true)
+      setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
-        setIsTransitioning(false)
-      }, 500)
-    }, 8000)
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setIsTransitioning(false);
+      }, 500);
+    }, 8000);
 
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
+    const video = videoRef.current;
+    if (!video) return;
 
     const handleVideoEnd = () => {
-      setCurrentSlide(0)
-    }
+      setCurrentSlide(0);
+    };
 
-    video.addEventListener("ended", handleVideoEnd)
-    return () => video.removeEventListener("ended", handleVideoEnd)
-  }, [])
+    video.addEventListener("ended", handleVideoEnd);
+    return () => video.removeEventListener("ended", handleVideoEnd);
+  }, []);
 
   return (
-    <section id="home" className="relative w-full h-screen overflow-hidden" style={{ backgroundColor: "#41059a" }}>
+    <section
+      id="home"
+      className={`relative w-full ${
+        windowSize.width < 1025 ? "h-[100vw]" : "h-screen"
+      }`}
+      style={{ backgroundColor: "#000000" }}
+    >
       <div className="absolute inset-0">
-        <video ref={videoRef} autoPlay loop muted playsInline className="w-full h-full object-cover">
-          <source src="/videos/hero.mp4" type="video/mp4" />
-        </video>
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+        {videoSrc && (
+          <video
+            ref={videoRef}
+            preload="auto"
+            loop
+            autoPlay
+            muted
+            playsInline
+            className={`${
+              windowSize.width < 1025
+                ? "w-[100vw] h-[calc(100%-20px)]"
+                : "w-full h-[calc(100vh-80px)]"
+            } ${
+              windowSize.width >= 768 && windowSize.width <= 1024
+                ? "object-contain"
+                : "object-cover"
+            } relative top-20`}
+            key={videoSrc}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        )}
+        {/* <div className="absolute inset-0 bg-black/50" /> */}
       </div>
-
-      {/* Content Slides */}
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-500 ${
-            currentSlide === index && !isTransitioning ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {/* Content */}
-          {(slide.title || slide.subtitle) && (
-            <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 lg:px-8">
-              <div className="max-w-5xl mx-auto text-center">
-                {slide.title && (
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-balance leading-tight">
-                    {slide.title}
-                  </h1>
-                )}
-                {slide.subtitle && (
-                  <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto text-pretty leading-relaxed">
-                    {slide.subtitle}
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              currentSlide === index ? "bg-white w-8" : "bg-white/50 hover:bg-white/75"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Decorative Bottom Gradient */}
     </section>
-  )
+  );
 }

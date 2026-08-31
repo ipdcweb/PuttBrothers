@@ -18,6 +18,12 @@ export function AppPreviewCarousel({ images }: AppPreviewCarouselProps) {
     "/images/PBApp/Picture3.png",
     "/images/PBApp/Picture4.png",
     "/images/PBApp/Picture5.png",
+    "/images/PBApp/Picture6.png",
+    "/images/PBApp/Picture7.png",
+    "/images/PBApp/Picture8.png",
+    "/images/PBApp/Picture9.png",
+    "/images/PBApp/Picture10.png",
+    "/images/PBApp/Picture11.png",
   ]
 
   const carouselImages = images && images.length > 0 ? images : defaultImages
@@ -43,7 +49,7 @@ export function AppPreviewCarousel({ images }: AppPreviewCarouselProps) {
 
       {/* Image Container */}
       <div className="relative flex-1 max-w-xs mx-auto">
-        <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl shadow-2xl">
+        <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl shadow-2xl bg-gray-100">
           {carouselImages.map((image, index) => (
             <div
               key={index}
@@ -55,7 +61,7 @@ export function AppPreviewCarousel({ images }: AppPreviewCarouselProps) {
                 src={image || "/placeholder.svg"}
                 alt={`App preview ${index + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, 400px"
                 priority={index === 0}
               />

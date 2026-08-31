@@ -5,60 +5,20 @@ import Image from "next/image"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Flag, Table } from "lucide-react"
+import { Flag, Table, ChevronLeft, ChevronRight } from "lucide-react"
+import { getMachinesWithFlags } from "@/app/actions/machines_with_flags"
+import "@/components/coverflow.css"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const courseHoles = [
-  { id: 1, name: "Beer Pong", category: "Classic", image: "/placeholder.svg?height=400&width=600" },
-  { id: 2, name: "Raptor-Run", category: "Interactive", image: "/placeholder.svg?height=400&width=600" },
-  { id: 3, name: "Space Shot", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 4, name: "Windmill Classic", category: "Classic", image: "/placeholder.svg?height=400&width=600" },
-  { id: 5, name: "Loop de Loop", category: "Challenge", image: "/placeholder.svg?height=400&width=600" },
-  { id: 6, name: "Pirate's Cove", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 7, name: "Volcano Eruption", category: "Interactive", image: "/placeholder.svg?height=400&width=600" },
-  { id: 8, name: "Castle Gate", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 9, name: "Roulette Wheel", category: "Interactive", image: "/placeholder.svg?height=400&width=600" },
-  { id: 10, name: "Jungle Adventure", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 11, name: "Neon Lights", category: "Modern", image: "/placeholder.svg?height=400&width=600" },
-  { id: 12, name: "Underwater World", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 13, name: "Spiral Tower", category: "Challenge", image: "/placeholder.svg?height=400&width=600" },
-  { id: 14, name: "Dragon's Lair", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 15, name: "Disco Ball", category: "Modern", image: "/placeholder.svg?height=400&width=600" },
-  { id: 16, name: "Aztec Temple", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 17, name: "Rainbow Bridge", category: "Classic", image: "/placeholder.svg?height=400&width=600" },
-  { id: 18, name: "Time Warp", category: "Interactive", image: "/placeholder.svg?height=400&width=600" },
-  { id: 19, name: "Safari Zone", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 20, name: "Crystal Cave", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 21, name: "Rocket Launch", category: "Interactive", image: "/placeholder.svg?height=400&width=600" },
-  { id: 22, name: "Medieval Quest", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 23, name: "Laser Maze", category: "Modern", image: "/placeholder.svg?height=400&width=600" },
-  { id: 24, name: "Treasure Island", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 25, name: "Cyber City", category: "Modern", image: "/placeholder.svg?height=400&width=600" },
-  { id: 26, name: "Ancient Egypt", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 27, name: "Gravity Defier", category: "Challenge", image: "/placeholder.svg?height=400&width=600" },
-  { id: 28, name: "Carnival Lights", category: "Classic", image: "/placeholder.svg?height=400&width=600" },
-  { id: 29, name: "Arctic Adventure", category: "Themed", image: "/placeholder.svg?height=400&width=600" },
-  { id: 30, name: "Neon Jungle", category: "Modern", image: "/placeholder.svg?height=400&width=600" },
-]
-
-const tableGolf = [
-  { id: 1, name: "Mini Classic", category: "Compact", image: "/placeholder.svg?height=400&width=600" },
-  { id: 2, name: "Desktop Pro", category: "Professional", image: "/placeholder.svg?height=400&width=600" },
-  { id: 3, name: "Tabletop Challenge", category: "Challenge", image: "/placeholder.svg?height=400&width=600" },
-  { id: 4, name: "Office Putt", category: "Compact", image: "/placeholder.svg?height=400&width=600" },
-  { id: 5, name: "Portable Fun", category: "Portable", image: "/placeholder.svg?height=400&width=600" },
-  { id: 6, name: "Executive Suite", category: "Professional", image: "/placeholder.svg?height=400&width=600" },
-  { id: 7, name: "Quick Shot", category: "Compact", image: "/placeholder.svg?height=400&width=600" },
-  { id: 8, name: "Travel Putt", category: "Portable", image: "/placeholder.svg?height=400&width=600" },
-  { id: 9, name: "Precision Table", category: "Professional", image: "/placeholder.svg?height=400&width=600" },
-  { id: 10, name: "Mini Master", category: "Challenge", image: "/placeholder.svg?height=400&width=600" },
-  { id: 11, name: "Desk Champion", category: "Compact", image: "/placeholder.svg?height=400&width=600" },
-  { id: 12, name: "Boardroom Putt", category: "Professional", image: "/placeholder.svg?height=400&width=600" },
-  { id: 13, name: "Pocket Pro", category: "Portable", image: "/placeholder.svg?height=400&width=600" },
-  { id: 14, name: "Table Elite", category: "Professional", image: "/placeholder.svg?height=400&width=600" },
-  { id: 15, name: "Compact King", category: "Compact", image: "/placeholder.svg?height=400&width=600" },
-]
+type Machine = {
+  id: number
+  name: string
+  category: string
+  image: string
+  folderName?: string
+  has3D?: boolean
+}
 
 export function MachinesGallery() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -68,26 +28,147 @@ export function MachinesGallery() {
   const progressBarContainerRef = useRef<HTMLDivElement>(null)
   const [currentMachine, setCurrentMachine] = useState(1)
   const [activeTab, setActiveTab] = useState("course-holes")
-  const [machines, setMachines] = useState(courseHoles)
+  const [machines, setMachines] = useState<Machine[]>([])
+  const [courseHolesData, setCourseHolesData] = useState<Machine[]>([])
+  const [tableGolfData, setTableGolfData] = useState<Machine[]>([])
   const [isDragging, setIsDragging] = useState(false)
   const mouseDownPos = useRef<{ x: number; y: number } | null>(null)
   const hasMoved = useRef(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [selectedMachine, setSelectedMachine] = useState<Machine | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [modal3D, setModal3D] = useState<string | false>(false)
+  const iframeRef = useRef<HTMLIFrameElement | null>(null)
+
+  useEffect(() => {
+    const iframe = iframeRef.current
+    if (iframe) {
+      const handleLoad = () => {
+        try {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
+          if (iframeDoc) {
+            const footer = iframeDoc.getElementById("unity-footer")
+            if (footer) {
+              footer.style.display = "none"
+            }
+          }
+        } catch (error) {
+          console.error("Failed to access iframe content:", error)
+        }
+      }
+
+      iframe.addEventListener("load", handleLoad)
+
+      return () => {
+        iframe.removeEventListener("load", handleLoad)
+      }
+    }
+  }, [modal3D])
+
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
+  // Fetch machines from API
+  useEffect(() => {
+    const fetchMachines = async () => {
+      try {
+        setIsLoading(true)
+        const machinesData = await getMachinesWithFlags()
+
+        if (!machinesData || machinesData.length === 0) {
+          setCourseHolesData([])
+          setTableGolfData([])
+          setMachines([])
+          setIsLoading(false)
+          return
+        }
+
+        // Transform API data to match the component structure
+        const S3_BASE = "https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com"
+        const transformedMachines: Machine[] = machinesData.map((product: any, index: number) => {
+          // Determine category based on FolderName or use default
+          let category = "Interactive"
+          if (product.Category) {
+            category = product.Category
+          }
+          console.log(product.FolderName)
+          // Determine image path from S3
+          const imagePath = `${S3_BASE}/${product.FolderName}/media/desktop.png`
+
+          return {
+            id: index + 1,
+            name: product.Machine || product.FolderName || `Machine ${index + 1}`,
+            category: category,
+            image: imagePath,
+            folderName: product.FolderName,
+            has3D: product.has3D === true,
+          }
+        })
+
+        // Separate into courseHoles (FolderName starts with "JN") and tableGolf (everything else)
+        const apiCourseHoles = transformedMachines.filter((machine) => machine.folderName?.startsWith("JN"))
+
+        const apiTableGolf = transformedMachines.filter((machine) => !machine.folderName?.startsWith("JN"))
+
+        setCourseHolesData(apiCourseHoles)
+        setTableGolfData(apiTableGolf)
+        setMachines(apiCourseHoles)
+      } catch (error) {
+        console.error("Error fetching machines:", error)
+        setCourseHolesData([])
+        setTableGolfData([])
+        setMachines([])
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchMachines()
+  }, [])
+
   useEffect(() => {
     if (activeTab === "course-holes") {
-      setMachines(courseHoles)
+      setMachines(courseHolesData)
     } else {
-      setMachines(tableGolf)
+      setMachines(tableGolfData)
     }
     setCurrentMachine(1)
 
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-  }, [activeTab])
+  }, [activeTab, courseHolesData, tableGolfData])
+
+  const scrollTweenRef = useRef<gsap.core.Tween | null>(null)
+
+  const navigateToMachine = (progress: number) => {
+    if (!scrollTweenRef.current || machines.length === 0) return
+
+    const scrollTriggerInstance = scrollTweenRef.current.scrollTrigger
+    if (!scrollTriggerInstance) return
+
+    const targetScroll =
+      scrollTriggerInstance.start + (scrollTriggerInstance.end - scrollTriggerInstance.start) * progress
+
+    window.scrollTo({
+      top: targetScroll,
+      behavior: "smooth",
+    })
+  }
+
+  const handlePrev = () => {
+    const newMachine = Math.max(1, currentMachine - 1)
+    setCurrentMachine(newMachine)
+    const progress = (newMachine - 1) / machines.length
+    navigateToMachine(progress)
+  }
+
+  const handleNext = () => {
+    const newMachine = Math.min(machines.length, currentMachine + 1)
+    setCurrentMachine(newMachine)
+    const progress = (newMachine - 1) / machines.length
+    navigateToMachine(progress)
+  }
 
   useEffect(() => {
     if (!isMounted) return
@@ -105,7 +186,7 @@ export function MachinesGallery() {
 
       const scrollWidth = scrollContainer.scrollWidth - window.innerWidth
 
-      const scrollTween = gsap.to(scrollContainer, {
+      scrollTweenRef.current = gsap.to(scrollContainer, {
         x: -scrollWidth,
         ease: "none",
         scrollTrigger: {
@@ -129,19 +210,6 @@ export function MachinesGallery() {
           },
         },
       })
-
-      const navigateToMachine = (progress: number) => {
-        const scrollTriggerInstance = scrollTween.scrollTrigger
-        if (!scrollTriggerInstance) return
-
-        const targetScroll =
-          scrollTriggerInstance.start + (scrollTriggerInstance.end - scrollTriggerInstance.start) * progress
-
-        window.scrollTo({
-          top: targetScroll,
-          behavior: "smooth",
-        })
-      }
 
       const handleMouseDown = (e: MouseEvent) => {
         e.preventDefault()
@@ -192,7 +260,7 @@ export function MachinesGallery() {
         gsap.fromTo(
           card,
           {
-            opacity: 0,
+            opacity: 0.5,
             y: 100,
             scale: 0.8,
           },
@@ -204,9 +272,9 @@ export function MachinesGallery() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
-              containerAnimation: scrollTween,
-              start: "left 80%",
-              end: "left 20%",
+              containerAnimation: scrollTweenRef.current ?? undefined,
+              start: "left 50%",
+              end: "center center",
               toggleActions: "play none none reverse",
             },
           },
@@ -252,21 +320,34 @@ export function MachinesGallery() {
     }
   }, [machines, isMounted])
 
+  if (isLoading) {
+    return (
+      <section className="relative bg-white py-5 my-5">
+        <div className="container mx-auto px-4 mb-0 flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-[#41059a] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-[#41059a] font-medium">Loading machines...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="relative bg-white py-5 my-5">
-      <div className="container mx-auto px-4 mb-0">
+      <div className="container mx-auto px-4 mb-0 relative z-10">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 h-14 bg-gray-100 p-1">
+          <TabsList className="grid max-w-md mx-auto grid-cols-2 h-14 bg-gray-100 p-1 w-11/12">
             <TabsTrigger
               value="course-holes"
-              className="font-bold data-[state=active]:bg-[#23084a] data-[state=active]:text-[#ffcc00] transition-all duration-300 text-lg"
+              className="font-bold data-[state=active]:bg-[#41059a] data-[state=active]:text-[#ffcc00] transition-all duration-300 text-xl cursor-pointer"
             >
               <Flag className="w-4 h-4 mr-2" />
               Course Holes
             </TabsTrigger>
             <TabsTrigger
               value="table-golf"
-              className="font-bold data-[state=active]:bg-[#23084a] data-[state=active]:text-[#ffcc00] transition-all duration-300 text-lg"
+              className="font-bold data-[state=active]:bg-[#41059a] data-[state=active]:text-[#ffcc00] transition-all duration-300 text-xl cursor-pointer"
             >
               <Table className="w-4 h-4 mr-2" />
               Table Golf
@@ -275,7 +356,7 @@ export function MachinesGallery() {
         </Tabs>
       </div>
 
-      <div ref={containerRef} className="relative h-screen overflow-hidden flex items-center">
+      <div ref={containerRef} className="relative top-[-15vh] h-[calc(100vh)] overflow-hidden flex items-center">
         <div
           ref={scrollContainerRef}
           className="flex items-center gap-8 px-8 h-full"
@@ -288,8 +369,9 @@ export function MachinesGallery() {
                 if (el) cardsRef.current[index] = el
               }}
               className="relative flex-shrink-0 w-[400px] h-[500px] group cursor-pointer"
+              onClick={() => setSelectedMachine(machine)}
             >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl bg-[#23084a] border-2 border-transparent hover:border-[#ffcc00] transition-all duration-300">
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl bg-[#41059a] border-2 border-transparent hover:border-[#ffcc00] transition-all duration-300">
                 <div className="relative w-full h-[70%] overflow-hidden">
                   <Image
                     src={machine.image || "/placeholder.svg"}
@@ -299,7 +381,7 @@ export function MachinesGallery() {
                   />
                 </div>
 
-                <div className="relative h-[30%] p-6 bg-gradient-to-br from-[#23084a] to-[#3a1a6b]">
+                <div className="relative h-[30%] p-6 bg-[#41059a]">
                   <h3 className="text-2xl font-bold text-white mb-2">{machine.name}</h3>
                   <p className="text-gray-300 text-sm">
                     {activeTab === "course-holes" ? "Course Hole" : "Table Golf"} #
@@ -308,7 +390,7 @@ export function MachinesGallery() {
 
                   <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex items-center gap-2 text-[#ffcc00] font-semibold">
-                      <span>Learn More</span>
+                      <span>{"Details"}</span>
                       <svg
                         className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300"
                         fill="none"
@@ -323,6 +405,24 @@ export function MachinesGallery() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* New position for arrows */}
+        <div className="absolute bottom-[10rem] left-0 right-0 flex justify-between px-4 z-20">
+          <button
+            onClick={handlePrev}
+            className="bg-white/50 hover:bg-white/80 rounded-full p-2 transition-all disabled:opacity-50"
+            disabled={currentMachine === 1}
+          >
+            <ChevronLeft className="w-8 h-8 text-[#41059a]" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="bg-white/50 hover:bg-white/80 rounded-full p-2 transition-all disabled:opacity-50"
+            disabled={currentMachine === machines.length}
+          >
+            <ChevronRight className="w-8 h-8 text-[#41059a]" />
+          </button>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-4xl">
@@ -362,9 +462,79 @@ export function MachinesGallery() {
             </div>
           </div>
         </div>
-
-        
       </div>
+
+      {selectedMachine && (
+        <div
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedMachine(null)}
+        >
+          <div
+            style={{
+              height: "auto",
+              maxHeight: "90vh",
+              width: "90vw",
+              maxWidth: "90vw",
+            }}
+            className="relative bg-[#0c022f] rounded-2xl p-4 border-4 border-[#ffcc00]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedMachine(null)}
+              className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-[#ffcc00] hover:bg-[#ffd633] flex items-center justify-center transition-all hover:scale-110 shadow-lg z-10"
+            >
+              <span className="text-3xl text-[#41059a] font-bold">×</span>
+            </button>
+
+            <div
+              className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#0c022f]"
+              style={{
+                height: "auto",
+                maxHeight: "70vh",
+              }}
+            >
+              {modal3D ? (
+                <iframe
+                  ref={iframeRef}
+                  src={modal3D}
+                  frameBorder="0"
+                  allowFullScreen
+                  scrolling="no"
+                  className="object-contain"
+                  width={"100%"}
+                  height={"100%"}
+                />
+              ) : (
+                <Image
+                  src={selectedMachine.image || "/placeholder.svg"}
+                  alt={selectedMachine.name}
+                  fill
+                  className="object-contain"
+                />
+              )}
+            </div>
+
+            <div className="mt-4 text-center">
+              <h3 className="text-3xl font-bold text-[#ffcc00] mb-2">{selectedMachine.name}</h3>
+              <p className="text-white text-lg">
+                {activeTab === "course-holes" ? "Course Hole" : "Table Golf"} #
+                {selectedMachine.id.toString().padStart(2, "0")}
+              </p>
+            </div>
+            {selectedMachine.has3D && (
+              <button
+                onClick={() => {
+                  const filePath = `https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com/${selectedMachine.folderName}/build/index.html`
+                  setModal3D(filePath)
+                }}
+                className="modal-3d-button"
+              >
+                <Image src={"/3d-cube.webp"} alt="Open 3D" width={84} height={84} priority />
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   )
 }

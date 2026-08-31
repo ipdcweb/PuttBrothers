@@ -37,7 +37,7 @@ export function TheProcess() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#513bb2] mb-6">The Process</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#41059a] mb-6">The Process</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Have questions or need more information? Reach out to us today. We're here to help you plan your next
             mini-golf adventure.
@@ -51,16 +51,16 @@ export function TheProcess() {
             return (
               <div
                 key={step.number}
-                className="bg-white hover:bg-[#ffcc00] rounded-lg p-8 shadow-lg hover:shadow-[0_8px_30px_rgba(81,59,178,0.35)] hover:-translate-y-2 transition-all duration-300 group"
+                className="bg-white hover:bg-[#ffcc00] rounded-lg p-8 shadow-lg hover:shadow-[0_8px_30px_rgba(65,5,154,0.35)] hover:-translate-y-2 transition-all duration-300 group"
               >
                 {/* Number and Icon */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#ffcc00] group-hover:bg-[#513bb2] flex items-center justify-center transition-colors duration-300">
-                    <Icon className="w-8 h-8 text-[#513bb2] group-hover:text-[#ffcc00] transition-colors duration-300" />
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#ffcc00] group-hover:bg-[#41059a] flex items-center justify-center transition-colors duration-300">
+                    <Icon className="w-8 h-8 text-[#41059a] group-hover:text-[#ffcc00] transition-colors duration-300" />
                   </div>
                   <div>
                     <span className="text-sm font-semibold text-[#ffcc00] tracking-wider">STEP {step.number}</span>
-                    <h3 className="text-2xl font-bold text-[#513bb2] mt-1">{step.title}</h3>
+                    <h3 className="text-2xl font-bold text-[#41059a] mt-1">{step.title}</h3>
                   </div>
                 </div>
 

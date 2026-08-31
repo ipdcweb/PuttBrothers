@@ -122,6 +122,8 @@ const countries: Country[] = [
   { code: "ZW", name: "Zimbabwe", dialCode: "+263", flag: "🇿🇼" },
 ]
 
+const priorityCountryCodes = ["US", "AU", "NZ"]
+
 interface PhoneInputProps {
   value: string
   onChange: (value: string) => void
@@ -131,9 +133,8 @@ interface PhoneInputProps {
 }
 
 export function PhoneInput({ value, onChange, onFocus, onBlur, required }: PhoneInputProps) {
-  const [selectedCountry, setSelectedCountry] = useState<Country>(
-    countries.find((country) => country.code === "US") ?? countries[0],
-  )
+  const usCountry = countries.find((c) => c.code === "US") || countries[0]
+  const [selectedCountry, setSelectedCountry] = useState<Country>(usCountry)
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -159,7 +160,18 @@ export function PhoneInput({ value, onChange, onFocus, onBlur, required }: Phone
     }
   }, [isOpen])
 
+  const priorityCountries = priorityCountryCodes
+    .map((code) => countries.find((c) => c.code === code))
+    .filter((c): c is Country => c !== undefined)
+
   const filteredCountries = countries.filter(
+    (country) =>
+      country.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      country.dialCode.includes(searchQuery) ||
+      country.code.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
+
+  const filteredPriorityCountries = priorityCountries.filter(
     (country) =>
       country.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       country.dialCode.includes(searchQuery) ||
@@ -201,8 +213,7 @@ export function PhoneInput({ value, onChange, onFocus, onBlur, required }: Phone
           onChange={handlePhoneChange}
           onFocus={onFocus}
           onBlur={onBlur}
-          placeholder="Phone number"
-          className="flex-1 px-3 py-2 outline-none text-gray-900 placeholder-gray-300 text-sm sm:text-base min-w-0"
+          className="flex-1 px-3 py-2 outline-none text-gray-900 text-base min-w-0"
           maxLength={15}
         />
       </div>
@@ -230,6 +241,45 @@ export function PhoneInput({ value, onChange, onFocus, onBlur, required }: Phone
 
           {/* Country List */}
           <div className="overflow-y-auto max-h-64 smooth-scroll">
+            {!searchQuery && priorityCountries.length > 0 && (
+              <>
+                {priorityCountries.map((country) => (
+                  <button
+                    key={`priority-${country.code}`}
+                    type="button"
+                    onClick={() => handleCountrySelect(country)}
+                    className="w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 hover:bg-[#41059a] hover:text-white transition-colors text-left"
+                  >
+                    <span className="text-xl sm:text-2xl flex-shrink-0">{country.flag}</span>
+                    <span className="flex-1 text-xs sm:text-sm font-medium truncate">{country.name}</span>
+                    <span className="text-xs sm:text-sm text-gray-500 flex-shrink-0">{country.dialCode}</span>
+                  </button>
+                ))}
+                <div className="border-b-2 border-gray-300 my-1" />
+                <div className="px-3 sm:px-4 py-2 bg-gray-100 border-b border-gray-200">
+                  <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">All Countries</span>
+                </div>
+              </>
+            )}
+
+            {searchQuery && filteredPriorityCountries.length > 0 && (
+              <>
+                {filteredPriorityCountries.map((country) => (
+                  <button
+                    key={`priority-search-${country.code}`}
+                    type="button"
+                    onClick={() => handleCountrySelect(country)}
+                    className="w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 hover:bg-[#41059a] hover:text-white transition-colors text-left bg-blue-50"
+                  >
+                    <span className="text-xl sm:text-2xl flex-shrink-0">{country.flag}</span>
+                    <span className="flex-1 text-xs sm:text-sm font-medium truncate">{country.name}</span>
+                    <span className="text-xs sm:text-sm text-gray-500 flex-shrink-0">{country.dialCode}</span>
+                  </button>
+                ))}
+              </>
+            )}
+
+            {/* Show all filtered countries */}
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
                 <button

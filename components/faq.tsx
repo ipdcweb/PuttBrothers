@@ -51,20 +51,19 @@ export function FAQ() {
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-3 text-[#513bb2]">FAQ</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-3 text-[#41059a]">FAQ</h2>
         <p className="text-lg md:text-xl text-center mb-12 text-gray-600">Frequently Asked Questions</p>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="rounded-2xl overflow-hidden transition-all duration-300"
-              style={{ backgroundColor: "#513bb2" }}
+              className="rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer"
+              style={{ backgroundColor: "#41059a" }}
             >
-              {/* Question Button */}
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left transition-all duration-300 hover:bg-white/5"
+                className="w-full px-6 py-5 flex items-center justify-between text-left transition-all duration-300 hover:bg-white/5 cursor-pointer"
               >
                 <span className="text-white font-medium text-base md:text-lg pr-4 leading-relaxed">{faq.question}</span>
                 <div
@@ -72,14 +71,13 @@ export function FAQ() {
                   style={{ backgroundColor: "#ffcc00" }}
                 >
                   {openIndex === index ? (
-                    <X className="w-5 h-5 text-[#513bb2] transition-transform duration-300" />
+                    <X className="w-5 h-5 text-[#41059a] transition-transform duration-300" />
                   ) : (
-                    <Plus className="w-5 h-5 text-[#513bb2] transition-transform duration-300" />
+                    <Plus className="w-5 h-5 text-[#41059a] transition-transform duration-300" />
                   )}
                 </div>
               </button>
 
-              {/* Answer Panel */}
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"

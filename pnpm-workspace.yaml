@@ -1,0 +1,9 @@
+overrides:
+  dompurify: 3.4.14
+  postcss: 8.5.26
+
+allowBuilds:
+  core-js: true
+  esbuild: true
+  unrs-resolver: true
+  workerd: true
