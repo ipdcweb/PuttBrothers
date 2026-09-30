@@ -7,7 +7,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Search, MessageSquare, Shield, ChevronDown, X, Building2, Briefcase, Globe, Grid3x3, FileText } from "lucide-react"
 import { PhoneInput } from "@/components/phone-input"
+import { BorderGlowPanel } from "@/components/ui/border-glow-panel"
 import { MobilePlannerWarningDialog } from "@/components/planner/mobile-planner-warning-dialog"
+import { TradingShowPicker } from "@/components/trading-show-picker"
 import { useIsPlannerMobileDevice } from "@/hooks/use-planner-device-warning"
 
 export function Contact() {
@@ -17,6 +19,7 @@ export function Contact() {
     email: "",
     mobile: "",
     FindUs: "",
+    FindLead: "",
     industry: "",
     businessStatus: "",
     deployment: "",
@@ -31,6 +34,7 @@ export function Contact() {
   const [captchaError, setCaptchaError] = useState(false)
   const [isCaptchaValid, setIsCaptchaValid] = useState(false)
   const [showFindUsInfo, setShowFindUsInfo] = useState(false)
+  const [findUsError, setFindUsError] = useState("")
   const [emailError, setEmailError] = useState("") // Added email validation state
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
@@ -112,6 +116,9 @@ export function Contact() {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value })
+    if (field === "FindUs" && value) {
+      setFindUsError("")
+    }
     if (field === "message") {
       setMessageCharCount(value.length)
     }
@@ -120,6 +127,11 @@ export function Contact() {
       const error = validateEmail(value)
       setEmailError(error)
     }
+  }
+
+  const handleFindUsChange = (value: string, lead: string) => {
+    setFormData((current) => ({ ...current, FindUs: value, FindLead: lead }))
+    setFindUsError("")
   }
 
   const handleCreateLayout = () => {
@@ -179,6 +191,11 @@ export function Contact() {
       setEmailError(emailValidationError)
       return
     }
+    if (!formData.FindUs) {
+      setFindUsError("Please select how you found us.")
+      document.getElementById("FindUs")?.scrollIntoView({ behavior: "smooth", block: "center" })
+      return
+    }
     if (!isCaptchaValid) {
       setCaptchaError(true)
       return
@@ -199,6 +216,7 @@ export function Contact() {
         howDidYouFindUs: {
           FindUs: formData.FindUs,
           FindUsOther: "",
+          FindLead: formData.FindLead,
         },
         industryInformation: {
           industry: formData.industry,
@@ -231,6 +249,7 @@ export function Contact() {
         email: "",
         mobile: "",
         FindUs: "",
+        FindLead: "",
         industry: "",
         businessStatus: "",
         deployment: "",
@@ -243,6 +262,7 @@ export function Contact() {
       setMessageCharCount(0)
       setLayoutPdfUrl("")
       setLayoutPdfFilename("")
+      setFindUsError("")
 
       // Hide success message after 5 seconds
       setTimeout(() => {
@@ -256,22 +276,61 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 lg:py-32" style={{ backgroundColor: "#ffcc00" }}>
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-balance text-primary" style={{ color: "#512bb2" }}>
-              Contact Us
-            </h2>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto text-pretty" style={{ color: "#41059a" }}>
-              Have questions or need more information? Reach out to us today. We're here to help you plan your next
-              mini-golf adventure.
-            </p>
-          </div>
+    <section id="contact" className="bg-[#ffcc00] py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-[1480px] px-4 sm:px-6 lg:px-8">
+        <BorderGlowPanel>
+          <div className="grid bg-white lg:grid-cols-[0.78fr_1.42fr]">
+            <aside className="relative overflow-hidden bg-[#41059a] px-7 py-10 text-white sm:px-10 lg:flex lg:min-h-full lg:flex-col lg:justify-between lg:px-12 lg:py-14">
+              <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#ffcc00]/30" />
+              <div className="pointer-events-none absolute -bottom-40 -left-24 h-80 w-80 rounded-full border border-white/10" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="relative">
+                <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-[#ffcc00]">
+                  Let&apos;s create something unforgettable
+                </p>
+                <h2 className="max-w-md text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-[3.4rem]">
+                  Tell us about your next venue.
+                </h2>
+                <p className="mt-6 max-w-md text-base leading-7 text-white/75 sm:text-lg">
+                  Share a few details and our team will help shape the right mini-golf experience for your space.
+                </p>
+
+                <ol className="mt-10 space-y-7 sm:mt-12">
+                  {[
+                    ["Tell us about your project", "Share your venue, region and business goals."],
+                    ["Plan your space", "Use our optional layout planner to map your idea."],
+                    ["Build the next step", "Our team reviews everything and gets in touch."],
+                  ].map(([title, copy], index) => (
+                    <li key={title} className="relative flex gap-4">
+                      {index < 2 && <span className="absolute left-[17px] top-9 h-[calc(100%+1.75rem)] w-px bg-[#ffcc00]/35" />}
+                      <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ffcc00] text-sm font-extrabold text-[#41059a] shadow-[0_0_0_5px_rgba(255,204,0,0.12)]">
+                        {index + 1}
+                      </span>
+                      <span>
+                        <strong className="block text-base font-bold">{title}</strong>
+                        <span className="mt-1 block text-sm leading-6 text-white/65">{copy}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <div className="relative mt-12 grid grid-cols-3 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] text-center lg:mt-16">
+                {[
+                  ["20+ years", "Experience"],
+                  ["Global", "Reach"],
+                  ["Custom", "Design"],
+                ].map(([value, label], index) => (
+                  <div key={value} className={`px-2 py-4 ${index ? "border-l border-white/15" : ""}`}>
+                    <strong className="block text-sm font-bold text-[#ffcc00] sm:text-base">{value}</strong>
+                    <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/60">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </aside>
+
+            <div className="bg-white px-6 py-9 sm:px-9 sm:py-11 lg:px-12 lg:py-14">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-medium text-gray-700 mb-2 text-base">First Name *</label>
@@ -351,39 +410,23 @@ export function Contact() {
                   </div>
                 </div>
 
-                <div className="pt-6">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <div>
                   <div className="flex items-center mb-2">
                     <Search className="h-5 w-5 mr-2" style={{ color: "#512bb2" }} />
-                    <label htmlFor="FindUs" className="block font-medium text-gray-700 text-base">
+                    <label id="FindUs-label" className="block font-medium text-gray-700 text-base">
                       How did you find us? *
                     </label>
                   </div>
-                  <select
-                    id="FindUs"
-                    name="FindUs"
-                    required
-                    className="mt-1 block w-full h-12 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#512bb2] focus:border-[#512bb2] sm:text-sm text-base cursor-pointer"
+                  <TradingShowPicker
                     value={formData.FindUs}
-                    onChange={(e) => handleInputChange("FindUs", e.target.value)}
-                  >
-                    <option value="">Select an option</option>
-                    <option value="Cinema Advertising">Cinema Advertising</option>
-                    <option value="Facebook">Facebook</option>
-                    <option value="Flyers">Flyers</option>
-                    <option value="Friends">Friends</option>
-                    <option value="LinkedIn">LinkedIn</option>
-                    <option value="Global Events">Global Events</option>
-                    <option value="Google">Google</option>
-                    <option value="Instagram">Instagram</option>
-                    <option value="Market Place">Market Place</option>
-                    <option value="Radio Advertising">Radio Advertising</option>
-                    <option value="TV Advertising">TV Advertising</option>
-                    <option value="Vehicles">Vehicles</option>
-                    <option value="Others">Others</option>
-                  </select>
-                </div>
+                    lead={formData.FindLead}
+                    onValueChange={handleFindUsChange}
+                    error={findUsError}
+                  />
+                  </div>
 
-                <div className="pt-6">
+                  <div>
                   <div className="flex items-center mb-2">
                     <Building2 className="h-5 w-5 mr-2" style={{ color: "#512bb2" }} />
                     <label htmlFor="industry" className="block font-medium text-gray-700 text-base">
@@ -408,9 +451,11 @@ export function Contact() {
                     <option value="Theatre/Cinema">Theatre/Cinema</option>
                     <option value="Other">Other</option>
                   </select>
+                  </div>
                 </div>
 
-                <div className="pt-6">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <div>
                   <div className="flex items-center mb-2">
                     <Briefcase className="h-5 w-5 mr-2" style={{ color: "#512bb2" }} />
                     <label htmlFor="businessStatus" className="block font-medium text-gray-700 text-base">
@@ -430,9 +475,9 @@ export function Contact() {
                     <option value="Opening an additional venue">Opening an additional venue</option>
                     <option value="Enhancing an existing venue">Enhancing an existing venue</option>
                   </select>
-                </div>
+                  </div>
 
-                <div className="pt-6">
+                  <div>
                   <div className="flex items-center mb-2">
                     <Globe className="h-5 w-5 mr-2" style={{ color: "#512bb2" }} />
                     <label htmlFor="deployment" className="block font-medium text-gray-700 text-base">
@@ -455,6 +500,7 @@ export function Contact() {
                     <option value="Oceania">Oceania</option>
                     <option value="South America">South America</option>
                   </select>
+                  </div>
                 </div>
 
                 <div>
@@ -466,7 +512,7 @@ export function Contact() {
                     required
                     rows={4}
                     placeholder="Tell us about your project..."
-                    className="w-full h-12 placeholder:text-gray-500 text-base"
+                    className="min-h-28 w-full resize-y placeholder:text-gray-500 text-base"
                     value={formData.message}
                     maxLength={1000}
                     onFocus={() => setFocusedField("message")}
@@ -487,7 +533,7 @@ export function Contact() {
                   )}
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-1">
                   <button
                     type="button"
                     data-layout-button
@@ -598,70 +644,87 @@ export function Contact() {
                   )}
                 </div>
 
-                <div className="pt-4">
-                  <div className="flex items-center mb-3">
-                    <Shield className="h-5 w-5 mr-2" style={{ color: "#512bb2" }} />
-                    <label className="block font-medium text-gray-700 text-base">Security Check *</label>
-                    <button
-                      type="button"
-                      onClick={() => setShowFindUsInfo(!showFindUsInfo)}
-                      className="ml-2 hover:opacity-80 transition-opacity duration-200 flex items-center cursor-pointer"
-                      style={{ color: "#512bb2" }}
-                    >
-                      <span className="text-sm underline">Info</span>
-                      <ChevronDown
-                        className={`h-4 w-4 ml-1 transition-transform duration-200 ${
-                          showFindUsInfo ? "rotate-180" : ""
+                <div className="border-t border-gray-200 pt-5">
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center mb-3">
+                        <Shield className="h-5 w-5 mr-2" style={{ color: "#512bb2" }} />
+                        <label className="block font-medium text-gray-700 text-base">Security Check *</label>
+                        <button
+                          type="button"
+                          onClick={() => setShowFindUsInfo(!showFindUsInfo)}
+                          className="ml-2 hover:opacity-80 transition-opacity duration-200 flex items-center cursor-pointer"
+                          style={{ color: "#512bb2" }}
+                        >
+                          <span className="text-sm underline">Info</span>
+                          <ChevronDown
+                            className={`h-4 w-4 ml-1 transition-transform duration-200 ${
+                              showFindUsInfo ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          showFindUsInfo ? "max-h-24 opacity-100 mb-4" : "max-h-0 opacity-0"
                         }`}
-                      />
-                    </button>
-                  </div>
+                      >
+                        <p
+                          className="text-sm text-gray-600 p-3 rounded-md border"
+                          style={{
+                            backgroundColor: "#f3f0ff",
+                            borderColor: "#512bb2",
+                          }}
+                        >
+                          Quick brain stretch! 🧠💡 Solve the math question and enter the correct answer to continue. This
+                          helps us keep the website safe and spam-free! 🤖🚫
+                        </p>
+                      </div>
 
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      showFindUsInfo ? "max-h-24 opacity-100 mb-4" : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p
-                      className="text-sm text-gray-600 p-3 rounded-md border"
+                      <div className="flex items-center space-x-3">
+                        <div className="text-2xl font-bold text-gray-800">
+                          {captchaNum1} + {captchaNum2} =
+                        </div>
+                        <Input
+                          type="number"
+                          required
+                          value={captchaAnswer}
+                          onChange={(e) => {
+                            const newAnswer = e.target.value
+                            setCaptchaAnswer(newAnswer)
+
+                            if (newAnswer !== "" && Number.parseInt(newAnswer) !== captchaNum1 + captchaNum2) {
+                              setCaptchaError(true)
+                            } else {
+                              setCaptchaError(false)
+                            }
+                          }}
+                          className={`w-24 text-center text-lg ${captchaError ? "border-red-500 border-2" : ""}`}
+                          placeholder="?"
+                        />
+                        {captchaError && <X className="h-6 w-6 text-red-500 flex-shrink-0" />}
+                      </div>
+                      {captchaError && (
+                        <p className="text-sm text-red-500 mt-2 font-medium">
+                          Incorrect answer. Almost there! 💪 Even calculators need a second chance sometimes!
+                        </p>
+                      )}
+                    </div>
+
+                    <Button
+                      type="submit"
+                      disabled={!isCaptchaValid || isSubmitting}
+                      size="lg"
+                      className="h-12 w-full shrink-0 cursor-pointer rounded-xl px-8 text-base font-bold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                       style={{
-                        backgroundColor: "#f3f0ff",
-                        borderColor: "#512bb2",
+                        backgroundColor: isCaptchaValid && !isSubmitting ? "#41059a" : "#e5e7eb",
+                        color: isCaptchaValid && !isSubmitting ? "#ffcc00" : "#9ca3af",
                       }}
                     >
-                      Quick brain stretch! 🧠💡 Solve the math question and enter the correct answer to continue. This
-                      helps us keep the website safe and spam-free! 🤖🚫
-                    </p>
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                    </Button>
                   </div>
-
-                  <div className="flex items-center space-x-3">
-                    <div className="text-2xl font-bold text-gray-800">
-                      {captchaNum1} + {captchaNum2} =
-                    </div>
-                    <Input
-                      type="number"
-                      required
-                      value={captchaAnswer}
-                      onChange={(e) => {
-                        const newAnswer = e.target.value
-                        setCaptchaAnswer(newAnswer)
-
-                        if (newAnswer !== "" && Number.parseInt(newAnswer) !== captchaNum1 + captchaNum2) {
-                          setCaptchaError(true)
-                        } else {
-                          setCaptchaError(false)
-                        }
-                      }}
-                      className={`w-24 text-center text-lg ${captchaError ? "border-red-500 border-2" : ""}`}
-                      placeholder="?"
-                    />
-                    {captchaError && <X className="h-6 w-6 text-red-500 flex-shrink-0" />}
-                  </div>
-                  {captchaError && (
-                    <p className="text-sm text-red-500 mt-2 font-medium">
-                      Incorrect answer. Almost there! 💪 Even calculators need a second chance sometimes!
-                    </p>
-                  )}
                 </div>
 
                 {submitSuccess && (
@@ -676,22 +739,10 @@ export function Contact() {
                   </div>
                 )}
 
-                <Button
-                  type="submit"
-                  disabled={!isCaptchaValid || isSubmitting}
-                  size="lg"
-                  className="w-full text-white font-bold h-auto transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer text-xl py-3"
-                  style={{
-                    backgroundColor: isCaptchaValid && !isSubmitting ? "#512bb2" : "#cccccc",
-                    color: isCaptchaValid && !isSubmitting ? "#ffcc00" : "#666666",
-                  }}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
               </form>
             </div>
           </div>
-        </div>
+        </BorderGlowPanel>
       </div>
 
       {showPlannerModal && (

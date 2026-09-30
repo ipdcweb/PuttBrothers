@@ -29,7 +29,7 @@ const regions: Region[] = [
   },
   {
     name: "North America",
-    phone: "+1 (866) 591 7888",
+    phone: "+1 (469) 920-9894",
     email: "northamerica@puttbrothers.com",
     position: { top: "35%", left: "72%" },
   },

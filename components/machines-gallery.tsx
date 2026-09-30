@@ -86,7 +86,6 @@ export function MachinesGallery() {
         }
 
         // Transform API data to match the component structure
-        const S3_BASE = "https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com"
         const transformedMachines: Machine[] = machinesData.map((product: any, index: number) => {
           // Determine category based on FolderName or use default
           let category = "Interactive"
@@ -95,7 +94,7 @@ export function MachinesGallery() {
           }
           console.log(product.FolderName)
           // Determine image path from S3
-          const imagePath = `${S3_BASE}/${product.FolderName}/media/desktop.png`
+          const imagePath = `/product-media/${encodeURIComponent(product.FolderName)}/media/desktop.png`
 
           return {
             id: index + 1,

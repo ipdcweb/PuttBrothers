@@ -1,47 +1,18 @@
 "use server"
 
-const mockMachines = [
-  {
-    id: 1,
-    name: "Golf Series Pro",
-    description: "Professional mini golf course with premium features",
-    image: "/images/courses/hole-1.png",
-    category: "Premium",
-  },
-  {
-    id: 2,
-    name: "Golf Series Classic",
-    description: "Classic mini golf experience for all ages",
-    image: "/images/courses/hole-2.png",
-    category: "Standard",
-  },
-  {
-    id: 3,
-    name: "Golf Series Elite",
-    description: "Elite championship-grade mini golf course",
-    image: "/images/courses/hole-3.png",
-    category: "Premium",
-  },
-  {
-    id: 4,
-    name: "Golf Series Family",
-    description: "Family-friendly mini golf entertainment",
-    image: "/images/courses/hole-4.png",
-    category: "Family",
-  },
-]
+import { FALLBACK_MACHINES, isValidCatalog } from "@/lib/products-catalog"
 
 const fetchData = async (url) => {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), 3500)
   try {
-    const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 5000)
-
     const response = await fetch(url, {
-      cache: "no-store",
+      next: { revalidate: 300 },
       signal: controller.signal,
+      headers: {
+        Accept: "application/json",
+      },
     })
-
-    clearTimeout(timeoutId)
 
     if (!response.ok) {
       return null
@@ -51,21 +22,30 @@ const fetchData = async (url) => {
   } catch (error) {
     // Silently catch all errors and return null for fallback
     return null
+  } finally {
+    // Include downloading/parsing the response body in the timeout.
+    clearTimeout(timeoutId)
   }
 }
 
-export const getMachinesAll = async () => {
+export const getMachinesAllResult = async () => {
   const data = await fetchData(
     "https://va0d7iedl5.execute-api.ap-southeast-2.amazonaws.com/listMachines?all=true"
   )
-  return data || mockMachines
+  const isFallback = !isValidCatalog(data)
+  return { machines: isFallback ? FALLBACK_MACHINES : data, isFallback }
+}
+
+export const getMachinesAll = async () => {
+  const { machines } = await getMachinesAllResult()
+  return machines
 }
 
 export const getMachines = async () => {
   const data = await fetchData(
     "https://va0d7iedl5.execute-api.ap-southeast-2.amazonaws.com/listMachines"
   )
-  return data || mockMachines
+  return isValidCatalog(data) ? data : FALLBACK_MACHINES
 }
 
 export const getTerms = async (termID) => {

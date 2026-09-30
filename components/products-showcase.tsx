@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useIsMobile } from "@/hooks/use-mobile"
 import Coverflow from "@/components/coverflow"
-import { getMachinesWithFlags } from "@/app/actions/machines_with_flags"
+import { FALLBACK_MACHINES, isValidCatalog, type CatalogMachine } from "@/lib/products-catalog"
 
 const MOBILE_PAGE_SIZE = 8
 const DESKTOP_PAGE_SIZE = 12
@@ -56,7 +56,7 @@ function PaginatedProductsCoverflow({
   }
 
   return (
-    <div>
+    <div className="min-h-[530px] md:min-h-[630px]" aria-busy={isLoading}>
       <Coverflow
         key={`${imageVariant}-coverflow-${pageIndex}`}
         products={visibleProducts}
@@ -99,51 +99,37 @@ function PaginatedProductsCoverflow({
 }
 
 export function ProductsShowcase() {
-  const [products, setProducts] = useState<any[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const isMobile = useIsMobile()
+  // Render real designs immediately; refresh the complete catalogue in the background.
+  const [products, setProducts] = useState<CatalogMachine[]>(FALLBACK_MACHINES)
+  const isMobile = useIsMobile() === true
 
   useEffect(() => {
-    if (isMobile === undefined) return
-
     let isCancelled = false
     const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 6000)
 
     const fetchMachines = async () => {
       try {
-        setIsLoading(true)
-        const machinesData = isMobile
-          ? await fetch("/api/products/machines", {
-              signal: controller.signal,
-              headers: {
-                Accept: "application/json",
-              },
-            }).then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to fetch machines")
-              }
+        const machinesData = await fetch("/api/products/machines", {
+          signal: controller.signal,
+          headers: {
+            Accept: "application/json",
+          },
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch machines")
+          }
 
-              return response.json()
-            })
-          : await getMachinesWithFlags()
+          return response.json()
+        })
 
-        if (!isCancelled && machinesData && Array.isArray(machinesData)) {
+        if (!isCancelled && isValidCatalog(machinesData)) {
           setProducts(machinesData)
-        } else if (!isCancelled) {
-          setProducts([])
         }
-      } catch (err) {
-        if (controller.signal.aborted) return
-
-        if (!isCancelled) {
-          // Silently handle error - mock data will be used as fallback
-          console.log("[v0] Error fetching machines, using mock data")
-          setProducts([])
-        }
+      } catch {
+        // The first-view catalogue remains usable on a timeout or network failure.
       } finally {
-        if (!isCancelled) {
-          setIsLoading(false)
-        }
+        clearTimeout(timeoutId)
       }
     }
 
@@ -151,88 +137,51 @@ export function ProductsShowcase() {
 
     return () => {
       isCancelled = true
+      clearTimeout(timeoutId)
       controller.abort()
     }
-  }, [isMobile])
+  }, [])
 
   return (
     <section className="py-20 px-4 relative overflow-hidden" style={{ backgroundColor: "#41059a" }}>
       <div className="max-w-7xl mx-auto">
-        {isMobile === undefined ? null : isMobile ? (
-          <>
-            <div className="text-center mb-2 px-4">
-              <h2 className="text-2xl font-bold mb-4 mt-2.5" style={{ color: "#ffcc00" }}>
-                Our Top-Rated Mini Golf Designs
-              </h2>
-            </div>
+        <div className="mb-2 px-4 text-center md:mb-16 lg:px-8">
+          <h2 className="mb-4 mt-2.5 text-2xl font-bold md:mb-6 md:mt-6 md:text-5xl" style={{ color: "#ffcc00" }}>
+            Our Top-Rated Mini Golf Designs
+          </h2>
+          <p className="hidden text-lg leading-relaxed text-white/90 text-pretty md:block md:text-xl">
+            Putt Brothers creates dynamic, interactive mini golf courses and unique laser tag arenas that turn ordinary
+            spaces into thriving entertainment destinations. Whether you're adding a new attraction or reinventing an
+            existing venue, we design, build, and deliver unforgettable experiences that keep guests coming back.
+          </p>
+        </div>
 
-            <PaginatedProductsCoverflow
-              products={products}
-              isLoading={isLoading}
-              pageSize={MOBILE_PAGE_SIZE}
-              imageVariant="mobile"
-              enableAutoplay={false}
-              enableLoop={false}
-              controlsClassName="mt-2"
-            />
+        <PaginatedProductsCoverflow
+          products={products}
+          isLoading={false}
+          pageSize={isMobile ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE}
+          imageVariant={isMobile ? "mobile" : "desktop"}
+          enableAutoplay={!isMobile}
+          enableLoop={!isMobile}
+          controlsClassName={isMobile ? "mt-2" : "mt-4"}
+        />
 
-            <div className="text-center mt-8 px-4">
-              <p className="text-lg text-white/90 leading-relaxed text-pretty">
-                Putt Brothers creates dynamic, interactive mini golf courses and unique laser tag arenas that turn
-                ordinary spaces into thriving entertainment destinations. Whether you're adding a new attraction or
-                reinventing an existing venue, we design, build, and deliver unforgettable experiences that keep guests
-                coming back.
-              </p>
-            </div>
+        <p className="mt-8 px-4 text-center text-lg leading-relaxed text-white/90 text-pretty md:hidden">
+          Putt Brothers creates dynamic, interactive mini golf courses and unique laser tag arenas that turn ordinary
+          spaces into thriving entertainment destinations. Whether you're adding a new attraction or reinventing an
+          existing venue, we design, build, and deliver unforgettable experiences that keep guests coming back.
+        </p>
 
-            {products.length > 0 && (
-              <div className="mt-8 flex justify-center">
-                <Link
-                  href="/products"
-                  className="rounded-lg px-6 py-3 text-base font-bold transition-all active:scale-95"
-                  style={{ backgroundColor: "#ffcc00", color: "black" }}
-                >
-                  VIEW ALL PRODUCTS
-                </Link>
-              </div>
-            )}
-          </>
-        ) : (
-          <>
-            <div className="text-center mb-16 px-4 lg:px-8">
-              <h2 className="text-5xl font-bold mb-6 mt-6" style={{ color: "#ffcc00" }}>
-                Our Top-Rated Mini Golf Designs
-              </h2>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed text-pretty">
-                Putt Brothers creates dynamic, interactive mini golf courses and unique laser tag arenas that turn
-                ordinary spaces into thriving entertainment destinations. Whether you're adding a new attraction or
-                reinventing an existing venue, we design, build, and deliver unforgettable experiences that keep guests
-                coming back.
-              </p>
-            </div>
-
-            <PaginatedProductsCoverflow
-              products={products}
-              isLoading={isLoading}
-              pageSize={DESKTOP_PAGE_SIZE}
-              imageVariant="desktop"
-              enableAutoplay={true}
-              enableLoop={true}
-              controlsClassName="mt-4"
-            />
-
-            {products.length > 0 && (
-              <div className="mt-10 flex justify-center">
-                <Link
-                  href="/products"
-                  className="px-10 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,204,0,0.6)]"
-                  style={{ backgroundColor: "#ffcc00", color: "black" }}
-                >
-                  VIEW ALL PRODUCTS
-                </Link>
-              </div>
-            )}
-          </>
+        {products.length > 0 && (
+          <div className="mt-8 flex justify-center md:mt-10">
+            <Link
+              href="/products"
+              className="rounded-lg px-6 py-3 text-base font-bold transition-all active:scale-95 md:rounded-full md:px-10 md:py-4 md:text-lg md:hover:scale-105 md:hover:shadow-[0_0_30px_rgba(255,204,0,0.6)]"
+              style={{ backgroundColor: "#ffcc00", color: "black" }}
+            >
+              VIEW ALL PRODUCTS
+            </Link>
+          </div>
         )}
       </div>
     </section>

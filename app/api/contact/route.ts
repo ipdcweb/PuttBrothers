@@ -13,6 +13,7 @@ type ContactFormData = {
   howDidYouFindUs: {
     FindUs: string;
     FindUsOther?: string;
+    FindLead?: string;
   };
   industryInformation: {
     industry: string;
@@ -65,7 +66,8 @@ export async function POST(request: Request) {
         },
         howDidYouFindUs: {
           FindUs: data.howDidYouFindUs.FindUs,
-          FindUsOther: data.howDidYouFindUs.FindUsOther || ''
+          FindUsOther: data.howDidYouFindUs.FindUsOther || '',
+          FindLead: data.howDidYouFindUs.FindLead || ''
         },
         industryInformation: {
           industry: data.industryInformation.industry,

@@ -16,8 +16,6 @@ type Machine = {
   folderName?: string
 }
 
-const S3_BASE = "https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com"
-
 export function MachinesGalleryMobile() {
   const [activeTab, setActiveTab] = useState("course-holes")
   const [machines, setMachines] = useState<Machine[]>([])
@@ -64,7 +62,9 @@ export function MachinesGalleryMobile() {
             category = product.Category
           }
           const folderName = product.FolderName || product.folderName
-          const imagePath = folderName ? `${S3_BASE}/${folderName}/media/mobile.png` : "/placeholder.svg"
+          const imagePath = folderName
+            ? `/product-media/${encodeURIComponent(folderName)}/media/mobile.png`
+            : "/placeholder.svg"
 
           return {
             id: index + 1,

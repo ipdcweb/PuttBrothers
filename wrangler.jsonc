@@ -5,7 +5,7 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "main": "vinext/server/fetch-handler",
+  "main": "worker.ts",
   "routes": [
     {
       "pattern": "puttbrothers.com/*",
@@ -14,6 +14,30 @@
     {
       "pattern": "www.puttbrothers.com/*",
       "zone_name": "puttbrothers.com"
+    },
+    {
+      "pattern": "puttbrothers.ch/*",
+      "zone_name": "puttbrothers.ch"
+    },
+    {
+      "pattern": "www.puttbrothers.ch/*",
+      "zone_name": "puttbrothers.ch"
+    },
+    {
+      "pattern": "puttbrothers.de/*",
+      "zone_name": "puttbrothers.de"
+    },
+    {
+      "pattern": "www.puttbrothers.de/*",
+      "zone_name": "puttbrothers.de"
+    },
+    {
+      "pattern": "puttbrothers.uk/*",
+      "zone_name": "puttbrothers.uk"
+    },
+    {
+      "pattern": "www.puttbrothers.uk/*",
+      "zone_name": "puttbrothers.uk"
     }
   ],
   "assets": {
@@ -22,6 +46,8 @@
     "binding": "ASSETS"
   },
   "cache": {
-    "enabled": true
+    // Workers Cache ignores the hostname. This Worker also redirects aliases,
+    // so only use the URL-keyed Cache API in worker.ts and static asset caching.
+    "enabled": false
   }
 }

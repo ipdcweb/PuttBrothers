@@ -99,7 +99,9 @@ const Coverflow = ({
   return (
     <>
       {isLoading ? (
-        <Image src={`/loader.svg`} alt={"Loader"} width={200} height={200} priority className="loader" />
+        <div className="coverflow-loading" role="status" aria-label="Loading products">
+          <Image src="/loader.svg" alt="" width={96} height={96} priority className="loader" />
+        </div>
       ) : !products || products.length === 0 ? (
         <p className="text-center text-white font-medium">No products found.</p>
       ) : (
@@ -175,7 +177,7 @@ const Coverflow = ({
                     <Image
                       src={
                         product.FolderName
-                          ? `${S3_BASE}/${product.FolderName}/media/${getResponsiveImageSize()}.png`
+                          ? `/product-media/${encodeURIComponent(product.FolderName)}/media/${getResponsiveImageSize()}.png`
                           : "/placeholder.svg"
                       }
                       alt={product.Machine}
@@ -271,7 +273,7 @@ const Coverflow = ({
                 />
               ) : (
                 <Image
-                  src={`${S3_BASE}/${selectedProduct.FolderName}/media/${getResponsiveImageSize()}.png`}
+                  src={`/product-media/${encodeURIComponent(selectedProduct.FolderName)}/media/${getResponsiveImageSize()}.png`}
                   alt={selectedProduct.Machine}
                   fill
                   className="object-contain"
