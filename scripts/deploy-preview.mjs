@@ -28,6 +28,13 @@ function checkAssets(dir) {
   }
 }
 checkAssets('public')
+const videoFiles = JSON.parse(readFileSync('lib/scroll-video-files.json', 'utf8'))
+for (const [url, length] of Object.entries(videoFiles)) {
+  if (!/^\/videos\/[a-z0-9-]+\.mp4$/.test(url)) throw new Error('Unexpected video asset path')
+  if (statSync(path.join(root, 'public', url.slice(1))).size !== length) {
+    throw new Error(`Video length changed; regenerate lib/scroll-video-files.json: ${url}`)
+  }
+}
 if (!process.argv.includes('--publish')) {
   console.log('Preview preflight passed. Pass --publish to test, build and deploy only puttbrothers-v2-preview.')
 } else {

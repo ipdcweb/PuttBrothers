@@ -1,4 +1,5 @@
 import app from "vinext/server/fetch-handler"
+import videoFiles from "./lib/scroll-video-files.json"
 
 const CANONICAL_HOST = "puttbrothers.com"
 const PRODUCT_MEDIA_PREFIX = "/product-media/"
@@ -25,8 +26,10 @@ async function videoResponse(request: Request, assets: { fetch(request: Request)
   if (!match || (!match[1] && !match[2]) || !validatorMatches || !asset.body) {
     return new Response(asset.body, { status: asset.status, headers })
   }
-  const size = Number(headers.get("Content-Length"))
-  // Do not invent offsets if the upstream ever stops providing an asset length.
+  // The deployed asset binding omits Content-Length even though Cloudflare adds
+  // it later on the wire. These exact source sizes are verified before deployment.
+  const size = Number(headers.get("Content-Length") ??
+    (videoFiles as Record<string, number>)[new URL(request.url).pathname])
   if (!Number.isSafeInteger(size) || size <= 0 || headers.has("Content-Encoding")) {
     return new Response(asset.body, { status: asset.status, headers })
   }

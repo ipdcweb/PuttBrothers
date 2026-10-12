@@ -1,10 +1,12 @@
 import assert from "node:assert/strict"
-import { readFile } from "node:fs/promises"
+import { readFile, stat } from "node:fs/promises"
 import test from "node:test"
 import ts from "typescript"
 
 const source = await readFile(new URL("../worker.ts", import.meta.url), "utf8")
-const compiled = ts.transpileModule(source.replace('import app from "vinext/server/fetch-handler"', ""), {
+const videoFiles = JSON.parse(await readFile(new URL("../lib/scroll-video-files.json", import.meta.url), "utf8"))
+const compiled = ts.transpileModule(source.replace('import app from "vinext/server/fetch-handler"', "")
+  .replace('import videoFiles from "./lib/scroll-video-files.json"', ""), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText
 
@@ -17,9 +19,9 @@ function fixture(appResponse = () => new Response("website"), upstream = async (
     match: async (request) => entries.get(request.url)?.clone(),
     put: async (request, response) => { entries.set(request.url, response.clone()) },
   }
-  new Function("app", "caches", "fetch", "exports", compiled)(
+  new Function("app", "caches", "fetch", "exports", "videoFiles", compiled)(
     { fetch: async () => { appCalls++; return appResponse() } },
-    { default: cache }, upstream, exports,
+    { default: cache }, upstream, exports, videoFiles,
   )
   return {
     request: (url, method = "GET", headers = {}) => exports.default.fetch(new Request(url, { method, headers }), env, {
@@ -29,6 +31,19 @@ function fixture(appResponse = () => new Response("website"), upstream = async (
     get appCalls() { return appCalls },
   }
 }
+
+test("deployed video size manifest matches the actual assets and supports missing upstream lengths", async () => {
+  for (const [path, length] of Object.entries(videoFiles)) {
+    assert.equal((await stat(new URL(`../public${path}`, import.meta.url))).size, length)
+    const f = fixture(undefined, undefined, { ASSETS: {
+      fetch: async () => new Response("0123456789", { headers: { "Content-Type": "video/mp4" } }),
+    } })
+    const response = await f.request(`https://preview.workers.dev${path}`, "GET", { Range: "bytes=0-2" })
+    assert.equal(response.status, 206)
+    assert.equal(response.headers.get("Content-Range"), `bytes 0-2/${length}`)
+    assert.equal(await response.text(), "012")
+  }
+})
 
 test("video ranges return the requested bytes, including suffix and open-ended ranges", async () => {
   const bytes = new TextEncoder().encode("0123456789")
