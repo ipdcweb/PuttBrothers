@@ -35,5 +35,19 @@ if (!process.argv.includes('--publish')) {
   run('--test', ...readdirSync('tests').filter(name => name.endsWith('.test.mjs')).map(name => `tests/${name}`))
   run('node_modules/vinext/dist/cli.js', 'build')
   assertPreviewConfig(JSON.parse(readFileSync('dist/server/wrangler.json', 'utf8')))
-  run('node_modules/wrangler/bin/wrangler.js', 'deploy', '--config', 'dist/server/wrangler.json', '--keep-vars', '--message', `website-v2 ${git('rev-parse', '--short', 'HEAD')} client preview`)
+  const deployArgs = ['node_modules/wrangler/bin/wrangler.js', 'deploy', '--config', 'dist/server/wrangler.json', '--keep-vars', '--message', `website-v2 ${git('rev-parse', '--short', 'HEAD')} client preview`]
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      console.log(execFileSync(process.execPath, deployArgs, { encoding: 'utf8', maxBuffer: 8 * 1024 * 1024 }))
+      break
+    } catch (error) {
+      const diagnostics = `${error.stdout ?? ''}\n${error.stderr ?? ''}`
+      if (attempt === 3 || !/50[234]|Gateway Timeout|temporarily unavailable/i.test(diagnostics)) {
+        console.error(diagnostics)
+        throw error
+      }
+      console.warn(`Cloudflare temporary API failure. Retrying the same validated preview build (${attempt}/3).`)
+      await new Promise(resolve => setTimeout(resolve, 2000))
+    }
+  }
 }
