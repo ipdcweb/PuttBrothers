@@ -1,0 +1,79 @@
+{
+  "checked_date": "2026-10-12",
+  "scope": "8 active PNG frames and 2 alternative final frames",
+  "all_active_exist": true,
+  "native_4k": false,
+  "ai_upscale_pending": true,
+  "files": [
+    {
+      "file": "01_A_00s_tv_content.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2690277,
+      "sha256": "4f6f211626437608ec8083a5a39f788d4d90350f86428eccb330ca69d4d8987e"
+    },
+    {
+      "file": "02_B_05s_tv_reveal.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2328521,
+      "sha256": "b12fc964b69ab581b89589cc3fdedabb46f8d9d8b9da156d88e6501668428f2f"
+    },
+    {
+      "file": "03_C_10s_f1_simulator.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2320659,
+      "sha256": "45302bf799f977acf0e4489e39c528dd4762a0f9015db60f77e496a13e7c9e11"
+    },
+    {
+      "file": "04_D_15s_space_z.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2200889,
+      "sha256": "f67914880f629b0c7c247175333701ff93b2d4a24407733993ebe63564cb7644"
+    },
+    {
+      "file": "05_E_20s_minigolf_interior.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2546437,
+      "sha256": "7b9f90edaeb3663b0015fa7ac43a5a011da6bbb4709adf6550908eba74415476"
+    },
+    {
+      "file": "06_F_25s_exit_left.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2191869,
+      "sha256": "b8d3c6f26d3df016780d98bb106ed23badb3cbc47916d4c4793d06ead85056bf"
+    },
+    {
+      "file": "07_G_30s_logo_facade.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2063920,
+      "sha256": "e24b35765d481888333a224be08b73514c4cccb90d3ab7cd2d4c0ff4fd0a2636"
+    },
+    {
+      "file": "08_H_35s_full_booth.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2234834,
+      "sha256": "8c521b7c01c19844628cf71da93f5649d7c9aed63b20fd8b971e3c91fadde1a6"
+    },
+    {
+      "file": "alternatives/08_H_directors_before_face_refinement.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2287362,
+      "sha256": "146b18d85c8e90b18bd73d5a9c6a75743324dcbfddb71a2b23c68eb3729cae72"
+    },
+    {
+      "file": "alternatives/08_H_directors_face_refinement.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2225614,
+      "sha256": "9e5ed9a9f87564e35bbe11dc74f74b29d122a3b7661115354352ddc96d26bef7"
+    }
+  ]
+}

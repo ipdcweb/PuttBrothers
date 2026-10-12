@@ -98,7 +98,21 @@ function PaginatedProductsCoverflow({
   )
 }
 
-export function ProductsShowcase() {
+type ProductsShowcaseProps = {
+  heading?: string
+  description?: string
+  ctaHref?: string
+  ctaLabel?: string
+}
+
+const defaultDescription = "Putt Brothers creates dynamic, interactive mini golf courses and unique laser tag arenas that turn ordinary spaces into thriving entertainment destinations. Whether you're adding a new attraction or reinventing an existing venue, we design, build, and deliver unforgettable experiences that keep guests coming back."
+
+export function ProductsShowcase({
+  heading = "Our Top-Rated Mini Golf Designs",
+  description = defaultDescription,
+  ctaHref = "/products",
+  ctaLabel = "VIEW ALL PRODUCTS",
+}: ProductsShowcaseProps = {}) {
   // Render real designs immediately; refresh the complete catalogue in the background.
   const [products, setProducts] = useState<CatalogMachine[]>(FALLBACK_MACHINES)
   const isMobile = useIsMobile() === true
@@ -147,12 +161,10 @@ export function ProductsShowcase() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-2 px-4 text-center md:mb-16 lg:px-8">
           <h2 className="mb-4 mt-2.5 text-2xl font-bold md:mb-6 md:mt-6 md:text-5xl" style={{ color: "#ffcc00" }}>
-            Our Top-Rated Mini Golf Designs
+            {heading}
           </h2>
           <p className="hidden text-lg leading-relaxed text-white/90 text-pretty md:block md:text-xl">
-            Putt Brothers creates dynamic, interactive mini golf courses and unique laser tag arenas that turn ordinary
-            spaces into thriving entertainment destinations. Whether you're adding a new attraction or reinventing an
-            existing venue, we design, build, and deliver unforgettable experiences that keep guests coming back.
+            {description}
           </p>
         </div>
 
@@ -167,19 +179,17 @@ export function ProductsShowcase() {
         />
 
         <p className="mt-8 px-4 text-center text-lg leading-relaxed text-white/90 text-pretty md:hidden">
-          Putt Brothers creates dynamic, interactive mini golf courses and unique laser tag arenas that turn ordinary
-          spaces into thriving entertainment destinations. Whether you're adding a new attraction or reinventing an
-          existing venue, we design, build, and deliver unforgettable experiences that keep guests coming back.
+          {description}
         </p>
 
         {products.length > 0 && (
           <div className="mt-8 flex justify-center md:mt-10">
             <Link
-              href="/products"
+              href={ctaHref}
               className="rounded-lg px-6 py-3 text-base font-bold transition-all active:scale-95 md:rounded-full md:px-10 md:py-4 md:text-lg md:hover:scale-105 md:hover:shadow-[0_0_30px_rgba(255,204,0,0.6)]"
               style={{ backgroundColor: "#ffcc00", color: "black" }}
             >
-              VIEW ALL PRODUCTS
+              {ctaLabel}
             </Link>
           </div>
         )}

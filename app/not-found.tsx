@@ -85,7 +85,7 @@ export default function NotFound() {
             Even the best golfers miss the fairway sometimes! It looks like you've hit the ball a bit too far off course.
           </p>
           <p className="text-gray-400 mb-8">
-            The page you're looking for doesn't exist, but don't worry – let's get you back in the game!
+            The page you're looking for doesn't exist, but don't worry. Let's get you back in the game!
           </p>
 
           {/* Back to Home Button */}

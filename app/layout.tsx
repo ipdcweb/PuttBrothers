@@ -1,7 +1,9 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
+import "@/styles/v2.css";
+import "@/styles/v2-shell.css";
 import { AppShell } from "@/components/app-shell";
 
 const poppins = Poppins({
@@ -10,14 +12,23 @@ const poppins = Poppins({
   variable: "--font-sans",
 });
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "PuttBrothers - Ultimate Mini Golf Adventure",
+  title: {
+    default: "Putt Brothers | We build what's next in play",
+    template: "%s | Putt Brothers",
+  },
   description:
-    "Experience the ultimate mini golf adventure with PuttBrothers. Premium mini golf courses designed for family entertainment.",
+    "From custom mini golf to complete entertainment venues. Putt Brothers brings design, engineering, manufacturing and immersive play together.",
+  robots: { index: false, follow: false },
   icons: {
     icon: "/favicon-puttbrothers.png",
   },
-    generator: 'v0.app'
 };
 
 export default function RootLayout({
@@ -26,9 +37,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-x-hidden" suppressHydrationWarning>
+    <html lang="en" className="overflow-x-clip" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} font-sans antialiased overflow-x-hidden`}
+        className={`${poppins.variable} ${montserrat.variable} font-sans antialiased overflow-x-clip`}
       >
         <AppShell>{children}</AppShell>
       </body>

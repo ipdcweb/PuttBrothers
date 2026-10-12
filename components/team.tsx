@@ -7,7 +7,7 @@ const teamMembers = [
     image: "/images/directors/Eduardo.png",
     bio: [
       "Luiz Tonsic is a designer, builder, and entrepreneur driven by the challenge of turning creative ideas into real-world experiences. With a background in interior design and 3D modeling, Luiz has led projects across sectors from residential and retail to large-scale entertainment and public spaces.",
-      "As CEO of Putt Brothers, Luiz combines creativity with practical execution—transforming imagination into innovative, functional, and profitable attractions. A serial entrepreneur and active member of several business networks, he's passionate about pushing boundaries, developing new ventures, and creating design solutions that inspire both clients and guests alike.",
+      "As CEO of Putt Brothers, Luiz combines creativity with practical execution, transforming imagination into innovative, functional, and profitable attractions. A serial entrepreneur and active member of several business networks, he's passionate about pushing boundaries, developing new ventures, and creating design solutions that inspire both clients and guests alike.",
     ],
   },
   {
@@ -16,7 +16,7 @@ const teamMembers = [
     image: "/images/directors/Douglas.png",
     bio: [
       "Douglas Tonsic brings extensive experience in operations, logistics, and project management across the design and construction industries. With a diverse background in home construction, interior design, and large-scale fit-outs, Douglas has successfully delivered complex projects for residential developments, and entertainment venues across New Zealand and Brazil.",
-      "As COO of Putt Brothers, Douglas oversees production, quality assurance, and global logistics, ensuring each project is executed on time, within budget, and to the highest standards. His ability to blend technical expertise with a strategic approach to planning and sustainability—driving operational excellence and long-term value.",
+      "As COO of Putt Brothers, Douglas oversees production, quality assurance, and global logistics, ensuring each project is executed on time, within budget, and to the highest standards. His ability to blend technical expertise with a strategic approach to planning and sustainability drives operational excellence and long-term value.",
     ],
   },
   {

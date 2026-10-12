@@ -1,80 +1,86 @@
-# Putt Brothers website - V1
+# Putt Brothers website - V2 review workspace
 
-Canonical production source: `C:\Users\Rafael\Wesbites\puttbrothers.com\WebsiteLocal`.
+Local redesign implemented on 1 October 2026 from the stable V1. The new Home,
+Products, About, Contact surrounds, header and footer follow the supplied brand
+direction. The approved contact form and integration source remain unchanged.
 
-- Website: https://puttbrothers.com
-- Repository: https://github.com/ipdcweb/PuttBrothers
-- Production Worker: `puttbrothers-com`
-- Stable V1 tag: `v1.0.0-2026-10-01`
-- Release evidence and rollback: [RELEASE-V1.md](RELEASE-V1.md)
+## Locations and version control
 
-`main` is the stable source. `codex/production-cloudflare` records the V1
-normalization work. Future V2 work must use a separate branch and local folder;
-it must not replace this V1 working directory or production routes without approval.
-The sibling `ProductionSource` folder is an older snapshot, **not** current production.
-The sibling `New Website` folder contains future brand references, not V1 source.
+- V2: `C:\Users\Rafael\Wesbites\puttbrothers.com\WebsiteLocal_02`
+- V2 branch: `website-v2`
+- V1 remains in `../WebsiteLocal` on `main`.
+- Common repository: `https://github.com/ipdcweb/PuttBrothers`
+- Starting tag: `v1.0.0-2026-10-01`
+- Starting commit: `30bccc445d63a70344674a6d9fddd7785488d9ce`
 
-## Stack and installation
+This is a Git worktree: source files are separate physical copies, while Git
+history is shared. Editing a file here does not edit the corresponding V1 file.
+The `.git` file links to the original repository metadata; do not delete/move
+either working directory or copy that file to make another checkout manually.
+Rafael authorized pushing V2 and publishing a temporary Cloudflare hosting link
+on 12 October 2026. No custom domain or DNS change is included. See
+[PREVIEW-RELEASE.md](PREVIEW-RELEASE.md) for the actual publication record.
 
-React 19 / Next.js 16, Vinext, Vite, Tailwind CSS and Cloudflare Workers.
-Use the versions in `pnpm-lock.yaml`; do not upgrade dependencies during recovery.
-The baseline was built with Node.js 24.18.0. The package manager is pinned in
-`package.json` to pnpm 11.19.0.
+## Run locally
+
+Use Node.js 24.18.0 and the pinned pnpm 11.19.0. Keep `pnpm-lock.yaml` unchanged
+unless a dependency change is explicitly needed.
 
 ```powershell
 pnpm install --frozen-lockfile
 pnpm test
 pnpm run build:vinext
-pnpm exec wrangler dev --config dist/server/wrangler.json --port 8790 --local
+pnpm run start:vinext
 ```
 
-The production build is **`build:vinext`**, producing `dist/client` and
-`dist/server/wrangler.json`. The generic `build` / `dev` / `start` scripts are
-Next.js commands and are not the Cloudflare production deployment path.
-`dev:vinext` starts the application development server on port 3001.
+The compiled V2 preview runs at `http://127.0.0.1:8792`. For live code editing,
+use `pnpm run dev:vinext` on port 3002. These ports differ from V1, including
+the browser origin/local-storage space used by the layout planner.
+Use Vinext, not the generic Next.js scripts, to include the custom media Worker.
 
-## Production invariants
+## Isolation and safety
 
-- Apex and `www` for `.com`, `.ch`, `.de` and `.uk` are handled by this Worker.
-- The seven aliases redirect to `https://puttbrothers.com`, preserving path/query.
-- Do not re-enable hostname-agnostic Workers Cache: it caused alias redirects
-  to be served on the canonical host. Redirects and HTML must remain `no-store`.
-- Keep the explicit URL-keyed catalogue/media cache, request deadlines and
-  immediate real-product fallback. See [incident report](PERFORMANCE-2026-10-01.md).
-- Preserve AWS catalogue, S3 product/3D media, layout planner and PDF upload.
-- Preserve the WorkOrg JSON contract, especially `howDidYouFindUs.FindLead`.
-- IAAPA Expo / IATP Annual Conference open the person picker. It shows Douglas,
-  Imre, Joao and Luiz alphabetically; the selected field uses first name while
-  `FindLead` contains full name. Custom names are limited to 20 characters.
-- "Someone else", its input and Add button belong to the same scroll area.
+- Worker configuration is named `puttbrothers-v2-preview`, with no domain
+  routes, an authorized workers.dev endpoint, and no version-preview URLs enabled.
+- `pnpm run deploy:vinext` remains blocked. The authorized command is
+  `pnpm run deploy:preview`; it checks the branch, pushed commit and isolated
+  configuration, then tests, rebuilds, rechecks the generated config and deploys.
+- This folder has its own installed dependencies and generated build. V1 build
+  output, `.wrangler` state and local secret files were not copied.
+- Integration source is preserved, but production credentials were not copied.
+  Do not submit real contact forms or upload PDFs during local testing. Credentials
+  inherited from the machine could still permit external writes; local development
+  is not an automatic network sandbox. Use mocked tests instead.
+- Preview publication touches only the separate V2 Worker and `website-v2` branch.
+  `PREVIEW_MODE=true` blocks contact/PDF writes before the unchanged handlers run.
+  Production source, main, production Worker, DNS and secrets remain untouched.
 
-## Configuration and secrets
+## Implemented scope and review
 
-Production credentials stay in Cloudflare. Local `.env*` and `.dev.vars*` files
-are ignored. Never commit credentials, copy them from history, or print them.
-Only these names are documented:
+Read [V2-PLAN.md](V2-PLAN.md) for the page map, brand-source interpretation and
+preserved components. [V2-VERIFICATION.md](V2-VERIFICATION.md) records technical
+checks and remaining review items. Visual/client approval is still pending.
 
-- `WORKORG_API_TOKEN`
-- `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`
-- `LAYOUT_PDF_BUCKET`, `LAYOUT_PDF_PUBLIC_BASE_URL`
-- Optional override: `WORKORG_CONTACT_API_URL`
+All new scenes are responsive WebP assets, with separate desktop/tablet/mobile
+sources and a newly composed portrait hero. Text, icons and navigation are real
+HTML, not baked into the artwork. Generated scenes are labelled as concepts, not
+completed client projects. Existing approved logos and real team portraits are
+preserved. Prompts/provenance are in [assets/HERO-MEDIA.md](assets/HERO-MEDIA.md)
+and [assets/V2-MEDIA.md](assets/V2-MEDIA.md).
 
-Without credentials, local contact/PDF delivery is unavailable. Automated contact
-tests stub all outbound calls and use fictitious credentials; they do not send
-email, create leads or upload PDFs. Do not submit real test leads without approval.
+The carousel now lives on Products, using the same AWS catalog, fallback, 3D views
+and controls. The form, `FindLead` contract, planner and API implementations have
+not been replaced. No live form submission was made during local verification.
 
-## Publishing and recovery
+Rafael selected a temporary hosting link instead of `dev.puttbrothers.com`.
+The preview is public to anyone with the link, but sends `noindex` metadata and
+headers and a restrictive robots.txt. This is not password protection.
+Form submissions and PDF uploads are explicitly disabled in the preview.
+Preview-to-production promotion is a separate approval and is never caused by
+switching branches alone. Future `website-v3` can have its own branch/preview;
+promote a tested build deliberately and preserve prior release tags for rollback.
+Raw media masters remain local; deployable WebP/MP4/PDF assets are tracked.
 
-Publishing is a separate, authorized operation, not a side effect of committing.
-First run tests, build and browser checks against a local/isolated preview. Record
-the active Cloudflare version and confirm bindings before publishing. The existing
-`deploy:vinext` script does not build first; never run it against a stale `dist`.
-Preserve configured variables/secrets (`--keep-vars` where applicable).
-
-Do not change DNS, email, registrar settings or external AWS/WorkOrg data during
-a normal website release. Git tags preserve source; Cloudflare versions preserve
-deployed code/assets. Neither rolls back data held by external services.
-
-For future V2, start from the stable V1 tag in a separate worktree and use a preview
-Worker without production routes. Switching a Git branch alone does not switch
-the live website: its verified build must be deliberately deployed.
+[V1-README.md](V1-README.md), [RELEASE-V1.md](RELEASE-V1.md) and
+[PERFORMANCE-2026-10-01.md](PERFORMANCE-2026-10-01.md) remain historical references
+for the stable site and recovery. They do not describe a V2 deployment.

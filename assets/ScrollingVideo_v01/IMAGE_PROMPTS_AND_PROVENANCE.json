@@ -1,0 +1,468 @@
+{
+  "schema_version": 2,
+  "project": "Putt Brothers / WebsiteLocal_02",
+  "package": "ScrollingVideo_v01",
+  "revision": "2026-10-12 empty interior, correct machines, LED wordmark, no rooftop light poles",
+  "status": "storyboard_ready_for_review; video_not_generated; 4k_pending",
+  "destination": "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01",
+  "generation_mode": "built-in image_gen",
+  "native_image_dimensions": {
+    "width": 1672,
+    "height": 941
+  },
+  "planned_video": {
+    "duration_seconds": 35,
+    "clip_count": 7,
+    "seconds_per_clip": 5,
+    "frame_count": 8,
+    "aspect_ratio": "approximately 16:9",
+    "note": "Native PNG ratio 1672:941; conform uniformly when assembling video, without stretching."
+  },
+  "latest_decisions": [
+    "Stand vazio; um SPACE Z e um simulador vermelho de assento único.",
+    "Diretores pequenos, à frente do stand no piso externo à direita; usuário rejeitou escala excessiva.",
+    "Letreiro físico Putt Brothers com LED traseiro abaixo do símbolo.",
+    "Remover apenas hastes luminosas que ultrapassavam o teto, não a iluminação interna.",
+    "Última tentativa de restauração facial usou as quatro fotos originais. Fidelidade ainda não aprovada; versão sem pessoas é a principal recomendada, conforme fallback autorizado.",
+    "Alternativa com os quatro preservada para avaliação, sem substituir imagens originais.",
+    "4K com recuperação de detalhe não entregue. Arquivos nativos conferidos: 1672x941. Upscale com IA consultado indisponível no plano gratuito; nenhuma compra/assinatura nem chamada de geração paga externa."
+  ],
+  "invariants": {
+    "live_people_inside": 0,
+    "default_live_people_outside": 0,
+    "optional_outside_directors": 4,
+    "space_z_count": 1,
+    "racing_simulator_count": 1,
+    "racing_seat_count": 1,
+    "space_product_name": "SPACE Z",
+    "signage_text": "Putt Brothers",
+    "signage_type": "raised white letters with rear LED halo",
+    "rooftop_glowing_poles": 0,
+    "interior_warm_rods": "preserved",
+    "screens": "static, no live people",
+    "camera": "proposed stabilized backward travel with gentle yaw, not a validated technical camera path"
+  },
+  "frames": [
+    {
+      "id": "A",
+      "time": 0,
+      "file": "01_A_00s_tv_content.png",
+      "job": "A",
+      "title": "Conteúdo da TV",
+      "description": "Ambiente aspiracional de minigolfe e hospitality, sem pessoas. A imagem preenche toda a tela.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2690277,
+      "sha256": "4f6f211626437608ec8083a5a39f788d4d90350f86428eccb330ca69d4d8987e"
+    },
+    {
+      "id": "B",
+      "time": 5,
+      "file": "02_B_05s_tv_reveal.png",
+      "job": "B",
+      "title": "Revelação da TV",
+      "description": "A moldura e a parede de madeira revelam que o ambiente anterior é conteúdo de uma TV.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2328521,
+      "sha256": "b12fc964b69ab581b89589cc3fdedabb46f8d9d8b9da156d88e6501668428f2f"
+    },
+    {
+      "id": "C",
+      "time": 10,
+      "file": "03_C_10s_f1_simulator.png",
+      "job": "C2",
+      "title": "Simulador de corrida",
+      "description": "Um único simulador vermelho, assento único, chassi tubular, monitor curvo e PC com três ventoinhas azuis.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2320659,
+      "sha256": "45302bf799f977acf0e4489e39c528dd4762a0f9015db60f77e496a13e7c9e11"
+    },
+    {
+      "id": "D",
+      "time": 15,
+      "file": "04_D_15s_space_z.png",
+      "job": "D2",
+      "title": "SPACE Z",
+      "description": "Plataforma azul estrelada, borda vermelha, foguete, torre com astronauta decorativo, rampa e pedras lunares.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2200889,
+      "sha256": "f67914880f629b0c7c247175333701ff93b2d4a24407733993ebe63564cb7644"
+    },
+    {
+      "id": "E",
+      "time": 20,
+      "file": "05_E_20s_minigolf_interior.png",
+      "job": "E2",
+      "title": "Minigolfe — interior",
+      "description": "Vista próxima do setor esquerdo, com gramado, áreas claras orgânicas, bandeiras, madeira e iluminação interna.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2546437,
+      "sha256": "7b9f90edaeb3663b0015fa7ac43a5a011da6bbb4709adf6550908eba74415476"
+    },
+    {
+      "id": "F",
+      "time": 25,
+      "file": "06_F_25s_exit_left.png",
+      "job": "E",
+      "title": "Saída pela esquerda",
+      "description": "Vista do limiar externo da abertura esquerda, mantendo o olhar voltado ao minigolfe.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2191869,
+      "sha256": "b8d3c6f26d3df016780d98bb106ed23badb3cbc47916d4c4793d06ead85056bf"
+    },
+    {
+      "id": "G",
+      "time": 30,
+      "file": "07_G_30s_logo_facade.png",
+      "job": "G2",
+      "title": "Marca na fachada",
+      "description": "Símbolo amarelo e letreiro físico Putt Brothers com LED por trás das letras.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2063920,
+      "sha256": "e24b35765d481888333a224be08b73514c4cccb90d3ab7cd2d4c0ff4fd0a2636"
+    },
+    {
+      "id": "H",
+      "time": 35,
+      "file": "08_H_35s_full_booth.png",
+      "job": "H_EMPTY",
+      "title": "Stand completo — sem pessoas",
+      "description": "Vista aberta, um SPACE Z e um simulador, sem hastes luminosas acima do teto. Alternativa com os quatro diretores guardada separadamente.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2234834,
+      "sha256": "8c521b7c01c19844628cf71da93f5649d7c9aed63b20fd8b971e3c91fadde1a6"
+    }
+  ],
+  "clips": [
+    {
+      "id": "01",
+      "title": "Da imagem à TV",
+      "start_frame": "01_A_00s_tv_content.png",
+      "end_frame": "02_B_05s_tv_reveal.png",
+      "duration_seconds": 5,
+      "start_seconds": 0,
+      "end_seconds": 5,
+      "prompt": "A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.\n\nStart with the venue picture filling the entire frame. This is ALREADY a static image on a real flat television, not a real room we are flying through. Dolly gently backward along the screen normal; reveal the black bezel and then its honey-oak wall. Keep the venue picture flat, stable and identical, with no internal camera motion or animated people. End at the supplied TV view. No portal effect.",
+      "review_risk": "Manter a imagem plana na TV; não transformar o bar em um ambiente físico do stand."
+    },
+    {
+      "id": "02",
+      "title": "Da TV ao simulador",
+      "start_frame": "02_B_05s_tv_reveal.png",
+      "end_frame": "03_C_10s_f1_simulator.png",
+      "duration_seconds": 5,
+      "start_seconds": 5,
+      "end_seconds": 10,
+      "prompt": "A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.\n\nContinue withdrawing from the wall TV, gently tilting down and arcing toward the right-hand racing rig until its entire red single-seat assembly fills the supplied medium-wide composition. Reveal the one curved racing display, empty red/black seat, wheel, pedals and three-blue-fan PC through actual camera parallax. The separate wall TV remains above and behind. Do not duplicate a screen or seat, and do not animate the race picture.",
+      "review_risk": "Preservar a diferença entre TV na parede e monitor curvo do simulador."
+    },
+    {
+      "id": "03",
+      "title": "Do simulador ao SPACE Z",
+      "start_frame": "03_C_10s_f1_simulator.png",
+      "end_frame": "04_D_15s_space_z.png",
+      "duration_seconds": 5,
+      "start_seconds": 10,
+      "end_seconds": 15,
+      "prompt": "A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.\n\nTrack slowly left and slightly backward through the open aisle, gently yawing left to favor the SPACE Z installation. The racing rig recedes toward frame right while the blue starred platform, five gray moon rocks, black astronaut tower, ramp and one white rocket enter a clear unobstructed view at left-center. Nothing moves except the camera. The rocket must keep exactly SPACE Z lettering, with one final Z, never SpaceX.",
+      "review_risk": "Não trocar, duplicar ou espelhar foguete, torre, simulador e monitor."
+    },
+    {
+      "id": "04",
+      "title": "Do SPACE Z ao minigolfe",
+      "start_frame": "04_D_15s_space_z.png",
+      "end_frame": "05_E_20s_minigolf_interior.png",
+      "duration_seconds": 5,
+      "start_seconds": 15,
+      "end_seconds": 20,
+      "prompt": "A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.\n\nTravel left through the open connecting circulation toward the left mini-golf bay, slowly turning inward to the green putting area. Keep the camera on clear walking floor beside the courses. Brief natural occlusion by the real timber divider/planter can conceal the join, but do not pass through a wall, a machine or turf obstacle. Reveal the same oak TV wall, dark bench, green and cream putting shapes and warm hanging rods of the end frame. Preserve real spatial scale; do not stretch the booth to connect views.",
+      "review_risk": "Trecho de maior risco. A circulação é inferida dos renders, não confirmada por planta técnica. Testar antes do lote; se houver salto ou morphing, inserir um quadro intermediário e aumentar a duração."
+    },
+    {
+      "id": "05",
+      "title": "Saída pela abertura esquerda",
+      "start_frame": "05_E_20s_minigolf_interior.png",
+      "end_frame": "06_F_25s_exit_left.png",
+      "duration_seconds": 5,
+      "start_seconds": 20,
+      "end_seconds": 25,
+      "prompt": "A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.\n\nGently dolly backward from the close mini-golf interior along its walking aisle and THROUGH THE EXISTING LEFT OPEN ENTRANCE. Keep the lens looking inward the entire time. The black low partitions, timber curved entrance, purple fascia edge and hall floor enter frame by parallax. Preserve the putting shapes and red flags; do not generate a new door or a wall opening. Finish just outside the left entrance.",
+      "review_risk": "Sair pela abertura existente. Não atravessar os bancos, divisórias ou a área de jogo."
+    },
+    {
+      "id": "06",
+      "title": "Passagem pelo letreiro",
+      "start_frame": "06_F_25s_exit_left.png",
+      "end_frame": "07_G_30s_logo_facade.png",
+      "duration_seconds": 5,
+      "start_seconds": 25,
+      "end_seconds": 30,
+      "prompt": "A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.\n\nFrom outside the left entrance, track smoothly to camera-right along the exhibition hall aisle while continuing to face inward. Gently turn toward the front central timber monolith until the existing yellow emblem and the raised Putt Brothers letters dominate the shot. The left mini-golf entrance stays beside the panel. Letters retain their exact spelling and shape with steady warm-white rear LED halo, no text animation, floating logo or flashing lights.",
+      "review_risk": "Letreiro é físico; efeitos gráficos adicionais devem ser feitos depois, fora do vídeo."
+    },
+    {
+      "id": "07",
+      "title": "Revelação de todo o stand",
+      "start_frame": "07_G_30s_logo_facade.png",
+      "end_frame": "08_H_35s_full_booth.png",
+      "duration_seconds": 5,
+      "start_seconds": 30,
+      "end_seconds": 35,
+      "prompt": "A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.\n\nDolly slowly backward and slightly toward camera-left from the brand panel, progressively revealing the entire booth in the supplied wide composition. Keep the logo fixed on wood and preserve the exact left mini-golf/right SPACE Z/far-right red simulator layout. The roof contains timber lattice and plants only, no upward glowing antenna-like poles. End with calm deceleration into the full architectural wide shot, booth completely empty and hall foreground empty.",
+      "review_risk": "Conferir enquadramento, teto sem hastes e estabilidade da marca; não aumentar a escala do stand."
+    }
+  ],
+  "alternatives": [
+    {
+      "file": "alternatives/08_H_directors_before_face_refinement.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2287362,
+      "sha256": "146b18d85c8e90b18bd73d5a9c6a75743324dcbfddb71a2b23c68eb3729cae72",
+      "status": "superseded before face refinement"
+    },
+    {
+      "file": "alternatives/08_H_directors_face_refinement.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2225614,
+      "sha256": "9e5ed9a9f87564e35bbe11dc74f74b29d122a3b7661115354352ddc96d26bef7",
+      "status": "latest identity refinement, pending Rafael approval"
+    }
+  ],
+  "review": {
+    "method": "visual inspection of generated images and comparison with source product/director/booth references; file existence/dimensions/SHA256 checks",
+    "not_certified": [
+      "identity fidelity at final wide scale",
+      "pixel-identical TV artwork across every frame",
+      "technical booth dimensions or buildability",
+      "temporal continuity or reverse playback in Kling",
+      "native 4K detail"
+    ],
+    "highest_risk_clip": "04 / D to E: geometry and circulation inferred from renders; test first, insert intermediate control if needed",
+    "production_note": "AI visualizations, not photographs of a constructed installation."
+  },
+  "reference_sources": {
+    "recovered_chat": "GST Return",
+    "thread_id": "01a05677-91d4-7050-a86a-9461d7ba8b72",
+    "recovered_manifest": "references/RECOVERED_GST_PROVENANCE.json",
+    "current_empty_master": "references/stand_empty_master_current.png",
+    "historical_empty_master": "references/stand_empty_master.png",
+    "original_director_photos": "../../public/images/directors (see absolute generation inputs)",
+    "placement_approved": "references/approved-partner-scale-and-placement.png",
+    "placement_guide": "references/partner-placement-guide.png",
+    "wordmark": "references/wordmark-signage-reference.png",
+    "rooftop_removal_guide": "references/remove-rooftop-light-poles.png",
+    "machine_space": "references/space-z-corrected.png",
+    "machine_racing": "references/f1-single-seat-curved-display.png"
+  },
+  "generation_history_note": "Historical input paths describe the workflow. An active destination may have been replaced by a later revision; immutable generated_original_path identifies each generated output. Key E was reused as F after its exterior framing was reviewed; E2 is active E.",
+  "generation_history": [
+    {
+      "key": "A",
+      "filename": "01_A_00s_tv_content.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\01_A_00s_venue_tv.png"
+      ],
+      "prompt": "Precise image edit. Keep this exact premium indoor miniature golf and hospitality venue photograph: same camera, crop, plants, architecture, green courses, bar, furniture, warm golden practical lights and purple balcony strip. Remove BOTH people beside the bar at right and reconstruct the stools and floor realistically behind them. Absolutely no people anywhere, no human reflections or silhouettes. Do not change the venue, no new advertising copy, no new logos. This exact image will be the static content displayed on a TV in subsequent frames. Photorealistic architectural photograph, deep focus, natural material detail, crisp not oversharpened. Landscape 16:9, maximum available native detail, one image only.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-dff4e8be-8b83-4087-9566-5e48cd54acee.png"
+    },
+    {
+      "key": "MASTER",
+      "filename": "references\\stand_empty_master.png",
+      "refs": [
+        "C:\\Users\\Rafael\\.codex\\generated_images\\01a05677-91d4-7050-a86a-9461d7ba8b72\\exec-44f18a4a-f39a-4286-aa0f-5f1164f319bf.png",
+        "C:\\Users\\Rafael\\.codex\\generated_images\\01a05677-91d4-7050-a86a-9461d7ba8b72\\exec-66584a8b-eafd-4c20-b54c-8459f48292b4.png",
+        "C:\\Users\\Rafael\\.codex\\generated_images\\01a05677-91d4-7050-a86a-9461d7ba8b72\\exec-8869c1bf-1c32-4fd1-8f18-c438fed60d56.png"
+      ],
+      "prompt": "Precise architectural photograph edit. Input 1 is the approved entire Putt Brothers exhibition stand. Preserve EXACTLY its architecture, camera, crop, perspective, dimensions, left curved wood entry, tall central timber yellow-emblem monolith, purple fascias, planted wood-grid roof, black stage skirt, golden vertical LED rods, plants and polished exhibition hall floor. Remove EVERY person from the stand AND from the surrounding hall including peripheral background silhouettes. Remove people inside the small TV venue image too. Restore surfaces hidden by people. Booth completely empty of live humans; the white astronaut inside the SPACE Z tower is a small static product prop and MUST remain.\nInput 2 fixes the SPACE Z product; Input 3 fixes the red racing simulator. Retain exactly ONE of each in their existing positions: SPACE Z centered in right-hand bay, ONE red single-seat simulator at far right beside TV wall. Preserve blue white-star kidney platform, red perimeter and blue LED, five moon rocks, ramp, ONE narrow black tower with white astronaut/red beacon, ONE white rocket dark nose and fins, gray connector and correct vertical printed SPACE Z and purple factory badge. Racing rig: one red tubular chassis, black-padded red-shell reclined bucket seat, ONE continuous curved ultrawide display concave toward driver, Formula-shaped button wheel, pedals, separate three-blue-fan PC and black floor base with simple checker/stripe decals. The monitor must be on its own support, NOT wall TV. Remove any duplicated seats or machines. Do not invent product parts or extra screens. Empty mini-golf at left unchanged. Keep the central exact yellow P geometric emblem unobstructed. No added typography, people, visitors, watermarks or graphic overlays. Same landscape 16:9 frame. High-end photorealistic architectural photo, deep focus, realistic reflections, high detail everywhere.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-7359aa2f-17f7-4217-b3bb-1c5d34747f82.png"
+    },
+    {
+      "key": "B",
+      "filename": "02_B_05s_tv_reveal.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\02_B_05s_tv_reveal.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\01_A_00s_tv_content.png"
+      ],
+      "prompt": "Precise edit of input 1. Preserve the EXACT camera viewpoint, television frame dimensions, wall grain, plants, amber illumination, crop and perspective. Replace ONLY the image on the TV with input 2, edge-to-edge inside its display, identical scene and composition, geometrically fitted onto the flat panel surface. Input 2 is the corrected empty venue with NO people, this is the only change. Television content stays a flat photographed image, not a window or a portal. No people, reflections of people or new text anywhere. The screen remains fully visible with black thin bezel and honey oak wall around it. Landscape 16:9, crisp photorealistic architectural interior, deep focus, realistic display brightness without glare.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-25362da1-44f7-49a0-9d32-a070888923a8.png"
+    },
+    {
+      "key": "C",
+      "filename": "03_C_10s_f1_simulator.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\f1-single-seat-curved-display.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\01_A_00s_tv_content.png"
+      ],
+      "prompt": "Create ONE photorealistic cinematic control frame of the EXACT empty Putt Brothers booth from input 1, viewed from INSIDE its RIGHT-HAND BAY. This is a physical camera move closer into the same set, not a redesigned booth. Camera at about 1.55m height, level horizon, fixed 28mm rectilinear lens, looking toward the rear-right honey oak wall and its TV. Feature the SINGLE racing simulator in a clear medium-wide product view, entire apparatus including base and curved screen within frame, seat nearer camera lower-right, screen farther away center-left, one PC left of base. Use input 2 as authoritative machine geometry: red round-tube chassis, reclined black upholstery in red shell, Formula-shaped steering wheel, pedals, black low plinth checker/stripe graphics, three blue ring fans PC, ONE wide continuous curved display concave toward driver. No additional seats or monitors for the simulator. Sim screen shows same open-wheel racing circuit as product reference. The separate WALL TV above/behind displays exactly input 3 empty lush minigolf bar image. Keep warm wood, black pendant lamps to right, plants, low black planter, gray-brown flooring and golden vertical rods from master. SPACE Z may be glimpsed at extreme far LEFT background in its fixed position; do not move it or duplicate it. Preserve clear walking space between machines. No people at all, no visitors even in screens. High-quality architectural/product photography with naturally sharp deep focus, restrained warm light, accurate scale. No headings, overlay lettering, watermark, collage or motion blur. Landscape 16:9 maximum native detail.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-155bcec7-4612-4c6e-91c2-c95fc932abd1.png"
+    },
+    {
+      "key": "D",
+      "filename": "04_D_15s_space_z.png",
+      "refs": [
+        "C:\\Users\\Rafael\\.codex\\generated_images\\01a05677-91d4-7050-a86a-9461d7ba8b72\\exec-e6bfec8c-0476-4998-b7ea-71923d10b68c.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\space-z-corrected.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\f1-single-seat-curved-display.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\01_A_00s_tv_content.png"
+      ],
+      "prompt": "Precise edit of INPUT 1, the medium-wide interior of the booth. Keep its EXACT camera, architecture, view direction, floor, golden vertical rods, timber TV wall, plants and empty aisle. REMOVE ALL SIX LIVE PEOPLE completely, restoring all machine parts hidden behind them correctly. No human silhouettes or reflections. Input 2 is the same empty booth master; input 3 authoritative SPACE Z machine; input 4 authoritative red simulator; input 5 corrected empty venue TV content. SPACE Z is the main focal object at left-center: exactly one blue white-star kidney-shaped platform, red rounded border, blue edge LED, five gray moon rocks, black cup, ONE black enclosed tower with static white astronaut product figurine and red beacon, star ramp with black rails, gray connector, ONE white rocket to tower right, black nose and fins, original purple badge and vertical SPACE Z lettering. Show its platform clearly with no people obscuring it. At right keep exactly ONE red single-seat tubular simulator, black-padded red bucket, curved display concave toward seat, Formula-button steering wheel, pedals, black checker-stripe base and blue fan PC, no duplicated parts. The display's racing picture stays the reference picture. Wall TV shows exactly input 5, no people on screen. Product geometry and locations stay fixed as in master. Retain the astronaut as a product prop, not a live person. No overlay text, headlines, captions, new marks or watermarks. Photorealistic deep focus, landscape 16:9 same framing as input 1.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-b9d44ddc-9c9e-41a2-9c25-279f7bdbbbd7.png"
+    },
+    {
+      "key": "H",
+      "filename": "08_H_35s_full_booth_directors.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\luiz-tonsic-camiseta-preta-p-central-v2.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\douglas-tonsic-camiseta-preta-p-central-v2.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\joao-nascimento-camiseta-preta-p-central-v2.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\imre-szenttornyay-camiseta-preta-p-central-v2.png"
+      ],
+      "prompt": "Precise compositing edit. INPUT 1 is the final full-width empty booth architectural photograph and MUST remain visually unchanged: exact camera/crop/perspective, left curved entrance and green mini-golf, central yellow P emblem on oak monolith, purple fascia, roof plants, one SPACE Z in right bay and one red simulator at far right. Add exactly FOUR men together on the EXTERIOR exhibition-hall floor, in the foreground at viewer's RIGHT, clearly OUTSIDE and in FRONT OF the black booth stage skirt, never inside either booth bay. Their feet must be in foreground around 90-95% image height, bodies large enough for readable individual faces, full-body head-to-white-shoes visible. Keep the entire booth architecture and its yellow emblem visible. Group in a single relaxed row in right third of composition, slightly stagger depth if needed, no overlapping faces or bodies. Natural human scale, about 1.75–1.85m tall against a roughly 4m-high booth; camera perspective naturally makes foreground men more prominent. Leave comfortable right edge margin.\nUse EXACT individual identity from inputs 2,3,4,5, once each, in that LEFT-TO-RIGHT order within group: Luiz (input 2, dark upswept hair, long smile); Douglas (input 3, shorter brown hair and distinct trimmed mustache/beard); Joao (input 4, balding rounded head and broad build with short salt-and-pepper beard); Imre (input 5, older with short receding gray hair and white beard). Do NOT blend faces or substitute generic models. Preserve their age, ethnicity, body build, likeness and distinct facial structure from portraits. All wear the exact same BLACK company T-shirt with large official YELLOW geometric P centrally on chest, small existing wordmark left chest, blue jeans and white trainers. BOTH HANDS inside front jean pockets, relaxed shoulders, feet grounded, looking at camera, small natural friendly smiles, standing still. Exactly four men, no women or extras. Real skin pores, no waxy faces. Correct amber environmental bounce plus subtle soft neutral frontal light for recognizable faces, believable contact shadows and reflections. All INSIDE THE BOOTH remains completely empty of live people, including TV content. White astronaut is only a static machine ornament. No text captions, no labels or new advertising. ONE photorealistic 16:9 wide landscape photo, no collage, deepest practical focus, highest available native detail.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-d48c6610-8172-4329-a7dc-487bb9383b25.png"
+    },
+    {
+      "key": "E",
+      "filename": "05_E_20s_minigolf_interior.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\04_D_15s_space_z.png"
+      ],
+      "prompt": "One architectural photograph of the EXACT SAME empty trade-show booth as input 1, now physically in its LEFT MINI-GOLF BAY. Input 2 is adjacent right-hand bay for consistent materials, not an extra attraction to paste into foreground. Main view: low rectangular miniature-golf course with bright short GREEN turf, connected cream-white organic lobed putting areas, circular green islands and slender small red pennant flagsticks exactly as seen at LEFT in master. Keep the low BLACK perimeter partitions and L-shaped dark bench against wood wall at left, small WALL TV showing its original simple sunlit green putting course, large leafy plants, honey oak wall, black steel supports and hanging slender GOLDEN VERTICAL LED rods at rear. Purple fascia and planted wooden canopy above, gray-brown floor. NO neon science-fiction minigolf, no rocks added to this green course.\nCamera has moved from the right bay along the unobstructed connecting aisle behind the front central branding panel and is now just INSIDE the LEFT open entrance, at 1.55m eye height, level horizon with 28mm rectilinear lens, looking INWARD toward the mini-golf and its rear LED-lit wall. The green course fills lower center and left. At extreme right show the unbranded rear/side timber edge of the same tall central front logo monolith, cropped close; its yellow front logo is NOT visible from inside. Behind that edge an unobtrusive glimpse of the connecting aisle may remain but never duplicate SPACE Z or simulator or relocate them. Camera path is on open WALKING FLOOR, not above putting turf or through wooden walls. This frame must look like a closer interior view of the actual left bay in input 1, not a larger invented venue. Warm amber lighting with purple accents, realistic commercial expo construction, natural reflections, sharp detailed green turf and wood. Completely NO humans, no people inside TV, no silhouettes, no visitors, no overlay words or watermark. Landscape 16:9, one photorealistic image, no montage.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-8d63e412-9b60-410b-b896-2df470412201.png"
+    },
+    {
+      "key": "G",
+      "filename": "07_G_30s_logo_facade.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png"
+      ],
+      "prompt": "Photorealistic architectural camera reposition of the EXACT same empty Putt Brothers booth in input 1. Frame a CLOSE FRONT EXTERIOR detail of its central tall honey-oak branding monolith, centered large in frame, showing the complete existing illuminated YELLOW GEOMETRIC P emblem faithfully with original interlocking diamond-shaped negative spaces and black edge, warm timber grain, the green planted lower base with three warm spotlights and a strip of polished hall floor below. This is the actual fixed panel in same booth, not an added plaque or freestanding logo. Camera just outside booth after passing LEFT entrance, eye height around1.55m, level 28mm lens, looking toward central front panel slightly obliquely from viewer's left. Panel occupies about center 60% width, full bottom visible; its top may approach upper edge naturally. At LEFT edge show the adjacent mini-golf entrance, dark bench/short black borders and fragment of green/white course with plants. At RIGHT edge show only a narrow sliver of adjacent empty right bay, golden rods and blue starred platform; do NOT show full right half or the people who will stand outside farther to right, all people are currently completely OUTSIDE this tight field of view. Preserve every architecture relationship and original proportions; the wood panel stays attached flush with fascia construction. Purple header portions left/right, greenery above if in view. NO people in frame, inside or outside, no visitor reflections, no new text, no wordmarks added under emblem, no new object, no change to emblem geometry. Deep focus, amber lights, black exhibition ceiling, crisp cinematic exposure matching input. Landscape16:9.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-c3d7c844-ff9f-44b7-8234-13db42a99672.png"
+    },
+    {
+      "key": "H2",
+      "filename": "08_H_35s_full_booth_directors.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\luiz-tonsic-camiseta-preta-p-central-v2.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\douglas-tonsic-camiseta-preta-p-central-v2.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\joao-nascimento-camiseta-preta-p-central-v2.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\hero-scroll\\characters\\imre-szenttornyay-camiseta-preta-p-central-v2.png"
+      ],
+      "prompt": "ARCHITECTURAL WIDE SHOT, NOT A GROUP PORTRAIT. Edit INPUT 1 only by adding FOUR SMALL human-scale directors near the far RIGHT booth corner. The architectural booth must dominate exactly as in input1. DO NOT CHANGE CAMERA, DO NOT ZOOM, DO NOT CROP, DO NOT enlarge foreground people. Preserve entire empty booth, all machines, complete fascia, roof, central illuminated yellow P, all floor and ceiling. No people inside booth.\nCRITICAL SCALE AND LOCATION: original image is 1672x941. Place all four SMALL full-body figures together inside the right-side rectangle x=1270..1590, y=515..790, approximately normalized x 76%..95%, y 55%..84%. Each standing adult must be ONLY about 235–260 pixels tall, i.e. about ONE QUARTER of image height, not half image height. Approximate foot positions at (1310,770),(1390,779),(1470,786),(1550,794); tops of heads about250px above corresponding feet. These are composition guides, not visible boxes/text. ALL HEADS well BELOW the purple fascia and below the wall TV; no head near roof or above booth opening midpoint. Keep them right beside the exterior front edge of the booth, roughly same depth as right stage front, NOT standing close to the lens in the empty hall foreground. The remaining foreground stays open and empty. Only a small compact group of ordinary adult scale against the large stand. Never oversized hero portraits. No zoom-in to faces. Anatomically normal adults, not miniaturized toys: camera distance gives small appearance.\nUse reference identities ONCE EACH, left to right: input2 Luiz, input3 Douglas, input4 Joao, input5 Imre. Preserve their individual ages, hairstyle, beard and body build. EXACTLY FOUR PEOPLE, no extras. All in matching black Putt Brothers T-shirts with yellow P chest emblem, blue jeans and white shoes. Both hands in FRONT JEANS POCKETS, relaxed feet, standing still facing camera with friendly natural expressions. Faces should remain distinct as naturally feasible at this wide architectural scale, do not enlarge them for face detail. Correct amber light and contact shadows on exterior hall floor. Interior remains EMPTY, ONE SPACE Z, ONE red single-seat racing simulator, left mini-golf untouched. Keep machine details and logo untouched. One16:9 photorealistic architectural still, no new text, watermark or layout.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-d93ab1e5-c982-4a73-97a4-7b9f82d5b711.png"
+    },
+    {
+      "key": "C2",
+      "filename": "03_C_10s_f1_simulator.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\03_C_10s_f1_simulator.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\space-z-corrected.png"
+      ],
+      "prompt": "Localized lettering correction ONLY in input1. Preserve the entire photograph, all objects, camera and pixels outside the rocket inscription. At the extreme LEFT the white rocket currently has a duplicated Z: S P A C E Z Z. Correct this to exactly SIX vertically arranged black characters, S / P / A / C / E / Z, matching input2. REMOVE the extra bottom Z by restoring clean white cylinder surface there. There must be ONLY ONE Z after E, no seventh character. Keep existing purple badge, nose, fins, size and position. Do not alter the red racing simulator, curved display, screen content, TV, wall, plants, light, crop or view. Absolutely no people, additions or other changes. Same landscape16:9 photorealistic image.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-6327674b-62e1-4a49-8916-2706fa31f825.png"
+    },
+    {
+      "key": "D2",
+      "filename": "04_D_15s_space_z.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\04_D_15s_space_z.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\01_A_00s_tv_content.png"
+      ],
+      "prompt": "Precise very localized edit to INPUT1: the WALL-MOUNTED TELEVISION at upper right currently still displays two tiny people beside the bar. Remove those TWO HUMAN FIGURES FROM INSIDE THE TV IMAGE, restoring the empty bar stools and floor. Input2 is the correct EMPTY bar and mini-golf image that the TV must show. Match this exact empty artwork onto the existing black wall TV display surface using the same perspective, brightness and crop. All live people must be absent from the TV. Preserve absolutely everything OUTSIDE this TV's screen unchanged: SPACE Z including exactly S P A C E Z factory inscription, blue white-star floor, five rocks, black tower, static miniature astronaut PROP inside the tower (do NOT remove this prop), red simulator, curved race monitor showing its racetrack (do NOT change the racing monitor), floor, plants, golden rods, wall, camera, crop and lighting. No live people anywhere in scene or screens. No text overlays, no added product, no redesign. Same landscape16:9 image.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-3b79ee28-f109-4121-acab-bba1f99f33f0.png"
+    },
+    {
+      "key": "E2",
+      "filename": "05_E_20s_minigolf_interior.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\06_F_25s_exit_left.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png"
+      ],
+      "prompt": "Create the immediately PRECEDING camera position for INPUT1 in this exact same empty miniature-golf bay. Input2 is whole booth context only. Physically move the camera FORWARD by roughly1.5m from input1 through the unobstructed LEFT entrance, so the lens is now INSIDE the booth, just at the walking aisle along the front of the green putting course, looking INWARD at the same TV wall and golden LED rear wall. This is a closer camera move with same1.55m height,28mm lens, level horizon and view direction, NOT a redesign. Because camera is now inside: the hall floor, outside purple arch/fascia, black stage skirt, large front black partitions and central front timber panel must fall BEHIND or OUTSIDE camera frame, not remain as a border. Compose the SAME green rectangular minigolf surface across foreground bottom, same cream-white two organic lobed shapes with green centers and exactly THREE short red-flag golf pins in their input1 positions. Keep same left oak wall with black L-bench and potted plants, same small golf-course TV (empty course, NO humans), exact same rear golden hanging LED rods and black supports with greenery. A narrow gray-brown walking aisle at edge is permissible, but no exterior hall foreground. Do not introduce any new course, hole, rock, wall, screen, flag or machine. Match warm amber lighting, realistic wood and turf texture. Completely EMPTY of people. Sharp photorealistic architectural shot, no blur, no text overlays or watermark. Landscape16:9. Strictly a closer interior view of input1.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-2bf5bdee-a596-49a0-a1da-aad8d95f1ada.png"
+    },
+    {
+      "key": "H3",
+      "filename": "08_H_35s_full_booth_directors.png",
+      "refs": [
+        "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-d93ab1e5-c982-4a73-97a4-7b9f82d5b711.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\references\\stand_empty_master.png"
+      ],
+      "prompt": "Strict localized spatial correction to INPUT1. Preserve original wide architecture photograph and camera perfectly. The four men are now the CORRECT SMALL SIZE, do NOT enlarge or shrink them. However they are standing on the booth's stage. MOVE THE EXISTING ENTIRE GROUP DOWN AND RIGHT AS ONE UNIT onto the EXTERIOR EXHIBITION-HALL FLOOR. Translate the existing group approximately180pixels RIGHT and150pixels DOWN within the same1672x941image. Their new full-group bounding region should be roughly x1280..1590 and y530..800. Keep each existing man's current250pixel full-body height, face, clothes, hands-in-pockets pose and left-to-right order unchanged. All FOUR pairs of white shoes must now stand ON THE SHINY HALL FLOOR BELOW AND IN FRONT OF the black stage fascia, around image y780..800, not on top of the brown booth platform at y620. Their heads around y530..550. Do not put them on a new platform or move the whole booth. The big empty hall foreground below them remains empty. Treat them as one small group beside the OUTSIDE front-right corner, not a foreground portrait.\nRemove their original four figures completely from the stage, reconstruct the SPACE Z platform, brown tiles, planter and single red racing rig behind them from INPUT2. No duplicate people, no ghost figures. Booth interior completely empty. Correctly update soft contact shadows/reflections on shiny hall floor beneath relocated shoes. Keep environment lighting natural. Do NOT move, resize or redesign equipment.\nOne tiny typography cleanup: on white rocket, the current vertical name has an extra Z. It must read exactly S P A C E Z with just ONE Z, six letters, not SPACEZZ. Remove only the extra repeated bottom Z, leave factory purple badge intact.\nNo other changes whatsoever: same wide composition, same monolith/P emblem, same camera, crop, lens, shadows, roof, plants and architecture. All four men SMALL and outside, MAXIMUM27% of total frame height, never dominant. 16:9 photorealistic image.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-5b212c1e-fe0c-4c40-9077-40aec68d1a2f.png"
+    },
+    {
+      "key": "H4",
+      "filename": "08_H_35s_full_booth_directors.png",
+      "refs": [
+        "C:\\Users\\Rafael\\AppData\\Local\\Temp\\codex-clipboard-bf9c22c9-03e1-4968-b88e-62c277bbf5d3.png",
+        "C:\\Users\\Rafael\\AppData\\Local\\Temp\\codex-clipboard-ab975413-98b1-4b8c-97a3-8327e63c7ee5.png",
+        "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-d48c6610-8172-4329-a7dc-487bb9383b25.png"
+      ],
+      "prompt": "Use case: precise-object-edit / identity-preserve. Deliver a high-resolution UHD 4K 3840x2160 16:9 photographic enhancement/edit of INPUT1, retaining the exact approved wide composition. NO reframing, no zoom, no new camera or enlarged people. Input1 approved four directors already stand small on hall floor at front-right; keep their EXACT location, size, pose and clothes, just enhance natural facial clarity and distinct likeness guided by INPUT3, which shows the same four recognizable identities left-to-right (Luiz, Douglas, Joao, Imre). INPUT3 is a FACE IDENTITY REFERENCE ONLY: do NOT copy its oversized people or their placement. Do NOT turn this into a portrait; booth remains dominant. Keep maximum real microdetail, natural skin, no invented facial features or excessive sharpening.\nREQUIRED LOCALIZED ARCHITECTURAL EDITS ONLY:\n1. On the central honey-oak monolith beneath its yellow P emblem, add the EXACT brand wordmark from input2: \"Putt Brothers\". Faithfully reproduce that distinctive rounded white-letter wordmark with dark extruded sides. It is a physical raised letter sign, NOT printed text or a pasted caption. Each letter has subtle warm white LED backlighting creating a convincing luminous halo onto the timber behind it, clearly glowing but not overexposed. Center it below existing yellow emblem, comfortably within wood panel width, correct perspective and architectural scale. Keep yellow P shape and location unchanged.\n2. REMOVE ALL narrow glowing vertical poles that protrude UP ABOVE the booth's wood-grid roof into the expo ceiling area, primarily above right bay at top-center/right. These vertical rooftop antenna-like light sticks DO NOT EXIST. Restore dark empty hall ceiling/trusses behind them. Keep the low timber canopy grid, plants and purple fascia intact. Do NOT remove hanging golden light rods INSIDE booth UNDER the roof; those are valid interior decor. No light sticks extend above roofline.\n3. Keep correct original name on white rocket: S P A C E Z, one letter per line, six letters, only ONE final Z. Remove any doubled Z. No SpaceX.\nPreserve ALL other items: one SPACE Z with tower/astronaut/rocks/stars, one red single-seat curved-monitor simulator, empty minigolf bay, wall TVs, floors, materials, booth proportions and illumination. Exactly FOUR partners outside, NO live people inside or in TV screens. Hands in pockets, black tees yellow P, jeans, white shoes. No red annotations. Photorealistic architectural photograph. Native 3840x2160 UHD output requested, no borders, no collage, no added labels.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-26e96720-d6ce-4c03-87ec-82d14e836446.png"
+    },
+    {
+      "key": "G2",
+      "filename": "07_G_30s_logo_facade.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\07_G_30s_logo_facade.png",
+        "C:\\Users\\Rafael\\AppData\\Local\\Temp\\codex-clipboard-ab975413-98b1-4b8c-97a3-8327e63c7ee5.png"
+      ],
+      "prompt": "Precise architectural signage edit of INPUT1. Keep exact viewpoint, crop, booth, oak monolith, yellow emblem, minigolf, platform, floor, lighting and plants. Add the physical brand wordmark from INPUT2 immediately BELOW the yellow P on this central wooden panel: exact text \"Putt Brothers\", matching its distinctive rounded white lettering with dark extruded sides. Raised individually mounted sign letters, with warm white LEDs BEHIND every letter producing a realistic luminous halo on the oak. Keep text comfortably within panel width and correct wall perspective; not a flat graphic overlay. Do not change or resize the yellow P. Remove any narrow glowing vertical sticks protruding ABOVE the booth canopy into the dark expo ceiling if visible; keep all golden rods INSIDE BELOW roof. No people, no new products, no extra signage. Landscape16:9 architectural photograph, maximum fine detail. Match approved environment precisely.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-86260ea5-6059-4469-8002-0b6878b8bf1b.png"
+    },
+    {
+      "key": "H5",
+      "filename": "alternatives\\08_H_directors_face_refinement.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\08_H_35s_full_booth_directors.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\public\\images\\directors\\Eduardo.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\public\\images\\directors\\Douglas.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\public\\images\\directors\\John.png",
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\public\\images\\directors\\Imre-Szenttornyay.png"
+      ],
+      "prompt": "Use case: identity-preserve. Target INPUT1, the approved WIDE booth photo. Edit ONLY the four men's faces/hair in the small foreground-right group, matching the FOUR ACTUAL PHOTOGRAPHS input2–5 exactly left to right. This is facial identity restoration, NOT generic sharpening or invention. First man LEFT is Luiz Eduardo in input2: broader dark upswept wavy hair, same eyes/eyebrows, distinctive nose, long smile with teeth, slight stubble, same actual face proportions. Second is Douglas in input3: short upswept brown hair, lighter eyes, narrower face, defined short beard and mustache, his own smile (not a duplicate of Luiz). Third is Joao in input4: balding rounded head, broader cheeks, dark brows, dark beard with gray chin, his characteristic toothy smile. Fourth RIGHT is Imre in input5: short receding gray hair, older features, white beard and thick white mustache, same nose and eye structure, gentle mostly closed-mouth smile. Natural likeness and anatomical correctness more important than exaggerated teeth. Match the actual reference people, preserve ages and skin tones. No eye asymmetry, smeared teeth, pasted masks, over-smooth wax skin or generic model faces. Preserve coherent soft amber environment lighting.\nSTRICT INVARIANTS: four people's exact current size, placement, body, neck proportions, relaxed hands in jean pockets, black Putt Brothers yellow-P shirts, jeans, shoes, pose and floor contact stay unchanged. Their small architectural scale must NOT increase. Do not zoom or crop to show faces. Keep entire booth and EVERY nonface area unchanged: exact original wide view, LED-backlit Putt Brothers wordmark below yellow emblem, NO projecting rooftop light poles, existing inside golden rods, empty booth, SPACE Z lettering and machine, red single-seat simulator, minigolf, TV images, plants, floor reflections. No added live person, no changed shirt logo or caption. One16:9 maximum-native-detail photorealistic image, not a collage.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-4cb272f8-405c-45b6-89f1-f26b5dcad364.png"
+    },
+    {
+      "key": "H_EMPTY",
+      "filename": "08_H_35s_full_booth.png",
+      "refs": [
+        "C:\\Users\\Rafael\\Wesbites\\puttbrothers.com\\WebsiteLocal_02\\assets\\ScrollingVideo_v01\\08_H_35s_full_booth_directors.png"
+      ],
+      "prompt": "Strict localized removal edit of the approved full-booth image. Remove ONLY the four men standing on the exterior hall floor at lower right, including their four contact shadows and human reflections. Reconstruct the shiny exhibition hall floor and black booth stage border naturally. Preserve EVERYTHING ELSE exactly unchanged: same camera/crop/perspective, whole stand framing, LED-backlit physical white Putt Brothers wordmark under yellow P emblem, purple fascia, wood-grid planted roof with NO projecting light poles above it, warm inside light rods, minigolf bay and flagsticks, ONE SPACE Z with correct lettering and static astronaut product ornament, ONE red single-seat simulator and displays, plants, materials and golden floor lighting reflections. No humans anywhere inside or outside or on TVs; only the little white astronaut toy remains as part of SPACE Z. Do not alter scene scale, products, signage or light. Landscape16:9, photorealistic sharp architectural photograph, maximum native detail.",
+      "mode": "built-in image_gen",
+      "generated_original_path": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-cad3ba21-3f80-434d-b107-5968ff0ca108.png"
+    }
+  ]
+}

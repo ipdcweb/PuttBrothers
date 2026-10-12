@@ -8,7 +8,7 @@ const compiled = ts.transpileModule(source.replace('import app from "vinext/serv
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText
 
-function fixture(appResponse = () => new Response("website"), upstream = async () => new Response("image")) {
+function fixture(appResponse = () => new Response("website"), upstream = async () => new Response("image"), env = {}) {
   const entries = new Map()
   const pending = []
   let appCalls = 0
@@ -22,7 +22,7 @@ function fixture(appResponse = () => new Response("website"), upstream = async (
     { default: cache }, upstream, exports,
   )
   return {
-    request: (url, method = "GET") => exports.default.fetch(new Request(url, { method }), {}, {
+    request: (url, method = "GET") => exports.default.fetch(new Request(url, { method }), env, {
       waitUntil: (promise) => pending.push(promise),
     }),
     flush: () => Promise.all(pending), entries,
@@ -34,6 +34,25 @@ test("hostname-agnostic Workers Cache stays disabled for this multi-domain Worke
   const config = JSON.parse((await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"))
     .replace(/^\s*\/\/.*$/gm, ""))
   assert.equal(config.cache.enabled, false)
+})
+
+test("preview blocks contact and PDF writes before invoking the app or an upstream", async () => {
+  const f = fixture(undefined, async () => { throw new Error('Must not send data') }, { PREVIEW_MODE: 'true' })
+  for (const path of ['/api/contact', '/api/contact/', '/api/layout-pdf/upload']) {
+    const response = await f.request(`https://preview.workers.dev${path}`, 'POST')
+    assert.equal(response.status, 403)
+    assert.equal((await response.json()).success, false)
+    assert.equal(response.headers.get('Cache-Control'), 'no-store')
+  }
+  assert.equal(f.appCalls, 0)
+})
+
+test("preview HTML is not indexable, while read-only browsing still works", async () => {
+  const f = fixture(() => new Response('<html>review</html>', { headers: { 'Content-Type': 'text/html' } }), undefined, { PREVIEW_MODE: 'true' })
+  const response = await f.request('https://preview.workers.dev/')
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get('X-Robots-Tag'), 'noindex, nofollow, noarchive')
+  assert.equal(f.appCalls, 1)
 })
 
 test("visiting an alias first cannot redirect the canonical page to itself", async () => {

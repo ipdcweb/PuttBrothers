@@ -1,45 +1,17 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "puttbrothers-com",
+  // Authorized V2 client preview. Never attach V1 production routes here.
+  "name": "puttbrothers-v2-preview",
+  "account_id": "5929fdac0cd2d82d7378551cf4c20774",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": { "PREVIEW_MODE": "true" },
   "compatibility_date": "2026-08-31",
   "compatibility_flags": [
     "nodejs_compat"
   ],
   "main": "worker.ts",
-  "routes": [
-    {
-      "pattern": "puttbrothers.com/*",
-      "zone_name": "puttbrothers.com"
-    },
-    {
-      "pattern": "www.puttbrothers.com/*",
-      "zone_name": "puttbrothers.com"
-    },
-    {
-      "pattern": "puttbrothers.ch/*",
-      "zone_name": "puttbrothers.ch"
-    },
-    {
-      "pattern": "www.puttbrothers.ch/*",
-      "zone_name": "puttbrothers.ch"
-    },
-    {
-      "pattern": "puttbrothers.de/*",
-      "zone_name": "puttbrothers.de"
-    },
-    {
-      "pattern": "www.puttbrothers.de/*",
-      "zone_name": "puttbrothers.de"
-    },
-    {
-      "pattern": "puttbrothers.uk/*",
-      "zone_name": "puttbrothers.uk"
-    },
-    {
-      "pattern": "www.puttbrothers.uk/*",
-      "zone_name": "puttbrothers.uk"
-    }
-  ],
+  "routes": [],
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",

@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-12",
+  "mode": "built-in image_gen edit",
+  "purpose": "Normalize real director portraits for About V2",
+  "webDelivery": {
+    "format": "webp",
+    "width": 640,
+    "height": 640,
+    "quality": 85,
+    "alphaQuality": 100,
+    "sharedBackground": "CSS linear-gradient(145deg, #eeede9, #d8d9d5)"
+  },
+  "originalsPreserved": true,
+  "visualApproval": "Pending Rafael",
+  "portraits": [
+    {
+      "name": "douglas-tonsic",
+      "source": "public/images/directors/Douglas.png",
+      "generatedPath": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-deb1ce6f-8671-428c-8f32-e42075a5e7a1.png",
+      "master": "assets/v2-originals/douglas-tonsic-studio-v3.png",
+      "webp": "public/images/v2/team/douglas-tonsic-studio-v3.webp",
+      "prompt": "Use case: background-extraction / identity-preserve.\nImage 1 is the edit target, a real executive portrait. Create a meticulously extracted, photorealistic version of THIS EXACT PERSON for a coordinated four-person website leadership grid.\nChange only background and framing. Remove the original studio background and replace with genuine alpha transparency. Preserve the original face, exact facial features, age, expression, hairline, hair, beard, skin texture, clothing and pose. Do not beautify, regenerate the identity, smooth skin, change outfit, change smile or make the person younger.\nComposition: single square 1:1 image, head and upper chest centered horizontally. Complete hair/scalp visible with top at 8% of canvas; eye line about 36%; chin about 62%; shoulders and upper torso extend naturally to the bottom edge. Head occupies roughly 42% of canvas width, proportional to the individual's natural shape. Match this framing carefully so this portrait fits the same template as the other directors. Extend jacket shoulders only if needed, retaining original fabric and lapels. Natural original lighting.\nOutput: clean transparent cutout with fine realistic hair edges; no opaque backdrop, artificial glow, frame, borders, text, watermark, collage or extra person. Highest fidelity to the supplied real photograph."
+    },
+    {
+      "name": "imre-szenttornyay",
+      "source": "public/images/directors/Imre-Szenttornyay.png",
+      "generatedPath": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-e1027816-b58d-4d73-a68b-6455a966fd55.png",
+      "master": "assets/v2-originals/imre-szenttornyay-studio-v3.png",
+      "webp": "public/images/v2/team/imre-szenttornyay-studio-v3.webp",
+      "prompt": "Use case: background-extraction / identity-preserve.\nImage 1 is the edit target, a real executive portrait. Create a meticulously extracted, photorealistic version of THIS EXACT PERSON for a coordinated four-person website leadership grid.\nChange only background and framing. Remove the original studio background and replace with genuine alpha transparency. Preserve the original face, exact facial features, age, expression, hairline, hair, beard, skin texture, clothing and pose. Do not beautify, regenerate the identity, smooth skin, change outfit, change smile or make the person younger.\nComposition: single square 1:1 image, head and upper chest centered horizontally. Complete hair/scalp visible with top at 8% of canvas; eye line about 36%; chin about 62%; shoulders and upper torso extend naturally to the bottom edge. Head occupies roughly 42% of canvas width, proportional to the individual's natural shape. Match this framing carefully so this portrait fits the same template as the other directors. Extend jacket shoulders only if needed, retaining original fabric and lapels. Natural original lighting.\nOutput: clean transparent cutout with fine realistic hair edges; no opaque backdrop, artificial glow, frame, borders, text, watermark, collage or extra person. Highest fidelity to the supplied real photograph."
+    },
+    {
+      "name": "joao-nascimento",
+      "source": "public/images/directors/John.png",
+      "generatedPath": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-e704040d-a670-4bd4-89d3-0b9d1a4acd08.png",
+      "master": "assets/v2-originals/joao-nascimento-studio-v3.png",
+      "webp": "public/images/v2/team/joao-nascimento-studio-v3.webp",
+      "prompt": "Use case: background-extraction / identity-preserve.\nImage 1 is the edit target, a real executive portrait. Create a meticulously extracted, photorealistic version of THIS EXACT PERSON for a coordinated four-person website leadership grid.\nChange only background and framing. Remove the original studio background and replace with genuine alpha transparency. Preserve the original face, exact facial features, age, expression, hairline, hair, beard, skin texture, clothing and pose. Do not beautify, regenerate the identity, smooth skin, change outfit, change smile or make the person younger.\nComposition: single square 1:1 image, head and upper chest centered horizontally. Complete hair/scalp visible with top at 8% of canvas; eye line about 36%; chin about 62%; shoulders and upper torso extend naturally to the bottom edge. Head occupies roughly 42% of canvas width, proportional to the individual's natural shape. Match this framing carefully so this portrait fits the same template as the other directors. Extend jacket shoulders only if needed, retaining original fabric and lapels. Natural original lighting.\nOutput: clean transparent cutout with fine realistic hair edges; no opaque backdrop, artificial glow, frame, borders, text, watermark, collage or extra person. Highest fidelity to the supplied real photograph."
+    },
+    {
+      "name": "luiz-tonsic",
+      "source": "public/images/directors/Eduardo.png",
+      "generatedPath": "C:\\Users\\Rafael\\.codex\\generated_images\\01a11052-6041-7dd0-8813-2aeac715fb0a\\exec-120f9f11-9e39-4533-98d9-6bc112b4480c.png",
+      "master": "assets/v2-originals/luiz-tonsic-studio-v3.png",
+      "webp": "public/images/v2/team/luiz-tonsic-studio-v3.webp",
+      "prompt": "Use case: background-extraction / identity-preserve.\nImage 1 is the edit target, a real executive portrait. Create a meticulously extracted, photorealistic version of THIS EXACT PERSON for a coordinated four-person website leadership grid.\nChange only background and framing. Remove the original studio background and replace with genuine alpha transparency. Preserve the original face, exact facial features, age, expression, hairline, hair, beard, skin texture, clothing and pose. Do not beautify, regenerate the identity, smooth skin, change outfit, change smile or make the person younger.\nComposition: single square 1:1 image, head and upper chest centered horizontally. Complete hair/scalp visible with top at 8% of canvas; eye line about 36%; chin about 62%; shoulders and upper torso extend naturally to the bottom edge. Head occupies roughly 42% of canvas width, proportional to the individual's natural shape. Match this framing carefully so this portrait fits the same template as the other directors. Extend jacket shoulders only if needed, retaining original fabric and lapels. Natural original lighting.\nOutput: clean transparent cutout with fine realistic hair edges; no opaque backdrop, artificial glow, frame, borders, text, watermark, collage or extra person. Highest fidelity to the supplied real photograph."
+    }
+  ]
+}

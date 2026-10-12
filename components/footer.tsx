@@ -1,151 +1,52 @@
-"use client"
-
 import Image from "next/image"
-import { Facebook, Instagram, Linkedin, Home, Package, Info, Mail, Link as LinkIcon, Share2 } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useRef } from "react"
+import { ArrowUpRight, Facebook, Instagram, Linkedin } from "lucide-react"
+
+const footerLinks = [
+  { name: "Home", href: "/" },
+  { name: "Products", href: "/products" },
+  { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
+]
+const socialLinks = [
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61551240330686", icon: Facebook },
+  { name: "Instagram", href: "https://www.instagram.com/puttbrothersnz/", icon: Instagram },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/puttbrothers/", icon: Linkedin },
+]
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
-  const emailRef = useRef<HTMLDivElement>(null)
-  const phoneRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    // Email: sales@puttbrothers.com (reversed and encoded)
-    const e = "moc.srehtrorbttup@selas".split("").reverse().join("")
-    // Phone: +64 210 225 3621 (encoded)
-    const p = String.fromCharCode(43, 54, 52, 32, 50, 49, 48, 32, 50, 50, 53, 32, 51, 54, 50, 49)
-
-    if (emailRef.current) {
-      emailRef.current.textContent = e
-    }
-    if (phoneRef.current) {
-      phoneRef.current.textContent = p
-    }
-  }, [])
-
-  const navItems = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "Products", href: "/products", icon: Package },
-    { name: "About Us", href: "/about", icon: Info },
-    { name: "Contact Us", href: "/contact", icon: Mail },
-  ]
-
   return (
-    <footer className="bg-foreground text-background py-12 lg:py-16">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 mb-12">
-          {/* Brand - Left */}
-          <div className="lg:w-1/3">
-            <Image
-              src="/images/design-mode/Logo-White.webp"
-              alt="PuttBrothers Logo"
-              width={180}
-              height={50}
-              className="h-12 w-auto mb-4 brightness-0 invert"
-            />
-            <p className="text-background/80 leading-relaxed">
-              Building better entertainment experiences together for over 20 years.
-            </p>
+    <footer className="pb-shell-footer pb-v2">
+      <section className="pb-shell-footer__cta" aria-labelledby="pb-footer-project-title">
+        <div className="pb-container pb-shell-footer__cta-inner">
+          <div><p className="pb-eyebrow">Your next big idea starts here</p><h2 id="pb-footer-project-title">Let’s build<br />what’s next.</h2></div>
+          <Link href="/contact#contact" className="pb-shell-footer__project-link"><span>Start your project</span><ArrowUpRight aria-hidden="true" /></Link>
+        </div>
+      </section>
+      <div className="pb-container pb-shell-footer__base">
+        <div className="pb-shell-footer__columns">
+          <div className="pb-shell-footer__brand">
+            <Link href="/" aria-label="Putt Brothers home"><Image src="/images/design-mode/Logo-White.webp" alt="Putt Brothers" width={240} height={67} /></Link>
+            <p>Building better entertainment experiences together for over 20 years.</p>
+            <p className="pb-shell-footer__tagline">More than games,<br />we design happiness.</p>
           </div>
-
-          {/* Quick Links - Left */}
-          <div className="lg:w-1/3 lg:text-left">
-            <h3 className="font-bold text-lg mb-4 text-[#ffcc00] flex items-center gap-2 justify-start">
-              <LinkIcon className="h-5 w-5 text-[#ffcc00]" />
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {navItems.map((item) => {
-                const Icon = item.icon
-                return (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="flex items-center gap-2 text-background/80 hover:text-[#ffcc00] transition-colors group"
-                    >
-                      <Icon className="h-4 w-4 text-[#ffcc00] group-hover:scale-110 transition-transform" />
-                      <span>{item.name}</span>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-
-          {/* Social - Left */}
-          <div className="lg:w-1/3 lg:text-left">
-            <h3 className="font-bold text-lg mb-4 text-[#ffcc00] flex items-center gap-2 justify-start">
-              <Share2 className="h-5 w-5 text-[#ffcc00]" />
-              Social Medias
-            </h3>
-            <div className="flex gap-4 lg:justify-start mb-6">
-              <a
-                href="https://www.facebook.com/profile.php?id=61551240330686"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-background/10 hover:bg-background/20 transition-colors group"
-              >
-                <Facebook className="h-5 w-5 group-hover:text-[#ffcc00] transition-colors" />
-              </a>
-              <a
-                href="https://www.instagram.com/puttbrothersnz/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-background/10 hover:bg-background/20 transition-colors group"
-              >
-                <Instagram className="h-5 w-5 group-hover:text-[#ffcc00] transition-colors" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/puttbrothers/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-background/10 hover:bg-background/20 transition-colors group"
-              >
-                <Linkedin className="h-5 w-5 group-hover:text-[#ffcc00] transition-colors" />
-              </a>
-            </div>
-
-            <div className="space-y-2 text-sm text-background/70 select-none lg:text-left">
-              <div
-                ref={emailRef}
-                className="cursor-default"
-                style={{
-                  userSelect: "none",
-                  WebkitUserSelect: "none",
-                  MozUserSelect: "none",
-                }}
-              />
-              
+          <nav aria-label="Footer navigation" className="pb-shell-footer__navigation">
+            <h3>Explore</h3>
+            <ul>{footerLinks.map((item) => (<li key={item.href}><Link href={item.href}>{item.name}<ArrowUpRight size={16} aria-hidden="true" /></Link></li>))}</ul>
+          </nav>
+          <div className="pb-shell-footer__contact">
+            <h3>Let’s talk</h3>
+            <a className="pb-shell-footer__email" href="mailto:sales@puttbrothers.com">sales@puttbrothers.com</a>
+            <p>Auckland, New Zealand.<br />Creating experiences around the world.</p>
+            <div className="pb-shell-footer__socials">
+              {socialLinks.map(({ name, href, icon: Icon }) => (<a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${name} (opens in a new tab)`}><Icon size={20} aria-hidden="true" /></a>))}
             </div>
           </div>
         </div>
-
-        {/* Tagline */}
-        <div className="pt-8 border-t border-background/20 text-center">
-          <p className="text-[#ffcc00] text-lg md:text-xl font-semibold italic">
-            "More than games, we design happiness."
-          </p>
-        </div>
-
-        {/* Copyright */}
-        <div className="pt-6 text-center">
-          <p className="text-background/70">© {currentYear} PuttBrothers. All rights reserved.</p>
-        </div>
-
-        {/* Developer Credit */}
-        <div className="text-center pt-0">
-          <p className="text-background/60 my-0">
-            Developed by{" "}
-            <a
-              href="https://www.ipdc.co.nz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-background/60 hover:text-[#ffcc00] transition-colors underline"
-            >
-              ipdc.co.nz
-            </a>
-          </p>
+        <p className="pb-shell-footer__imagery-note">Concept imagery shown for inspiration.</p>
+        <div className="pb-shell-footer__legal">
+          <p>© {new Date().getFullYear()} PuttBrothers. All rights reserved.</p>
+          <p>Developed by <a href="https://www.ipdc.co.nz" target="_blank" rel="noopener noreferrer">IPDC<span className="sr-only"> (opens in a new tab)</span><ArrowUpRight size={13} aria-hidden="true" /></a></p>
         </div>
       </div>
     </footer>

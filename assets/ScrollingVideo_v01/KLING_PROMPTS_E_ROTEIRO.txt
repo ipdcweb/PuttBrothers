@@ -1,0 +1,121 @@
+PUTT BROTHERS — SCROLLINGVIDEO_V01 — REVISÃO DO STAND VAZIO
+Pacote de imagens de controle; nenhum vídeo foi gerado. Planejamento: 8 quadros / 7 clipes de 5 s / 35 s.
+
+COMO USAR
+1. Usar apenas os PNGs ativos listados abaixo. Não misturar arquivos das subpastas archive_previous_with_people, references ou alternatives.
+2. No Kling, selecionar um modo compatível com imagem inicial e final. Conferir na interface o modelo, duração, resolução e custo antes de gerar; este pacote não afirma disponibilidade de um plano específico.
+3. Enviar start_frame e end_frame do mesmo trecho e copiar seu prompt completo.
+4. Buscar tomada única contínua; evitar Multi-Shot se criar cortes. Áudio não é necessário para este hero controlado pelo scroll.
+5. PRIMEIRO TESTE: D → E, pois a passagem entre os ambientes é a mais difícil. Não consumir todo o lote antes de aprovar esse percurso.
+6. Na montagem, conferir o último frame realmente produzido. Se ele não coincidir com o controle, usar o último frame aprovado como início do próximo trecho e revisar continuidade.
+7. Rever os vídeos também ao contrário e pausados: o scroll pode inverter e parar a qualquer momento.
+
+SEQUÊNCIA
+00 s | A | 01_A_00s_tv_content.png | Conteúdo da TV
+05 s | B | 02_B_05s_tv_reveal.png | Revelação da TV
+10 s | C | 03_C_10s_f1_simulator.png | Simulador de corrida
+15 s | D | 04_D_15s_space_z.png | SPACE Z
+20 s | E | 05_E_20s_minigolf_interior.png | Minigolfe — interior
+25 s | F | 06_F_25s_exit_left.png | Saída pela esquerda
+30 s | G | 07_G_30s_logo_facade.png | Marca na fachada
+35 s | H | 08_H_35s_full_booth.png | Stand completo — sem pessoas
+
+INVARIANTES
+- Nenhuma pessoa dentro do stand ou nas TVs; o astronauta branco é um elemento estático da máquina.
+- Exatamente um SPACE Z e um simulador de corrida vermelho de assento único; não adicionar máquinas ou assentos.
+- Nome correto SPACE Z, nunca SpaceX. Manter foguete, torre, rampa, estrelas, borda vermelha e pedras.
+- Marca Putt Brothers em letreiro físico branco com LED traseiro, abaixo do símbolo amarelo.
+- Nenhuma haste luminosa projetada acima do teto. Manter as luzes internas.
+- A mesma arquitetura, luz, exposição, proporções e cores; não transformar objetos para ligar imagens.
+
+TRECHO 01 — Da imagem à TV — 0–5 s
+START: 01_A_00s_tv_content.png
+END: 02_B_05s_tv_reveal.png
+DURATION: 5 seconds
+PROMPT (EN):
+A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.
+
+Start with the venue picture filling the entire frame. This is ALREADY a static image on a real flat television, not a real room we are flying through. Dolly gently backward along the screen normal; reveal the black bezel and then its honey-oak wall. Keep the venue picture flat, stable and identical, with no internal camera motion or animated people. End at the supplied TV view. No portal effect.
+REVISÃO: Manter a imagem plana na TV; não transformar o bar em um ambiente físico do stand.
+
+TRECHO 02 — Da TV ao simulador — 5–10 s
+START: 02_B_05s_tv_reveal.png
+END: 03_C_10s_f1_simulator.png
+DURATION: 5 seconds
+PROMPT (EN):
+A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.
+
+Continue withdrawing from the wall TV, gently tilting down and arcing toward the right-hand racing rig until its entire red single-seat assembly fills the supplied medium-wide composition. Reveal the one curved racing display, empty red/black seat, wheel, pedals and three-blue-fan PC through actual camera parallax. The separate wall TV remains above and behind. Do not duplicate a screen or seat, and do not animate the race picture.
+REVISÃO: Preservar a diferença entre TV na parede e monitor curvo do simulador.
+
+TRECHO 03 — Do simulador ao SPACE Z — 10–15 s
+START: 03_C_10s_f1_simulator.png
+END: 04_D_15s_space_z.png
+DURATION: 5 seconds
+PROMPT (EN):
+A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.
+
+Track slowly left and slightly backward through the open aisle, gently yawing left to favor the SPACE Z installation. The racing rig recedes toward frame right while the blue starred platform, five gray moon rocks, black astronaut tower, ramp and one white rocket enter a clear unobstructed view at left-center. Nothing moves except the camera. The rocket must keep exactly SPACE Z lettering, with one final Z, never SpaceX.
+REVISÃO: Não trocar, duplicar ou espelhar foguete, torre, simulador e monitor.
+
+TRECHO 04 — Do SPACE Z ao minigolfe — 15–20 s
+START: 04_D_15s_space_z.png
+END: 05_E_20s_minigolf_interior.png
+DURATION: 5 seconds
+PROMPT (EN):
+A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.
+
+Travel left through the open connecting circulation toward the left mini-golf bay, slowly turning inward to the green putting area. Keep the camera on clear walking floor beside the courses. Brief natural occlusion by the real timber divider/planter can conceal the join, but do not pass through a wall, a machine or turf obstacle. Reveal the same oak TV wall, dark bench, green and cream putting shapes and warm hanging rods of the end frame. Preserve real spatial scale; do not stretch the booth to connect views.
+REVISÃO: Trecho de maior risco. A circulação é inferida dos renders, não confirmada por planta técnica. Testar antes do lote; se houver salto ou morphing, inserir um quadro intermediário e aumentar a duração.
+
+TRECHO 05 — Saída pela abertura esquerda — 20–25 s
+START: 05_E_20s_minigolf_interior.png
+END: 06_F_25s_exit_left.png
+DURATION: 5 seconds
+PROMPT (EN):
+A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.
+
+Gently dolly backward from the close mini-golf interior along its walking aisle and THROUGH THE EXISTING LEFT OPEN ENTRANCE. Keep the lens looking inward the entire time. The black low partitions, timber curved entrance, purple fascia edge and hall floor enter frame by parallax. Preserve the putting shapes and red flags; do not generate a new door or a wall opening. Finish just outside the left entrance.
+REVISÃO: Sair pela abertura existente. Não atravessar os bancos, divisórias ou a área de jogo.
+
+TRECHO 06 — Passagem pelo letreiro — 25–30 s
+START: 06_F_25s_exit_left.png
+END: 07_G_30s_logo_facade.png
+DURATION: 5 seconds
+PROMPT (EN):
+A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.
+
+From outside the left entrance, track smoothly to camera-right along the exhibition hall aisle while continuing to face inward. Gently turn toward the front central timber monolith until the existing yellow emblem and the raised Putt Brothers letters dominate the shot. The left mini-golf entrance stays beside the panel. Letters retain their exact spelling and shape with steady warm-white rear LED halo, no text animation, floating logo or flashing lights.
+REVISÃO: Letreiro é físico; efeitos gráficos adicionais devem ser feitos depois, fora do vídeo.
+
+TRECHO 07 — Revelação de todo o stand — 30–35 s
+START: 07_G_30s_logo_facade.png
+END: 08_H_35s_full_booth.png
+DURATION: 5 seconds
+PROMPT (EN):
+A single continuous photorealistic stabilized camera shot in the SAME fixed Putt Brothers exhibition booth. Preserve architecture, product geometry and locations, timber grain, purple fascia, planted canopy, warm exposure and level horizon. Use slow real camera translation with gentle rotation, not morphing between unrelated images. Keep all objects rigid and still, all screens showing their existing static content. No live people anywhere, including screens or reflections; the tiny astronaut is a fixed SPACE Z product ornament. No cuts, dissolves, added signs, duplicated machines, fisheye, sudden acceleration or camera passing through solids. Keep inside hanging warm LED rods but no luminous poles projecting above booth roof. Match the supplied end frame faithfully.
+
+Dolly slowly backward and slightly toward camera-left from the brand panel, progressively revealing the entire booth in the supplied wide composition. Keep the logo fixed on wood and preserve the exact left mini-golf/right SPACE Z/far-right red simulator layout. The roof contains timber lattice and plants only, no upward glowing antenna-like poles. End with calm deceleration into the full architectural wide shot, booth completely empty and hall foreground empty.
+REVISÃO: Conferir enquadramento, teto sem hastes e estabilidade da marca; não aumentar a escala do stand.
+
+NEGATIVE PROMPT OPCIONAL (se o modo escolhido tiver campo próprio)
+cuts, montage, crossfade, morphing, teleportation, warped architecture, moving furniture, duplicated products, extra racing seats, extra rockets, illegible signage, SpaceX, rooftop glowing poles, people inside the booth, crowds, human reflections, animated TV characters, floating logo, fisheye, shaky camera, fast spin, exposure flicker
+
+ALTERNATIVA COM OS QUATRO DIRETORES
+Arquivo de avaliação: alternatives/08_H_directors_face_refinement.png.
+Usar somente se Rafael aprovar expressamente os rostos. Não aumentar os diretores para obter detalhe; a escala pequena no exterior foi aprovada.
+Se substituir H por essa alternativa no trecho 07, substituir as instruções sobre ausência de pessoas no exterior pelas seguintes:
+Exactly four small directors stand motionless on the hall floor in front of the right side of the booth, at the positions and scale of the supplied end frame. They already exist outside the initial tight framing and are revealed naturally only as the camera withdraws. Do not spawn, fade in, walk or enlarge them. Preserve their distinct identities, hands in pockets, black shirts with yellow emblem, jeans and white shoes. The booth interior stays empty.
+
+TEXTO DE CAMPANHA — CAMADA SEPARADA, NÃO GRAVAR NOS FRAMES
+0–5 s: Build a place people want to play.
+5–15 s: More ways to play.
+15–25 s: Bring your entertainment space to life.
+25–35 s: Let's plan your next attraction.
+CTA sugerido: Plan your project. Validar redação comercial antes da implementação.
+Sem promessas de retorno financeiro, datas de feira, número de stand ou métricas não confirmadas.
+
+QUALIDADE E RESOLUÇÃO
+Imagens-base nativas: conferir FILES_VERIFIED.json. Não chamar uma simples ampliação de detalhe 4K nativo.
+Pedido de 3840x2160 com maior definição facial permanece separado da preparação dos quadros. O recurso de upscale com IA consultado não está disponível no plano gratuito conectado; nenhuma assinatura foi comprada.
+Perspectivas foram produzidas por IA com base nos renders, não em um modelo 3D técnico. Os quadros não garantem continuidade temporal. D → E pode exigir um quadro extra e mais de 35 s.

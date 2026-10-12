@@ -43,7 +43,7 @@ export function MobilePlannerWarningDialog({ open, onClose }: MobilePlannerWarni
           <p className="text-sm leading-relaxed">
             Our layout planner is packed with drag-and-drop features, precise positioning, and interactive elements that
             need a desktop or laptop to shine. Think of it as the difference between playing mini golf on a full course
-            versus on a tabletop—better on a bigger space!
+            versus on a tabletop. It's better in a bigger space!
           </p>
           <p className="pt-2 text-sm text-gray-600">
             📱 <span className="font-semibold">Mobile & Tablets:</span> Bring this link back when you're at a computer

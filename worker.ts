@@ -21,6 +21,17 @@ export default {
     ctx: Parameters<typeof app.fetch>[2],
   ): Promise<Response> {
     const url = new URL(request.url)
+    const preview = (env as { PREVIEW_MODE?: string }).PREVIEW_MODE === "true"
+
+    // Review environments never send leads or write to the production PDF bucket.
+    // The existing Contact/WorkOrg and AWS implementations remain unchanged.
+    if (preview && request.method === "POST" &&
+      ["/api/contact", "/api/layout-pdf/upload"].includes(url.pathname.replace(/\/$/, ""))) {
+      return Response.json({
+        success: false,
+        message: "This is a review website. Form submissions and PDF uploads are disabled; nothing was sent.",
+      }, { status: 403, headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow, noarchive" } })
+    }
 
     if (REDIRECT_HOSTS.has(url.hostname.toLowerCase())) {
       url.protocol = "https:"
@@ -107,6 +118,7 @@ export default {
 
     const response = await app.fetch(request, env, ctx)
     const headers = new Headers(response.headers)
+    if (preview) headers.set("X-Robots-Tag", "noindex, nofollow, noarchive")
 
     if (headers.get("Content-Type")?.includes("text/html")) {
       headers.set("Cache-Control", "no-store")

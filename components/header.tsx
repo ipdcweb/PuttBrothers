@@ -1,120 +1,85 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { Menu, X, Home, Package, Info, Mail } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react"
+import { ArrowUpRight, Menu, X } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "Products", href: "/products" },
+  { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
+]
+
+function HeaderNavigation({ pathname }: { pathname: string }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (!mobileMenuOpen) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+    document.addEventListener("keydown", closeOnEscape)
+    return () => document.removeEventListener("keydown", closeOnEscape)
+  }, [mobileMenuOpen])
 
-  const navItems = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "Products", href: "/products", icon: Package },
-    { name: "About Us", href: "/about", icon: Info },
-    { name: "Contact Us", href: "/contact", icon: Mail },
-  ];
-
-  const isActive = (href: string) => pathname === href;
+  useEffect(() => {
+    const updateShade = () => {
+      headerRef.current?.style.setProperty("--header-shade", String(Math.min(1, Math.max(0, window.scrollY / 100))))
+    }
+    updateShade()
+    window.addEventListener("scroll", updateShade, { passive: true })
+    return () => window.removeEventListener("scroll", updateShade)
+  }, [])
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-[#41059a]/50 backdrop-blur-md leading-[1.00rem] font-normal tracking-wide text-lg transition-all duration-300 ${
-        isScrolled ? "py-2" : "py-0"
-      }`}
-    >
-      <nav className="container mx-auto px-4 lg:px-8">
-        <div
-          className={`flex items-center justify-between transition-all duration-300 ${
-            isScrolled ? "h-16" : "h-20"
-          }`}
+    <header ref={headerRef} className="pb-shell-header pb-v2">
+      <a href="#main-content" className="pb-shell-header__skip">Skip to content</a>
+      <div className="pb-container pb-shell-header__bar">
+        <Link href="/" aria-label="Putt Brothers home" className="pb-shell-header__logo" onClick={() => setMobileMenuOpen(false)}>
+          <Image src="/images/design-mode/Logo-White.webp" alt="Putt Brothers" width={216} height={60} priority />
+        </Link>
+        <nav className="pb-shell-header__desktop" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>{item.name}</Link>
+          ))}
+        </nav>
+        <Link href="/contact#contact" className="pb-button pb-shell-header__cta">Start your project <ArrowUpRight size={18} aria-hidden="true" /></Link>
+        <button
+          ref={menuButtonRef}
+          type="button"
+          className="pb-shell-header__toggle"
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="pb-mobile-navigation"
+          onClick={() => setMobileMenuOpen((open) => !open)}
         >
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <Image
-              src="/images/design-mode/Logo-White.webp"
-              alt="PuttBrothers Logo"
-              width={180}
-              height={50}
-              className={`transition-all duration-300 w-auto px-0 mx-0 my-0 py-0.5 ${
-                isScrolled ? "h-10" : "h-12"
-              }`}
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 text-base">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isContactUs = item.name === "Contact Us";
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`flex items-center gap-2 text-white hover:text-[#ffcc00] transition-colors font-medium pb-1 border-b-2 ${
-                    isActive(item.href)
-                      ? "border-[#ffcc00]"
-                      : "border-transparent"
-                  } ${isContactUs ? "animate-pulse-yellow" : ""}`}
-                >
-                  <Icon className="h-5 w-5 text-[#ffcc00]" />
-                  {item.name}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
+          {mobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+        </button>
+      </div>
+      <nav id="pb-mobile-navigation" className="pb-shell-header__mobile" aria-label="Mobile navigation" hidden={!mobileMenuOpen}>
+        <div className="pb-container">
+          {navItems.map((item, index) => (
+            <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined} onClick={() => setMobileMenuOpen(false)}>
+              <span className="pb-shell-header__index" aria-hidden="true">0{index + 1}</span>{item.name}<ArrowUpRight size={22} aria-hidden="true" />
+            </Link>
+          ))}
+          <Link href="/contact#contact" className="pb-button pb-shell-header__mobile-cta" onClick={() => setMobileMenuOpen(false)}>Start your project <ArrowUpRight size={20} aria-hidden="true" /></Link>
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/20">
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`flex items-center gap-2 text-white hover:text-[#ffcc00] transition-colors font-medium py-2 ${
-                      isActive(item.href)
-                        ? "text-[#ffcc00] border-l-4 border-[#ffcc00] pl-4"
-                        : ""
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Icon className="h-5 w-5 text-[#ffcc00]" />
-                    {item.name}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </nav>
     </header>
-  );
+  )
+}
+
+export function Header() {
+  const pathname = usePathname() ?? "/"
+  // Reset the disclosure on every route change, including browser back/forward.
+  return <HeaderNavigation key={pathname} pathname={pathname} />
 }

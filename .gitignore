@@ -40,3 +40,10 @@ yarn-error.log*
 .vinext/
 .wrangler/
 *.tsbuildinfo
+/tmp/
+/assets/v2-originals/
+# Production/editing masters stay local; only web-ready derivatives are published.
+/assets/ScrollingVideo_v01/**/*.mp4
+/assets/ScrollingVideo_v01/**/*.png
+/assets/ScrollingVideo_v01/references/
+/assets/hero-scroll/characters/*.png
