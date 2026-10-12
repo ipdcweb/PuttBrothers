@@ -4,6 +4,81 @@ const CANONICAL_HOST = "puttbrothers.com"
 const PRODUCT_MEDIA_PREFIX = "/product-media/"
 const S3_MEDIA_ORIGIN = "https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com"
 
+// Workers Static Assets returned 200/full files for Range requests in the live
+// preview. Supply single byte ranges for browser video seeking without buffering
+// whole videos. Other asset paths retain Cloudflare's direct static serving.
+async function videoResponse(request: Request, assets: { fetch(request: Request): Promise<Response> }): Promise<Response> {
+  const assetHeaders = new Headers(request.headers)
+  assetHeaders.delete("Range")
+  assetHeaders.delete("If-Range")
+  assetHeaders.set("Accept-Encoding", "identity")
+  const asset = await assets.fetch(new Request(request, { headers: assetHeaders }))
+  if (asset.status !== 200) return asset
+  const headers = new Headers(asset.headers)
+  headers.set("Accept-Ranges", "bytes")
+  const range = request.method === "GET" ? request.headers.get("Range") : null
+  const ifRange = request.headers.get("If-Range")
+  const validatorMatches = !ifRange ||
+    (!ifRange.startsWith("W/") && ifRange === headers.get("ETag")) ||
+    (headers.has("Last-Modified") && ifRange === headers.get("Last-Modified"))
+  const match = range?.match(/^bytes=(\d*)-(\d*)$/)
+  if (!match || (!match[1] && !match[2]) || !validatorMatches || !asset.body) {
+    return new Response(asset.body, { status: asset.status, headers })
+  }
+  const size = Number(headers.get("Content-Length"))
+  // Do not invent offsets if the upstream ever stops providing an asset length.
+  if (!Number.isSafeInteger(size) || size <= 0 || headers.has("Content-Encoding")) {
+    return new Response(asset.body, { status: asset.status, headers })
+  }
+  const start = match[1] ? Number(match[1]) : Math.max(0, size - Number(match[2]))
+  const end = match[1] && match[2] ? Math.min(Number(match[2]), size - 1) : size - 1
+  if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start >= size || start > end) {
+    await asset.body.cancel()
+    headers.set("Content-Range", `bytes */${size}`)
+    headers.delete("Content-Length")
+    return new Response(null, { status: 416, headers })
+  }
+  const reader = asset.body.getReader()
+  let offset = 0
+  const slice = new ReadableStream<Uint8Array>({
+    async pull(controller) {
+      try {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) throw new Error("Video asset ended before the requested range")
+          const from = Math.max(0, start - offset)
+          const to = Math.min(value.byteLength, end + 1 - offset)
+          offset += value.byteLength
+          if (to > from) controller.enqueue(value.subarray(from, to))
+          if (offset > end) {
+            controller.close()
+            await reader.cancel()
+            return
+          }
+          if (to > from) return
+        }
+      } catch (error) {
+        controller.error(error)
+      }
+    },
+    cancel(reason) { return reader.cancel(reason) },
+  })
+  const length = end - start + 1
+  headers.set("Content-Range", `bytes ${start}-${end}/${size}`)
+  headers.set("Content-Length", String(length))
+  // Workers ignores manually set Content-Length on arbitrary streams. Its native
+  // FixedLengthStream preserves this header; Node tests use the standard stream.
+  const FixedStream = (globalThis as typeof globalThis & {
+    FixedLengthStream?: new (length: number) => TransformStream<Uint8Array, Uint8Array>
+  }).FixedLengthStream
+  if (FixedStream) {
+    const fixed = new FixedStream(length)
+    void slice.pipeTo(fixed.writable).catch(() => { /* pipeTo aborts the response on failure */ })
+    return new Response(fixed.readable, { status: 206, headers })
+  }
+  return new Response(slice, { status: 206, headers })
+}
+
 const REDIRECT_HOSTS = new Set([
   "www.puttbrothers.com",
   "puttbrothers.ch",
@@ -47,6 +122,16 @@ export default {
           "CDN-Cache-Control": "no-store",
         },
       })
+    }
+
+    if (["GET", "HEAD"].includes(request.method) && /^\/videos\/[^/]+\.mp4$/.test(url.pathname)) {
+      const assets = (env as { ASSETS?: { fetch(request: Request): Promise<Response> } }).ASSETS
+      if (assets) {
+        const response = await videoResponse(request, assets)
+        const headers = new Headers(response.headers)
+        if (preview) headers.set("X-Robots-Tag", "noindex, nofollow, noarchive")
+        return new Response(response.body, { status: response.status, headers })
+      }
     }
 
     if (request.method === "GET" && url.pathname.startsWith(PRODUCT_MEDIA_PREFIX)) {

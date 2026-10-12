@@ -15,7 +15,8 @@
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "run_worker_first": ["/videos/*"]
   },
   "cache": {
     // Workers Cache ignores the hostname. This Worker also redirects aliases,

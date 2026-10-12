@@ -22,13 +22,72 @@ function fixture(appResponse = () => new Response("website"), upstream = async (
     { default: cache }, upstream, exports,
   )
   return {
-    request: (url, method = "GET") => exports.default.fetch(new Request(url, { method }), env, {
+    request: (url, method = "GET", headers = {}) => exports.default.fetch(new Request(url, { method, headers }), env, {
       waitUntil: (promise) => pending.push(promise),
     }),
     flush: () => Promise.all(pending), entries,
     get appCalls() { return appCalls },
   }
 }
+
+test("video ranges return the requested bytes, including suffix and open-ended ranges", async () => {
+  const bytes = new TextEncoder().encode("0123456789")
+  const f = fixture(undefined, undefined, { PREVIEW_MODE: "true", ASSETS: {
+    fetch: async (request) => {
+      assert.equal(request.headers.get("Range"), null)
+      return new Response(request.method === "HEAD" ? null : bytes, { headers: {
+        "Content-Length": "10", "Content-Type": "video/mp4", ETag: '"video-v1"',
+      } })
+    },
+  } })
+  for (const [range, expected, contentRange] of [
+    ["bytes=0-1", "01", "bytes 0-1/10"],
+    ["bytes=3-6", "3456", "bytes 3-6/10"],
+    ["bytes=8-", "89", "bytes 8-9/10"],
+    ["bytes=-3", "789", "bytes 7-9/10"],
+    ["bytes=8-99", "89", "bytes 8-9/10"],
+  ]) {
+    const response = await f.request("https://preview.workers.dev/videos/hero.mp4", "GET", { Range: range })
+    assert.equal(response.status, 206)
+    assert.equal(response.headers.get("Content-Range"), contentRange)
+    assert.equal(response.headers.get("Content-Length"), String(expected.length))
+    assert.match(response.headers.get("X-Robots-Tag"), /noindex/)
+    assert.equal(await response.text(), expected)
+  }
+  for (const range of ["bytes=10-", "bytes=5-3", "bytes=-0"]) {
+    const response = await f.request("https://preview.workers.dev/videos/hero.mp4", "GET", { Range: range })
+    assert.equal(response.status, 416)
+    assert.equal(response.headers.get("Content-Range"), "bytes */10")
+  }
+  for (const headers of [{}, { Range: "bytes=0-1,4-5" }, { Range: "bytes=0-1", "If-Range": '"old"' }]) {
+    const response = await f.request("https://preview.workers.dev/videos/hero.mp4", "GET", headers)
+    assert.equal(response.status, 200)
+    assert.equal(await response.text(), "0123456789")
+  }
+  const head = await f.request("https://preview.workers.dev/videos/hero.mp4", "HEAD", { Range: "bytes=0-1" })
+  assert.equal(head.status, 200)
+  assert.equal(await head.text(), "")
+  assert.equal(f.appCalls, 0)
+})
+
+test("video range streaming crosses chunk boundaries and cancels after the requested end", async () => {
+  let cancelled = false
+  const chunks = ["012", "345", "678", "9"]
+  const f = fixture(undefined, undefined, { ASSETS: {
+    fetch: async () => new Response(new ReadableStream({
+      pull(controller) {
+        const chunk = chunks.shift()
+        if (chunk) controller.enqueue(new TextEncoder().encode(chunk))
+        else controller.close()
+      },
+      cancel() { cancelled = true },
+    }), { headers: { "Content-Length": "10", "Content-Type": "video/mp4" } }),
+  } })
+  const response = await f.request("https://preview.workers.dev/videos/hero.mp4", "GET", { Range: "bytes=2-6" })
+  assert.equal(response.status, 206)
+  assert.equal(await response.text(), "23456")
+  assert.equal(cancelled, true)
+})
 
 test("hostname-agnostic Workers Cache stays disabled for this multi-domain Worker", async () => {
   const config = JSON.parse((await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"))
