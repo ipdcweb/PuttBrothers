@@ -1,4 +1,4 @@
-import { mkdirSync, statSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -7,7 +7,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const input = path.join(root, 'assets/ScrollingVideo_v01/ScrollingVideo_v01.mp4');
 const output = path.join(root, 'public/videos');
 mkdirSync(output, { recursive: true });
-const videoFiles = {};
+// Retain the other registered videos when regenerating only the hero variants.
+const videoFiles = JSON.parse(readFileSync(path.join(root, 'lib/scroll-video-files.json'), 'utf8'));
 for (const [name, width, crf] of [['desktop', 1280, 21], ['mobile', 768, 23]]) {
   const result = spawnSync('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'warning', '-i', input,
     '-an', '-vf', `scale=${width}:-2`, '-c:v', 'libx264', '-preset', 'slow', '-crf', String(crf),

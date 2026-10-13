@@ -40,17 +40,17 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 rounded-full shadow-lg transition-all duration-300 cursor-pointer flex items-center gap-2 ${
+      className={`fixed bottom-6 right-6 z-50 rounded-full shadow-md transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
       } ${
-        showText ? "px-6 py-3" : "p-3"
+        showText ? "px-3 py-2" : "p-2"
       } ${shouldHide ? "md:opacity-100 md:translate-y-0 max-md:!opacity-0 max-md:!pointer-events-none" : ""}`}
       style={{ backgroundColor: "#ffcc00" }}
       aria-label="Scroll to top"
     >
-      <ChevronUp className="h-5 w-6" style={{ color: "#41059a" }} />
+      <ChevronUp className="h-4 w-4" style={{ color: "#41059a" }} />
       {showText && (
-        <span className="font-semibold text-sm whitespace-nowrap" style={{ color: "#41059a" }}>
+        <span className="font-semibold text-xs whitespace-nowrap" style={{ color: "#41059a" }}>
           Top
         </span>
       )}

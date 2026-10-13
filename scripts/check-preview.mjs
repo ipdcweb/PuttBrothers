@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+
+const stories = JSON.parse(readFileSync(new URL('../lib/client-stories.json', import.meta.url), 'utf8'))
 
 const origin = 'https://puttbrothers-v2-preview.team-web-592.workers.dev'
 const results = []
@@ -15,7 +18,11 @@ for (const path of ['/', '/products', '/about', '/contact', '/layout-planner']) 
   assert.doesNotMatch(html, /Application error: a (client|server)-side exception/i)
   const title = html.match(/<title>(.*?)<\/title>/s)?.[1]
   assert.ok(title, `${path} has a title`)
-  if (path === '/') assert.match(html, /pb-scroll-hero/)
+  if (path === '/') {
+    assert.match(html, /pb-scroll-hero/)
+    assert.match(html, /id="real-play"/)
+    assert.doesNotMatch(html, /Concept imagery, created to show what(?:&#x27;|&#39;|')s possible\./)
+  }
   results.push({ path, status: response.status, title, noindex: true })
 }
 for (const path of ['/api/products/machines', '/api/planner/machines']) {
@@ -38,6 +45,15 @@ for (const name of ['douglas-tonsic', 'imre-szenttornyay', 'joao-nascimento', 'l
   assert.equal(response.status, 200, path)
   assert.equal(response.headers.get('content-type'), 'image/webp')
   results.push({ path, status: response.status })
+}
+for (const story of stories) {
+  const response = await check(story.video, { headers: { Range: 'bytes=0-1023' } })
+  assert.equal(response.status, 206, `${story.video} supports seeking`)
+  assert.equal((await response.arrayBuffer()).byteLength, 1024)
+  const poster = await check(story.poster, { method: 'HEAD' })
+  assert.equal(poster.status, 200, story.poster)
+  assert.equal(poster.headers.get('content-type'), 'image/webp')
+  results.push({ path: story.video, status: response.status, range: response.headers.get('content-range'), poster: story.poster })
 }
 const catalogue = await check('/catalogues/puttbrothers-2026.pdf', { method: 'HEAD' })
 assert.equal(catalogue.status, 200)
