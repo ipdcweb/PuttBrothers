@@ -78,3 +78,15 @@ deployment record and the remote checks above, not merely by a CLI attempt.
 
 Technical tests do not constitute visual approval. Rafael/client review is still
 required for desktop/mobile composition, scrolling rhythm and final sales copy.
+
+## Update, 13 October 2026: real-play films
+
+- Rafael authorized updating this same temporary URL. No production or DNS changes.
+- Source: `1afb2e4`, branch `website-v2`.
+- Cloudflare version: `ff0eca5c-545b-4e73-b993-fee532bcff8e`.
+- Published through the guarded `deploy:preview` workflow: 34 tests and the final Vinext build passed.
+- Six-film depth carousel added to Home, with individual approved soundtracks, one active player and lightweight WebP previews. See `CLIENT-STORIES-REVIEW.md`.
+- Duplicate concept-imagery sentence removed from the experience section; footer disclosure retained. Top button reduced to approximately 69x32 CSS pixels.
+- Remote check passed at `2026-10-13T10:43:42.430Z`: all five HTML routes, catalogue APIs, both hero MP4s, six new MP4 range requests, six new WebP posters, portraits, PDF, noindex and blocked preview writes.
+- Published Chrome session confirmed six selectors, one video element, successful muted playback, the smaller Top button and removal of the duplicate sentence. No hydration/runtime error was reported; one existing-style preload warning concerned unused `v2-pages` CSS.
+- Final preview opened in Chrome at `/#real-play` for Rafael's visual approval. No screenshots were taken. These documentation-only changes do not alter the deployed source above.
