@@ -89,3 +89,36 @@ Data and AWS-resource deletion cannot be reversed by a Worker rollback.
   does not delete AWS resources or secrets, change DNS, cancel a subscription,
   send a lead or upload a valid PDF. AWS inventory/reversible stopping and browser
   checks are coordinated separately after the official site has been verified.
+
+## Production cutover completed
+
+- Published source: `cbd3ea0`, using the guarded production command after all 40
+  tests and a fresh Vinext build passed. The guard verified all 198 production
+  R2 receipts and the exact eight existing hostname routes.
+- Active Worker: `puttbrothers-com`, 100% version
+  `62af4949-e440-4891-ad43-819665e83830`, created 23 October 2026 at 07:48:35
+  Brisbane (22 October at 21:48:35 UTC).
+- Public URL: https://puttbrothers.com/ . V1 pages remain in place. No V2 UI or
+  carousel changes were promoted.
+- Cloudflare metadata confirms `PRODUCT_MEDIA` and `LAYOUT_PDFS` point to the
+  production R2 buckets, with rate limiter namespace `2026102302` and
+  `PREVIEW_MODE=false`. All six previous secret names remain present, including
+  `WORKORG_API_TOKEN`; no secret value was copied or printed.
+- Public checks passed at `2026-10-22T21:50:25.856Z`: eight HTML pages return
+  HTTP 200/no-store; catalogue 39 and planner 30 report `cloudflare`; all 198
+  media HEAD routes report `cloudflare-r2` with correct MIME; all ten Unity
+  entrypoint hashes match and all twenty WASM/data range reads return HTTP 206.
+- The product image SHA-256 and a historical planner image URL mapped locally
+  to R2 both passed. All seven aliases still return HTTP 301 with path/query
+  preserved. No media response exposes upstream `x-amz-*` headers.
+- The official CDN applies Brotli compression to some file types, omitting
+  Content-Length and weakening ETags. Explicit `Accept-Encoding: identity`
+  confirms original sizes and strong SHA-256 ETags without changing the site.
+- Empty JSON at the PDF upload endpoint returns HTTP 400 without a file/write.
+  Empty JSON at contact returns the existing HTTP 500 unsuccessful response
+  before constructing the external request. An arbitrary planner image host is
+  rejected with HTTP 400. No valid PDF or lead was submitted.
+- Detailed local check evidence: `tmp/production-cutover-check.json` (ignored).
+- AWS resources, DNS and all existing secrets were preserved. AWS inventory,
+  reversible stopping, cancellation decisions and browser checks remain with
+  the coordinating task. Rollback baseline `7193bac3` remains recorded.
