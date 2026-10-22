@@ -171,3 +171,17 @@ required for desktop/mobile composition, scrolling rhythm and final sales copy.
   No dependency or new unit test was added; the actual browser flow is verified.
 - This correction remains preview-only. AWS inventory/shutdown and production
   cutover remain separate following the agreed review sequence.
+- Final deployed source: `5543d50`; Cloudflare version
+  `02bf7a6b-ec7b-4612-98ca-95ae9b579820`. The guarded deployment passed all
+  56 tests and the final Vinext build. Targeted lint had zero errors and four
+  pre-existing warnings (loose product types and unused video state).
+- Chrome DOM/function checks passed at 1360x900 and 390x844: exactly two circular
+  group controls, no rectangular arrows, all four desktop/five mobile groups
+  traversed forwards/backwards, correct count/disabled boundary states, decoded
+  active images and no horizontal document overflow or console errors.
+- Desktop loop boundary handling also passed using Swiper's public slide methods:
+  backwards from group two's first item selects group one's last item; forwards
+  returns to group two's first item without reversing the group change.
+- Public preview smoke check passed at `2026-10-22T20:40:34.052Z`, including all
+  five routes and blocked preview writes. Final Products page is opened for
+  Rafael's visual review. Documentation-only commits do not change this deployment.
