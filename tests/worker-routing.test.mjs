@@ -18,10 +18,16 @@ const helperExports = {}
 new Function("machines", "threeDFolders", "exports", ts.transpileModule(helperSource, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText)(machines, threeDFolders, helperExports)
+const pdfSource = await readFile(new URL("../lib/layout-pdf-storage.ts", import.meta.url), "utf8")
+const pdfExports = {}
+new Function("exports", ts.transpileModule(pdfSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+}).outputText)(pdfExports)
 const compiled = ts.transpileModule(source.replace('import app from "vinext/server/fetch-handler"', "")
   .replace('import videoFiles from "./lib/scroll-video-files.json"', "")
   .replace('import { productMediaResponse, type ProductMediaBucket } from "./lib/product-media-response"', "")
-  .replace('import { resolveProductImagePath } from "./lib/product-media"', ""), {
+  .replace('import { resolveProductImagePath } from "./lib/product-media"', "")
+  .replace('import { layoutPdfUpload, layoutPdfDownload, type LayoutPdfBucket, type LayoutPdfRateLimiter } from "./lib/layout-pdf-storage"', ""), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText
 
@@ -34,9 +40,9 @@ function fixture(appResponse = () => new Response("website"), upstream = async (
     match: async (request) => entries.get(request.url)?.clone(),
     put: async (request, response) => { entries.set(request.url, response.clone()) },
   }
-  new Function("app", "caches", "fetch", "exports", "videoFiles", "productMediaResponse", "resolveProductImagePath", compiled)(
+  new Function("app", "caches", "fetch", "exports", "videoFiles", "productMediaResponse", "resolveProductImagePath", "layoutPdfUpload", "layoutPdfDownload", compiled)(
     { fetch: async () => { appCalls++; return appResponse() } },
-    { default: cache }, upstream, exports, videoFiles, mediaExports.productMediaResponse, helperExports.resolveProductImagePath,
+    { default: cache }, upstream, exports, videoFiles, mediaExports.productMediaResponse, helperExports.resolveProductImagePath, pdfExports.layoutPdfUpload, pdfExports.layoutPdfDownload,
   )
   return {
     request: (url, method = "GET", headers = {}) => exports.default.fetch(new Request(url, { method, headers }), env, {

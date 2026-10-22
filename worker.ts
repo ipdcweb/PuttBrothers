@@ -2,6 +2,7 @@ import app from "vinext/server/fetch-handler"
 import videoFiles from "./lib/scroll-video-files.json"
 import { productMediaResponse, type ProductMediaBucket } from "./lib/product-media-response"
 import { resolveProductImagePath } from "./lib/product-media"
+import { layoutPdfUpload, layoutPdfDownload, type LayoutPdfBucket, type LayoutPdfRateLimiter } from "./lib/layout-pdf-storage"
 
 const CANONICAL_HOST = "puttbrothers.com"
 const PRODUCT_MEDIA_PREFIX = "/product-media/"
@@ -103,7 +104,7 @@ export default {
     const preview = (env as { PREVIEW_MODE?: string }).PREVIEW_MODE === "true"
 
     // Review environments never send leads or write to the production PDF bucket.
-    // The existing Contact/WorkOrg and AWS implementations remain unchanged.
+    // The Contact/WorkOrg contract is preserved; PDF storage uses native Cloudflare R2.
     if (preview && request.method === "POST" &&
       ["/api/contact", "/api/layout-pdf/upload"].includes(url.pathname.replace(/\/$/, ""))) {
       return Response.json({
@@ -126,6 +127,14 @@ export default {
           "CDN-Cache-Control": "no-store",
         },
       })
+    }
+
+    const pdfEnv = env as { LAYOUT_PDFS?: LayoutPdfBucket; PDF_UPLOAD_RATE_LIMITER?: LayoutPdfRateLimiter }
+    if (url.pathname.replace(/\/$/, "") === "/api/layout-pdf/upload") {
+      return layoutPdfUpload(request, pdfEnv.LAYOUT_PDFS, pdfEnv.PDF_UPLOAD_RATE_LIMITER)
+    }
+    if (url.pathname.startsWith("/layout-pdfs/")) {
+      return layoutPdfDownload(request, pdfEnv.LAYOUT_PDFS)
     }
 
     if (["GET", "HEAD"].includes(request.method) && /^\/videos\/[^/]+\.mp4$/.test(url.pathname)) {

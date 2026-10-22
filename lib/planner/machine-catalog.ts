@@ -3,7 +3,7 @@ import { COURSE_HOLES_DATA, COURSE_HOLES_CATEGORIES } from "./course-holes-data"
 
 /**
  * Machine Catalog - Re-exports data from course-holes-data.ts
- * This maintains backward compatibility while allowing easy AWS integration
+ * Keeps the shared lookup stable while the site's catalogue loads.
  */
 export const MACHINE_CATALOG: MachineCatalogItem[] = [...COURSE_HOLES_DATA]
 

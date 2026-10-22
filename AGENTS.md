@@ -17,6 +17,12 @@
   `puttbrothers-product-media-review` R2 bucket, read-only through the Worker.
   Contact/PDF integrations remain outside this migration; do not remove AWS
   resources or promote V1 production as part of preview review.
+- Rafael then explicitly requested complete AWS retirement on 23 October 2026.
+  PDF storage is now native R2; do not reintroduce AWS dependencies. A separate
+  `WebsiteLocal_AwsRetirement` worktree on `aws-retirement-production` preserves
+  V1 appearance while migrating its backend. AWS deletion requires an authenticated
+  inventory and preservation of historical PDFs/links; never affect unrelated IPDC
+  resources. The prior preview-only scope remains for redesign promotion.
 - Preserve the form's WorkOrg JSON contract (including `FindLead`), AWS integrations,
   planner and performance fixes. Do not send real leads or upload PDFs during tests.
 - Read `README.md` and `V2-PLAN.md` before starting the next stage.

@@ -2,7 +2,8 @@
 
 Local redesign implemented on 1 October 2026 from the stable V1. The new Home,
 Products, About, Contact surrounds, header and footer follow the supplied brand
-direction. The approved contact form and integration source remain unchanged.
+direction. The approved contact form and WorkOrg contract remain unchanged. PDF storage
+now uses native private Cloudflare R2 rather than AWS.
 
 ## Locations and version control
 
@@ -50,7 +51,8 @@ Use Vinext, not the generic Next.js scripts, to include the custom media Worker.
   manifest-listed read requests; no media write endpoint exists.
 - This folder has its own installed dependencies and generated build. V1 build
   output, `.wrangler` state and local secret files were not copied.
-- Integration source is preserved, but production credentials were not copied.
+- The WorkOrg integration is preserved. PDF upload/download uses native R2 with
+  size/type/origin checks and rate limiting. Production credentials were not copied.
   Do not submit real contact forms or upload PDFs during local testing. Credentials
   inherited from the machine could still permit external writes; local development
   is not an automatic network sandbox. Use mocked tests instead.
@@ -91,3 +93,15 @@ Raw media masters remain local; deployable WebP/MP4/PDF assets are tracked.
 [V1-README.md](V1-README.md), [RELEASE-V1.md](RELEASE-V1.md) and
 [PERFORMANCE-2026-10-01.md](PERFORMANCE-2026-10-01.md) remain historical references
 for the stable site and recovery. They do not describe a V2 deployment.
+
+
+## Complete AWS retirement, 23 October 2026
+
+The AWS SDK has been removed. Layout PDF storage uses `LAYOUT_PDFS` and
+`PDF_UPLOAD_RATE_LIMITER` bindings, random document URLs and private response
+headers. Preview uploads remain disabled. Legacy event field `s3Url` is retained
+only for browser compatibility; its value is now a Cloudflare URL.
+
+See [AWS-RETIREMENT.md](AWS-RETIREMENT.md) for production scope, account cleanup,
+historical links and verification. The stable V1 UI is preserved in a separate
+backend migration branch; this does not promote the V2 redesign.

@@ -6,6 +6,9 @@
  *   node scripts/sync-product-media.mjs --remote        # fixed review bucket
  *   node scripts/sync-product-media.mjs --remote --verify # recheck saved receipts
  *   node scripts/sync-product-media.mjs --remote --cli    # slower CLI fallback
+ *   node scripts/sync-product-media.mjs --remote --production # fixed production bucket
+ *
+ * Production target authorized by Rafael on 23 October for complete AWS retirement.
  *
  * A future release needs a deliberate update to the constants below. This tool
  * never lists, deletes, or writes objects outside this release prefix. Remote
@@ -25,17 +28,17 @@ import os from "node:os"
 import { setTimeout as delay } from "node:timers/promises"
 
 const ACCOUNT = "5929fdac0cd2d82d7378551cf4c20774"
-const BUCKET = "puttbrothers-product-media-review"
+const BUCKET = process.argv.includes("--production") ? "puttbrothers-product-media-production" : "puttbrothers-product-media-review"
 const RELEASE = "catalog-20261023-v1"
 const EXPECTED_FILES = 198
 const EXPECTED_BYTES = 409_833_999
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const SOURCE_ROOT = path.join(ROOT, "tmp", "product-media")
-const STATE_ROOT = path.join(ROOT, "tmp", "sync-product-media", RELEASE)
+const STATE_ROOT = path.join(ROOT, "tmp", process.argv.includes("--production") ? "sync-product-media-production" : "sync-product-media", RELEASE)
 const CACHE_CONTROL = "public, max-age=31536000, immutable"
 const args = new Set(process.argv.slice(2))
 for (const arg of args) {
-  if (!["--local", "--remote", "--verify", "--cli"].includes(arg)) throw new Error(`Unknown argument: ${arg}`)
+  if (!["--local", "--remote", "--verify", "--cli", "--production"].includes(arg)) throw new Error(`Unknown argument: ${arg}`)
 }
 if (args.has("--local") && args.has("--remote")) throw new Error("Choose --local or --remote, never both")
 const mode = args.has("--remote") ? "remote" : args.has("--local") ? "local" : "dry-run"
