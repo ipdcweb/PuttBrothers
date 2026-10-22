@@ -76,7 +76,7 @@ Inventários com dados de clientes ficam fora do Git público.
   Não há perfil/CLI AWS local, e Secrets do Worker não foram exportados.
 - Nenhum recurso AWS foi excluído nesta preparação.
 
-## Estado publicado para revisão
+## Estado publicado para revisão, registro anterior à aprovação
 
 A V2 foi publicada em https://puttbrothers-v2-preview.team-web-592.workers.dev/,
 fonte `2f78bc9`, versão `9311c4a5-95b3-4a9e-9795-94501f6f6ebb`.
@@ -93,3 +93,53 @@ A última instrução de Rafael estabelece a ordem: publicar as alterações na 
 permitir sua revisão e então parar com a AWS. Portanto, aguardar sua revisão antes
 de promover a produção, apagar recursos AWS ou remover credenciais antigas.
 Nenhum recurso AWS nem Secret de produção foi removido.
+
+## Etapa autorizada após a aprovação, 23 de outubro de 2026
+
+Rafael confirmou que a revisão V2 funciona, incluindo a navegação individual e
+os WebP de 300 px no celular, e pediu parar o serviço AWS para testar antes de
+cancelar. Essa etapa autoriza uma parada reversível; não exclui dados nem cancela
+planos. A interface V2 permanece na prévia, sem promoção do redesign.
+
+- O domínio oficial ainda usava AWS na auditoria inicial. Foi publicado somente
+  o backend V1 preparado, fonte `cbd3ea0`, versão Cloudflare
+  `62af4949-e440-4891-ad43-819665e83830`. Os oito caminhos, seis Secrets existentes,
+  formulário WorkOrg e aparência V1 foram preservados. Não houve alteração DNS.
+- Antes da parada: 40 testes e build passaram; catálogo 39 e planner 30 identificam
+  origem Cloudflare. As 198 mídias R2, dez HTML Unity e vinte Range WASM/data,
+  hashes de imagens, aliases e compatibilidade de imagens antigas passaram.
+  Chrome abriu o 3D Rack'Em Up, inicializou Unity sem erro e sem chamadas AWS.
+- Inventário autenticado na conta `590183868691`: Lightsail não mostra instâncias
+  nem bancos. RDS Sydney tem `database-puttbrothers`, SQL Server Express Edition,
+  classe `db.t3.small`, Single-AZ `ap-southeast-2c`, inicialmente `Available`.
+  Backups automáticos habilitados (retenção de um dia), três snapshots disponíveis
+  e último ponto de restauração observado em 23/10/2026 às 07:40 de Brisbane.
+- S3 tem quatro buckets: `puttbrothers-api-dev-serverlessdeploymentbucket-llgusddubyyi`,
+  `puttbrothers-app`, `puttbrothers-images`, `puttbrothers-layout-pdfs-prod`.
+  Mídia possui itens adicionais fora do catálogo migrado; PDFs históricos existem
+  sob `layout-plans/2026/`. Todos permanecem preservados e acessíveis como antes.
+- A única mutação AWS desta etapa é RDS **Stop temporarily** para
+  `database-puttbrothers`. Depois de `Stopping`, o console confirmou
+  **Stopped temporarily** em 23/10/2026, aproximadamente às 07:57 de Brisbane.
+  O aviso de confirmação informa reinício automático em **30/10/2026 às 07:49**
+  de Brisbane. Comprovante local: `tmp/aws-rds-stopped-20261023.png`, fora do Git.
+- Parar RDS preserva dados/configuração e permite **Actions > Start**. A AWS
+  reinicia automaticamente após sete dias; armazenamento e backups continuam
+  sujeitos a cobrança. Não prometer fatura zerada durante a pausa.
+- S3, Lambda, API Gateway, IAM, credenciais e conta não foram desativados ou
+  excluídos. O fechamento financeiro permanece para depois da validação humana.
+- Depois do estado parado, oficial e prévia passaram novamente: cinco páginas,
+  catálogo 39, planner 30, 198 mídias R2 com HEAD/MIME/bytes/hash por site, dez
+  entradas HTML Unity, vinte Range WASM/data por site, imagens/exportação do
+  planner e sete aliases oficiais. Apenas GET/HEAD, sem lead ou PDF enviado.
+  Evidência: `../WebsiteLocal_AwsRetirement/tmp/post-rds-stop-check.json`,
+  execução em 23/10/2026 às 07:57 de Brisbane.
+- Chrome oficial inicializou o modelo Bridge após a parada, com canvas ativo,
+  carregamento concluído, sem aviso de erro nem recurso AWS. No preview mobile,
+  Bridge `33 / 39` avançou para Bulls Eye `34 / 39`, com WebP de 300px, catálogo
+  Cloudflare e autoplay desligado. Nenhum erro de aplicação observado no console.
+- A validação humana final continua antes de cancelar: abrir imagens/3D no celular,
+  testar o planejador e, pelo próprio Rafael, um envio real do formulário/PDF.
+  Documentação de produção e evidências da pausa: commit `0be7be0` na branch
+  `aws-retirement-production`. Rollback exige **Actions > Start** no RDS antes de
+  restaurar a versão antiga do Worker; o início do banco não é instantâneo.
