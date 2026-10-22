@@ -26,6 +26,11 @@
 - Preserve the form's WorkOrg JSON contract (including `FindLead`), AWS integrations,
   planner and performance fixes. Do not send real leads or upload PDFs during tests.
 - Read `README.md` and `V2-PLAN.md` before starting the next stage.
+- Carousel arrows must move one product at a time through all 39 records, with
+  an individual counter and continuous rewind. Do not restore group pagination.
+  Mobile carousel images are exactly 300px WebP; desktop cards use 720px WebP.
+  Preserve original PNGs for detail/planner and existing Unity builds. Use
+  `scripts/prepare-carousel-images.mjs --verify` before preview publication.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

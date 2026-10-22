@@ -185,3 +185,35 @@ required for desktop/mobile composition, scrolling rhythm and final sales copy.
 - Public preview smoke check passed at `2026-10-22T20:40:34.052Z`, including all
   five routes and blocked preview writes. Final Products page is opened for
   Rafael's visual review. Documentation-only commits do not change this deployment.
+
+## Update, 23 October 2026: individual product navigation and lightweight WebP
+
+- Rafael reported the mobile carousel stopped at `33-39 / 39`. Reproduced:
+  those controls selected groups of eight, so Next disabled on product 33 while
+  six products remained accessible only by swiping. The previous group checks
+  passed that behavior but did not cover the intended individual-image flow.
+- Removed group slicing/remounting and its boundary callbacks. One Swiper now
+  holds the complete 39-product catalogue; both circular arrows and swipe share
+  the same individual index, displayed as `1 / 39`. Rewind continues from 39 to 1
+  and from 1 to 39 without rearranging the DOM. No extra arrow controls were added.
+- Mobile originals already measured 299-300 px but were PNG. Added 39 transparent
+  WebP derivatives at exactly 300 px, 7,614-16,328 bytes each: 384,242 bytes total,
+  56.22% smaller. Desktop uses 39 WebP derivatives at 720 px: 1,711,278 bytes,
+  80.40% smaller. Original PNGs remain available for detail and planner use.
+- A responsive picture selects mobile WebP before hydration, avoiding a desktop
+  PNG download on mobile. Images use lazy/async decoding and only the visible
+  card/neighbours receive the expensive glow. Dynamic bullets stay compact.
+- Autoplay starts only after the desktop breakpoint is known. A lifecycle effect
+  explicitly stops it on mobile and while a detail/3D modal is open, and handles
+  resizing without remounting the carousel. Manual arrow clicks pause playback.
+- `scripts/prepare-carousel-images.mjs` reproduces the derivatives from verified
+  source hashes. `--verify` checks all 78 deployed derivatives offline; the preview
+  deployment guard now requires it. See `assets/carousel-images-manifest.json`.
+- Local Chrome checks at 390x844 with 4x CPU slowdown: no automatic movement for
+  3.5 seconds, mobile WebP decoded at 300 px, no original PNG request, 40 forward
+  and 40 backward clicks reached all 39 product folders with correct titles/counts,
+  successful wraparound and the same Swiper instance. No console error/overflow.
+- Resizing to 1360x900 preserved the current product, selected WebP at 720 px and
+  enabled desktop autoplay, which advanced one product. Targeted component lint
+  passed; typecheck has only the two previously documented CacheStorage.default
+  errors in worker.ts. No dependency, production, DNS or AWS resource was changed.

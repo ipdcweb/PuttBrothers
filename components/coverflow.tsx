@@ -2,11 +2,13 @@
 
 import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
-import { product3DPath } from "@/lib/product-media"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { product3DPath, productImagePath } from "@/lib/product-media"
+import type { CatalogMachine } from "@/lib/products-catalog"
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import type { Swiper as SwiperType } from "swiper"
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules"
+import { A11y, EffectCoverflow, Pagination, Autoplay } from "swiper/modules"
 
 // Import Swiper styles
 import "swiper/css"
@@ -15,51 +17,44 @@ import "swiper/css/effect-coverflow"
 import "./coverflow.css"
 
 type CoverflowProps = {
-  products: any[]
+  products: CatalogMachine[]
   isLoading?: boolean
-  imageVariant?: "desktop" | "mobile" | "responsive"
   enableAutoplay?: boolean
-  enableLoop?: boolean
-  initialSlide?: number
-  onReachBeginning?: () => void
-  onReachEnd?: () => void
+  controlsClassName?: string
 }
+
+const carouselImagePath = (folder: string, variant: "mobile-300" | "desktop-720") =>
+  `/images/products/carousel-v1/${encodeURIComponent(folder)}/${variant}.webp`
 
 const Coverflow = ({
   products,
   isLoading = false,
-  imageVariant = "desktop",
   enableAutoplay = true,
-  enableLoop = true,
-  initialSlide = 0,
-  onReachBeginning,
-  onReachEnd,
+  controlsClassName = "mt-4",
 }: CoverflowProps) => {
   const [modal3D, setModal3D] = useState<string | false>(false)
-  const [modalVideo, setModalVideo] = useState<string | false>(false)
-  const [selectedProduct, setSelectedProduct] = useState<any | null>(null)
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+  const [selectedProduct, setSelectedProduct] = useState<CatalogMachine | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isReady, setIsReady] = useState(false)
 
   const swiperRef = useRef<SwiperType | null>(null)
-  const previousRealIndexRef = useRef(initialSlide)
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    const swiper = swiperRef.current
+    if (!swiper || swiper.destroyed || !swiper.autoplay) return
+    if (enableAutoplay && !selectedProduct) {
+      if (!swiper.autoplay.running) swiper.autoplay.start()
+    } else {
+      swiper.autoplay.stop()
     }
+  }, [enableAutoplay, isReady, selectedProduct])
 
-    handleResize() // Set initial window size
-    window.addEventListener("resize", handleResize)
-
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [])
-
-  const getResponsiveImageSize = () => {
-    if (imageVariant !== "responsive") return imageVariant
-    if (windowSize.width < 768) return "mobile"
-    return "desktop" // Product media has desktop and mobile variants
+  const navigate = (direction: "previous" | "next") => {
+    const swiper = swiperRef.current
+    if (!swiper || swiper.destroyed) return
+    swiper.autoplay?.stop()
+    if (direction === "previous") swiper.slidePrev()
+    else swiper.slideNext()
   }
 
   return (
@@ -75,14 +70,14 @@ const Coverflow = ({
           <div
             className="section_coverflow_swiper"
             onMouseEnter={() => enableAutoplay && swiperRef.current?.autoplay?.stop()}
-            onMouseLeave={() => enableAutoplay && swiperRef.current?.autoplay?.start()}
+            onMouseLeave={() => enableAutoplay && !selectedProduct && swiperRef.current?.autoplay?.start()}
           >
             <Swiper
               className="swiper-container"
-              modules={[EffectCoverflow, Pagination, Autoplay]}
+              modules={[A11y, EffectCoverflow, Pagination, Autoplay]}
               centeredSlides={true}
-              loop={enableLoop && products.length > 3}
-              initialSlide={initialSlide}
+              loop={false}
+              rewind={true}
               effect="coverflow"
               speed={500}
               slideToClickedSlide={true}
@@ -95,46 +90,17 @@ const Coverflow = ({
                 depth: 280,
                 modifier: 1,
               }}
-              autoplay={
-                enableAutoplay
-                  ? {
-                      delay: 3000,
-                      disableOnInteraction: false,
-                    }
-                  : false
-              }
+              autoplay={{ enabled: enableAutoplay, delay: 3000, disableOnInteraction: false }}
               slidesPerView="auto"
-              pagination={true}
+              pagination={{ clickable: true, dynamicBullets: true, dynamicMainBullets: 3 }}
+              lazyPreloadPrevNext={1}
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
-                previousRealIndexRef.current = swiper.realIndex
+                setActiveIndex(swiper.realIndex)
+                setIsReady(true)
               }}
               onRealIndexChange={(swiper) => {
-                // Ignore initialization and loop reordering when paging groups.
-                if (products.length < 2 || swiperRef.current !== swiper) return
-
-                const previousRealIndex = previousRealIndexRef.current
-                previousRealIndexRef.current = swiper.realIndex
-                const lastIndex = products.length - 1
-                const isLooping = enableLoop && products.length > 3
-
-                if (isLooping && previousRealIndex === 0 && swiper.realIndex === lastIndex) {
-                  onReachBeginning?.()
-                  return
-                }
-
-                if (isLooping && previousRealIndex === lastIndex && swiper.realIndex === 0) {
-                  onReachEnd?.()
-                  return
-                }
-
-                if (swiper.realIndex === lastIndex && previousRealIndex < swiper.realIndex) {
-                  onReachEnd?.()
-                }
-
-                if (swiper.realIndex === 0 && previousRealIndex > swiper.realIndex) {
-                  onReachBeginning?.()
-                }
+                setActiveIndex(swiper.realIndex)
               }}
             >
               {products &&
@@ -144,17 +110,21 @@ const Coverflow = ({
                     className="swiper-slide"
                     onClick={() => setSelectedProduct(product)}
                   >
-                    <Image
-                      src={
-                        product.FolderName
-                          ? `/product-media/${encodeURIComponent(product.FolderName)}/media/${getResponsiveImageSize()}.png`
-                          : "/placeholder.svg"
-                      }
-                      alt={product.Machine}
-                      width={1110 / 1.8}
-                      height={650 / 1.8}
-                      priority={index < 2}
-                    />
+                    <picture>
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcSet={carouselImagePath(product.FolderName, "mobile-300")}
+                      />
+                      <Image
+                        src={carouselImagePath(product.FolderName, "desktop-720")}
+                        alt={product.Machine}
+                        width={720}
+                        height={422}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
+                    </picture>
                     <div className="coverflow_description">
                       <h6>{product.Machine}</h6>
                       <p>{product.Advertising}</p>
@@ -174,6 +144,31 @@ const Coverflow = ({
                   </SwiperSlide>
                 ))}
             </Swiper>
+            {products.length > 1 && (
+              <div className={`${controlsClassName} flex items-center justify-center gap-4`}>
+                <button
+                  type="button"
+                  onClick={() => navigate("previous")}
+                  disabled={!isReady}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#ffcc00] text-[#41059a] shadow-lg transition-all active:scale-95 disabled:opacity-40"
+                  aria-label="Previous product"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <span className="min-w-24 text-center text-sm font-semibold text-white" aria-live={enableAutoplay ? "off" : "polite"} aria-atomic="true">
+                  {Math.min(activeIndex + 1, products.length)} / {products.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => navigate("next")}
+                  disabled={!isReady}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#ffcc00] text-[#41059a] shadow-lg transition-all active:scale-95 disabled:opacity-40"
+                  aria-label="Next product"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </div>
+            )}
           </div>
         </>
       )}
@@ -225,7 +220,7 @@ const Coverflow = ({
                 />
               ) : (
                 <Image
-                  src={`/product-media/${encodeURIComponent(selectedProduct.FolderName)}/media/${getResponsiveImageSize()}.png`}
+                  src={productImagePath(selectedProduct.FolderName)}
                   alt={selectedProduct.Machine}
                   fill
                   className="object-contain"

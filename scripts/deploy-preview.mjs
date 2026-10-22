@@ -51,6 +51,7 @@ if (!process.argv.includes('--publish')) {
     }
   }
   const run = (...args) => execFileSync(process.execPath, args, { stdio: 'inherit' })
+  run('scripts/prepare-carousel-images.mjs', '--verify')
   run('--test', ...readdirSync('tests').filter(name => name.endsWith('.test.mjs')).map(name => `tests/${name}`))
   run('node_modules/vinext/dist/cli.js', 'build')
   assertPreviewConfig(JSON.parse(readFileSync('dist/server/wrangler.json', 'utf8')))
