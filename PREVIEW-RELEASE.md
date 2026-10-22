@@ -217,3 +217,21 @@ required for desktop/mobile composition, scrolling rhythm and final sales copy.
   enabled desktop autoplay, which advanced one product. Targeted component lint
   passed; typecheck has only the two previously documented CacheStorage.default
   errors in worker.ts. No dependency, production, DNS or AWS resource was changed.
+- Published source: `d28307b`; Cloudflare version
+  `22b5b665-be05-4faf-b0fb-8fe036fbef25`. The guarded deployment passed all
+  56 tests, the 78-derivative verification and the final Vinext build.
+- Online verification passed for all 78 WebP at `2026-10-22T21:29:59.291Z`:
+  HTTP 200, image/webp, complete SHA-256, bytes, dimensions and alpha. Evidence:
+  `tmp/check-published-carousel-images.json`. General preview checks passed at
+  `2026-10-22T21:29:50.672Z`, including blocked contact/PDF writes.
+- Published Chrome mobile check (390x844, CPU 4x) passed 40 forward and 40 backward
+  clicks across all 39 folders. Bridge advanced to Bulls Eye, Super Bowl wrapped
+  to Bowling, both buttons remained usable, count and active product agreed, and
+  the same Swiper instance persisted. No desktop carousel derivative or original
+  PNG was requested on mobile; autoplay stayed off. No console error or overflow.
+- Published desktop decoded 720px WebP. A controlled autoplay interval advanced
+  from index 4 to 5 after 3.2 seconds. The unchanged Rack'Em Up 3D URL opened in
+  the modal; autoplay stopped while open and closing removed the iframe.
+- Final review URL: https://puttbrothers-v2-preview.team-web-592.workers.dev/products?review=carousel-webp-300
+  Opened in Chrome for Rafael's visual/touch review. Local test server was stopped;
+  subsequent documentation commits do not alter the deployed source above.
