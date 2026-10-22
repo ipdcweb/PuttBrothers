@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "puttbrothers-aws-retirement-review",
+  "account_id": "5929fdac0cd2d82d7378551cf4c20774",
+  "compatibility_date": "2026-08-31",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "main": "worker.ts",
+  "routes": [],
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": { "PREVIEW_MODE": "true" },
+  "r2_buckets": [
+    { "binding": "PRODUCT_MEDIA", "bucket_name": "puttbrothers-product-media-production" },
+    { "binding": "LAYOUT_PDFS", "bucket_name": "puttbrothers-layout-pdfs-review" }
+  ],
+  "ratelimits": [{ "name": "PDF_UPLOAD_RATE_LIMITER", "namespace_id": "2026102303", "simple": { "limit": 5, "period": 60 } }],
+  "assets": {
+    "directory": "dist/client",
+    "not_found_handling": "none",
+    "binding": "ASSETS"
+  },
+  "cache": {
+    // Workers Cache ignores the hostname. This Worker also redirects aliases,
+    // so only use the URL-keyed Cache API in worker.ts and static asset caching.
+    "enabled": false
+  }
+}

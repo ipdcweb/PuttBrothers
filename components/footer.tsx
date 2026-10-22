@@ -89,7 +89,7 @@ export function Footer() {
                 <Facebook className="h-5 w-5 group-hover:text-[#ffcc00] transition-colors" />
               </a>
               <a
-                href="https://www.instagram.com/puttbrothersnz/"
+                href="https://www.instagram.com/puttbrothers_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-background/10 hover:bg-background/20 transition-colors group"

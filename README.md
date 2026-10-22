@@ -1,6 +1,12 @@
 # Putt Brothers website - V1
 
-Canonical production source: `C:\Users\Rafael\Wesbites\puttbrothers.com\WebsiteLocal`.
+V1 baseline source: `C:\Users\Rafael\Wesbites\puttbrothers.com\WebsiteLocal`.
+
+The authorized AWS retirement is prepared separately in
+`C:\Users\Rafael\Wesbites\puttbrothers.com\WebsiteLocal_AwsRetirement`, branch
+`aws-retirement-production`. It keeps the published V1 pages and moves the
+catalogue, product/3D media and layout PDFs to Cloudflare. See
+[AWS-RETIREMENT-PRODUCTION.md](AWS-RETIREMENT-PRODUCTION.md).
 
 - Website: https://puttbrothers.com
 - Repository: https://github.com/ipdcweb/PuttBrothers
@@ -41,7 +47,9 @@ Next.js commands and are not the Cloudflare production deployment path.
   to be served on the canonical host. Redirects and HTML must remain `no-store`.
 - Keep the explicit URL-keyed catalogue/media cache, request deadlines and
   immediate real-product fallback. See [incident report](PERFORMANCE-2026-10-01.md).
-- Preserve AWS catalogue, S3 product/3D media, layout planner and PDF upload.
+- The versioned catalogue, native R2 product/3D media, layout planner and PDF
+  upload run on Cloudflare. Historical saved image URLs are translated locally;
+  the site makes no request to AWS.
 - Preserve the WorkOrg JSON contract, especially `howDidYouFindUs.FindLead`.
 - IAAPA Expo / IATP Annual Conference open the person picker. It shows Douglas,
   Imre, Joao and Luiz alphabetically; the selected field uses first name while
@@ -55,11 +63,13 @@ are ignored. Never commit credentials, copy them from history, or print them.
 Only these names are documented:
 
 - `WORKORG_API_TOKEN`
-- `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`
-- `LAYOUT_PDF_BUCKET`, `LAYOUT_PDF_PUBLIC_BASE_URL`
 - Optional override: `WORKORG_CONTACT_API_URL`
 
-Without credentials, local contact/PDF delivery is unavailable. Automated contact
+The native R2 bindings are `PRODUCT_MEDIA` and `LAYOUT_PDFS`. PDF uploads also
+require `PDF_UPLOAD_RATE_LIMITER`; no storage access keys are used. The temporary
+review Worker disables contact/PDF writes through `PREVIEW_MODE=true`.
+
+Without credentials, local contact delivery is unavailable. Automated contact
 tests stub all outbound calls and use fictitious credentials; they do not send
 email, create leads or upload PDFs. Do not submit real test leads without approval.
 

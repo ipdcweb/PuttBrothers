@@ -1,12 +1,8 @@
 /**
  * Course Holes Data Source
  * This file contains the machine catalog data (Course Holes) and images.
- * It's designed to be easily replaceable with AWS/database integration.
- * 
- * To integrate with your AWS server:
- * 1. Create an API endpoint in your backend that returns this same data structure
- * 2. Create a hook in hooks/useCourseHoles.ts that fetches from your API
- * 3. Import the hook instead of directly using this file
+ * Retained for planner startup and as a fallback when the site's catalogue
+ * endpoint is unavailable. The complete catalogue uses /api/planner/machines.
  */
 
 import type { MachineCatalogItem } from "./planner-types"

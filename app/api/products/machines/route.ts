@@ -9,7 +9,7 @@ export async function GET() {
     response.headers.set("Cache-Control", isFallback
       ? "no-store"
       : "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400")
-    response.headers.set("X-Catalog-Source", isFallback ? "fallback" : "live")
+    response.headers.set("X-Catalog-Source", isFallback ? "fallback" : "cloudflare")
     return response
   } catch {
     const response = NextResponse.json(FALLBACK_MACHINES)

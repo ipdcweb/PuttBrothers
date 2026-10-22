@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import { product3DPath } from "@/lib/product-media"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -38,33 +39,6 @@ export function MachinesGallery() {
   const [selectedMachine, setSelectedMachine] = useState<Machine | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [modal3D, setModal3D] = useState<string | false>(false)
-  const iframeRef = useRef<HTMLIFrameElement | null>(null)
-
-  useEffect(() => {
-    const iframe = iframeRef.current
-    if (iframe) {
-      const handleLoad = () => {
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
-          if (iframeDoc) {
-            const footer = iframeDoc.getElementById("unity-footer")
-            if (footer) {
-              footer.style.display = "none"
-            }
-          }
-        } catch (error) {
-          console.error("Failed to access iframe content:", error)
-        }
-      }
-
-      iframe.addEventListener("load", handleLoad)
-
-      return () => {
-        iframe.removeEventListener("load", handleLoad)
-      }
-    }
-  }, [modal3D])
-
 
   useEffect(() => {
     setIsMounted(true)
@@ -494,7 +468,7 @@ export function MachinesGallery() {
             >
               {modal3D ? (
                 <iframe
-                  ref={iframeRef}
+                  title={`${selectedMachine.name} interactive 3D viewer`}
                   src={modal3D}
                   frameBorder="0"
                   allowFullScreen
@@ -523,7 +497,8 @@ export function MachinesGallery() {
             {selectedMachine.has3D && (
               <button
                 onClick={() => {
-                  const filePath = `https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com/${selectedMachine.folderName}/build/index.html`
+                  if (!selectedMachine.folderName) return
+                  const filePath = product3DPath(selectedMachine.folderName)
                   setModal3D(filePath)
                 }}
                 className="modal-3d-button"
