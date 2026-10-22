@@ -163,7 +163,11 @@ required for desktop/mobile composition, scrolling rhythm and final sales copy.
   requested removing the rectangular carousel arrows and keeping the circular
   previous/next group buttons beside the product count, on this same preview.
 - Removed the internal Swiper Navigation controls, their module import and
-  exclusive CSS. Product group pagination, swipe, autoplay, dots and 3D handling
-  are unchanged. No new dependency or test was added for this small UI removal.
+  exclusive CSS. Swipe, autoplay, dots and 3D handling remain available.
+- Repeated browser clicks also revealed an existing group-pagination issue:
+  Swiper's initialization/loop reordering emitted physical-index changes that
+  could undo a group change. Group boundary handling now observes logical product
+  index changes only after initialization, keeping the circular controls stable.
+  No dependency or new unit test was added; the actual browser flow is verified.
 - This correction remains preview-only. AWS inventory/shutdown and production
   cutover remain separate following the agreed review sequence.

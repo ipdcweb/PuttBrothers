@@ -41,7 +41,7 @@ const Coverflow = ({
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
 
   const swiperRef = useRef<SwiperType | null>(null)
-  const ignoredInitialSlideChangeRef = useRef(false)
+  const previousRealIndexRef = useRef(initialSlide)
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,10 +61,6 @@ const Coverflow = ({
     if (windowSize.width < 768) return "mobile"
     return "desktop" // Product media has desktop and mobile variants
   }
-
-  useEffect(() => {
-    ignoredInitialSlideChangeRef.current = false
-  }, [initialSlide, products])
 
   return (
     <>
@@ -111,24 +107,32 @@ const Coverflow = ({
               pagination={true}
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
+                previousRealIndexRef.current = swiper.realIndex
               }}
-              onSlideChange={(swiper) => {
-                if (products.length < 2) return
+              onRealIndexChange={(swiper) => {
+                // Ignore initialization and loop reordering when paging groups.
+                if (products.length < 2 || swiperRef.current !== swiper) return
 
-                if (
-                  initialSlide > 0 &&
-                  !ignoredInitialSlideChangeRef.current &&
-                  swiper.activeIndex === initialSlide
-                ) {
-                  ignoredInitialSlideChangeRef.current = true
+                const previousRealIndex = previousRealIndexRef.current
+                previousRealIndexRef.current = swiper.realIndex
+                const lastIndex = products.length - 1
+                const isLooping = enableLoop && products.length > 3
+
+                if (isLooping && previousRealIndex === 0 && swiper.realIndex === lastIndex) {
+                  onReachBeginning?.()
                   return
                 }
 
-                if (swiper.activeIndex === products.length - 1 && swiper.previousIndex < swiper.activeIndex) {
+                if (isLooping && previousRealIndex === lastIndex && swiper.realIndex === 0) {
+                  onReachEnd?.()
+                  return
+                }
+
+                if (swiper.realIndex === lastIndex && previousRealIndex < swiper.realIndex) {
                   onReachEnd?.()
                 }
 
-                if (swiper.activeIndex === 0 && swiper.previousIndex > swiper.activeIndex) {
+                if (swiper.realIndex === 0 && previousRealIndex > swiper.realIndex) {
                   onReachBeginning?.()
                 }
               }}
