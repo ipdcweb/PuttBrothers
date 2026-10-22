@@ -23,6 +23,9 @@ header/footer and 39-item product carousel are copied from the exact approved
 preview commit. The 78 transparent WebP derivatives remain 300px mobile and
 720px desktop. Original detail/planner PNGs and ten Unity builds remain in R2.
 Contact/WorkOrg, full-name `FindLead`, picker and planner behavior are preserved.
+The carousel autoplay prop object is assigned to a named variable, with exactly
+the same values, to satisfy Swiper's TypeScript declaration without a runtime
+change. The coordinating task mirrors this correction in the preview source.
 
 Production differs in deployment configuration and SEO only: native R2 bindings
 point to `puttbrothers-product-media-production` and
