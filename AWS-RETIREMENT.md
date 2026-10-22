@@ -68,8 +68,28 @@ Inventários com dados de clientes ficam fora do Git público.
   PDF sintético de 3.215 bytes, upload 200, download 200 com bytes idênticos,
   HEAD 200, Range 206 e origem externa bloqueada. Nenhuma chamada externa.
 - SDK AWS removido, junto com 47 pacotes desnecessários; demais versões mantidas.
-- Acesso AWS ainda depende de login do usuário. Não há perfil/CLI AWS configurado
-  nesta máquina, e Secrets de produção não são exportáveis pela API Cloudflare.
+- Rafael forneceu a sessão AWS autenticada. A leitura do IAM confirmou a conta
+  `590183868691`, ipdc Limited. Nenhuma configuração de MFA, chave ou permissão
+  foi alterada. A listagem de objetos ainda não foi concluída: a conexão de
+  automação do navegador caiu ao navegar para S3. A aba existente mostra o bucket
+  `puttbrothers-images` em Sydney; retomar por essa sessão, sem pedir senhas.
+  Não há perfil/CLI AWS local, e Secrets do Worker não foram exportados.
 - Nenhum recurso AWS foi excluído nesta preparação.
 
-Publicações e verificações finais serão registradas após sua conclusão.
+## Estado publicado para revisão
+
+A V2 foi publicada em https://puttbrothers-v2-preview.team-web-592.workers.dev/,
+fonte `2f78bc9`, versão `9311c4a5-95b3-4a9e-9795-94501f6f6ebb`.
+Check geral público passou em `2026-10-22T20:17:49.118Z` e check de todas as mídias
+em `2026-10-22T20:17:51.907Z`. Contato e upload PDF permanecem bloqueados no
+preview; o novo armazenamento PDF foi verificado isoladamente com arquivo sintético.
+
+A produção V1 está preparada na branch `aws-retirement-production`, mas não foi
+atualizada. A cópia temporária isolada dessa branch foi publicada sem rotas:
+`puttbrothers-aws-retirement-review`, versão `4ebcb2f5-58cb-4a9b-9053-4a1980bd4e31`.
+O link que Rafael pediu para revisar continua sendo o V2 acima.
+
+A última instrução de Rafael estabelece a ordem: publicar as alterações na V2,
+permitir sua revisão e então parar com a AWS. Portanto, aguardar sua revisão antes
+de promover a produção, apagar recursos AWS ou remover credenciais antigas.
+Nenhum recurso AWS nem Secret de produção foi removido.

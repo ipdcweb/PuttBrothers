@@ -128,3 +128,31 @@ required for desktop/mobile composition, scrolling rhythm and final sales copy.
 - Source and implementation plan: `CLOUDFLARE-PRODUCT-MIGRATION.md`.
 - Documentation/checker-only commits after the deployed source do not change the
   running Worker. No production deployment occurred.
+
+
+## Update, 23 October 2026: remaining AWS PDF dependency removed
+
+- Rafael requested complete AWS retirement, then directed publication to the
+  existing V2 preview so he can review before stopping AWS.
+- Deployed source `2f78bc9`; Cloudflare version
+  `9311c4a5-95b3-4a9e-9795-94501f6f6ebb`.
+- Same URL: https://puttbrothers-v2-preview.team-web-592.workers.dev/
+- Native private R2 PDF upload/download replaces the last AWS SDK route.
+  The SDK and 47 unused packages were removed; other versions are unchanged.
+- 56 tests and guarded final Vinext build passed. Native local R2 and rate-limit
+  test confirmed an identical synthetic PDF through upload/download/HEAD/Range.
+  Chrome's PDF viewer initialized one page and normal controls under the headers.
+- Public general check passed at `2026-10-22T20:17:49.118Z`; 198-media check passed
+  at `2026-10-22T20:17:51.907Z`. Chrome confirmed catalogue source Cloudflare,
+  39 machines, 10 3D entries and no AWS request in the checked preview session.
+- Preview contact/PDF writes remain blocked. No real lead or customer PDF sent.
+- V1 backend-only cutover is prepared on branch `aws-retirement-production` in
+  `WebsiteLocal_AwsRetirement`; it is NOT promoted to production. An isolated
+  validation Worker was published without routes, version
+  `4ebcb2f5-58cb-4a9b-9053-4a1980bd4e31`. This is not the requested V2 review link.
+- Latest sequencing from Rafael: review the V2 preview first, then decide the
+  AWS stop/cutover. Production, DNS, AWS resources and credentials remain intact.
+- AWS console session provided by Rafael was read and identified account
+  `590183868691` (ipdc Limited). MFA/settings were not changed. Object inventory
+  and historical PDF/link migration still precede resource deletion.
+- See `AWS-RETIREMENT.md` for the account retirement and historical-link boundary.
