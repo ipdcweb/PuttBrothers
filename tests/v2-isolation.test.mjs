@@ -4,6 +4,7 @@ import test from "node:test"
 import { runInNewContext } from "node:vm"
 import ts from "typescript"
 import { assertPreviewConfig } from "../scripts/preview-safety.mjs"
+import { assertProductionConfig } from "../scripts/production-safety.mjs"
 
 const readProjectFile = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")
 
@@ -50,8 +51,8 @@ function staticClassNames(openingElement) {
   assert.fail("Keep the approved form's ancestor classes statically auditable for V2 isolation")
 }
 
-test("V2 allows only its authorized workers.dev preview, never a production route", async () => {
-  const parsed = ts.parseConfigFileTextToJson("wrangler.jsonc", await readProjectFile("wrangler.jsonc"))
+test("V2 production and its separate preview keep their authorized routes, storage and indexing", async () => {
+  const parsed = ts.parseConfigFileTextToJson("wrangler.preview.jsonc", await readProjectFile("wrangler.preview.jsonc"))
   assert.equal(parsed.error, undefined)
   const config = parsed.config
   assert.equal(config.name, "puttbrothers-v2-preview")
@@ -72,6 +73,16 @@ test("V2 allows only its authorized workers.dev preview, never a production rout
     assert.notEqual(environment.workers_dev, true, `${name} must not enable a public endpoint`)
     assert.notEqual(environment.preview_urls, true, `${name} must not enable public previews`)
   }
+  const production = ts.parseConfigFileTextToJson("wrangler.jsonc", await readProjectFile("wrangler.jsonc"))
+  assert.equal(production.error, undefined)
+  assertProductionConfig(production.config)
+  assert.throws(() => assertProductionConfig({ ...production.config, routes: [] }))
+  assert.throws(() => assertProductionConfig({ ...production.config, vars: { PREVIEW_MODE: "true" } }))
+  assert.throws(() => assertProductionConfig({ ...production.config, r2_buckets: config.r2_buckets }))
+  assert.match(await readProjectFile("app/layout.tsx"), /robots:\s*\{\s*index:\s*true,\s*follow:\s*true\s*\}/)
+  assert.match(await readProjectFile("public/robots.txt"), /Allow:\s*\//)
+  assert.doesNotMatch(await readProjectFile("public/robots.txt"), /Disallow:\s*\//)
+  assert.doesNotMatch(await readProjectFile("public/_headers"), /X-Robots-Tag:\s*noindex/i)
 })
 
 test("the V2 deployment command points to a guard that exits unsuccessfully without deployment tools", async () => {

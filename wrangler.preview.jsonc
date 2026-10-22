@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Authorized V2 client preview. Never attach V1 production routes here.
+  "name": "puttbrothers-v2-preview",
+  "account_id": "5929fdac0cd2d82d7378551cf4c20774",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": { "PREVIEW_MODE": "true" },
+  "compatibility_date": "2026-08-31",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "main": "worker.ts",
+  "routes": [],
+  "r2_buckets": [
+    { "binding": "PRODUCT_MEDIA", "bucket_name": "puttbrothers-product-media-review" },
+    { "binding": "LAYOUT_PDFS", "bucket_name": "puttbrothers-layout-pdfs-review" }
+  ],
+  "ratelimits": [{ "name": "PDF_UPLOAD_RATE_LIMITER", "namespace_id": "2026102301", "simple": { "limit": 5, "period": 60 } }],
+  "assets": {
+    "directory": "dist/client",
+    "not_found_handling": "none",
+    "binding": "ASSETS",
+    "run_worker_first": ["/videos/*"]
+  },
+  "cache": {
+    // Workers Cache ignores the hostname. This Worker also redirects aliases,
+    // so only use the URL-keyed Cache API in worker.ts and static asset caching.
+    "enabled": false
+  }
+}

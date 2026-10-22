@@ -25,7 +25,8 @@ export const metadata: Metadata = {
   },
   description:
     "From custom mini golf to complete entertainment venues. Putt Brothers brings design, engineering, manufacturing and immersive play together.",
-  robots: { index: false, follow: false },
+  metadataBase: new URL("https://puttbrothers.com"),
+  robots: { index: true, follow: true },
   icons: {
     icon: "/favicon-puttbrothers.png",
   },

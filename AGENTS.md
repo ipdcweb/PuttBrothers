@@ -1,4 +1,23 @@
-# V2 workspace boundary
+# Authorized V2 production promotion, 23 October 2026
+
+- This separate worktree is `WebsiteLocal_V2Production`, branch
+  `website-v2-production`, created from approved preview source `8e759f3`.
+- Rafael explicitly authorized publishing the current V2 as the official site
+  while keeping the existing `WebsiteLocal_02` / `website-v2` preview separate
+  for future improvements. The previous preview-only restrictions below describe
+  that original worktree; this scoped production authorization supersedes them here.
+- Commit/push of this branch and guarded deployment to `puttbrothers-com` are
+  authorized. Use `pnpm run deploy:production`, which verifies 78 carousel WebP,
+  tests, fresh Vinext build, production R2 receipts and the eight existing routes.
+- Keep `PRODUCT_MEDIA` / `LAYOUT_PDFS` production R2 bindings, limiter namespace
+  `2026102302`, `PREVIEW_MODE=false`, public indexing and `--keep-vars`.
+- Preserve all approved V2 UI, WorkOrg/FindLead, original files and preview isolation.
+  Do not edit the original V1 or V2 worktrees, DNS, AWS services or secrets here.
+- Rollback is the AWS-independent V1 backend version
+  `62af4949-e440-4891-ad43-819665e83830`; no RDS restart is needed for it.
+- Publication evidence and maintenance flow: `PRODUCTION-V2-RELEASE.md`.
+
+## Historical V2 preview workspace boundary
 
 - Work only in `WebsiteLocal_02` on `website-v2` for the redesign.
 - `../WebsiteLocal` is the stable V1 on `main`. Do not edit it as part of V2.
@@ -23,7 +42,7 @@
   V1 appearance while migrating its backend. AWS deletion requires an authenticated
   inventory and preservation of historical PDFs/links; never affect unrelated IPDC
   resources. The prior preview-only scope remains for redesign promotion.
-- Preserve the form's WorkOrg JSON contract (including `FindLead`), AWS integrations,
+- Preserve the form's WorkOrg JSON contract (including `FindLead`), Cloudflare integrations,
   planner and performance fixes. Do not send real leads or upload PDFs during tests.
 - Read `README.md` and `V2-PLAN.md` before starting the next stage.
 - Carousel arrows must move one product at a time through all 39 records, with

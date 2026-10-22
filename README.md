@@ -1,4 +1,18 @@
-# Putt Brothers website - V2 review workspace
+# Putt Brothers website - V2 production
+
+This separate production worktree, `WebsiteLocal_V2Production` on
+`website-v2-production`, promotes the approved preview source `8e759f3` following
+Rafael's explicit instruction on 23 October 2026. Use the guarded
+`pnpm run deploy:production` command. Production uses the existing eight domain
+routes and native production R2 bindings, with public indexing enabled. Read
+[PRODUCTION-V2-RELEASE.md](PRODUCTION-V2-RELEASE.md) for scope and recovery.
+
+The original `WebsiteLocal_02` / `website-v2` and the existing preview Worker stay
+separate and unchanged for future improvements. Its preview-only configuration
+is retained here as `wrangler.preview.jsonc` for isolation verification. The
+remaining sections below describe the inherited preview implementation history.
+
+## V2 preview implementation history
 
 Local redesign implemented on 1 October 2026 from the stable V1. The new Home,
 Products, About, Contact surrounds, header and footer follow the supplied brand

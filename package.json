@@ -13,7 +13,8 @@
     "build:vinext": "vinext build",
     "start:vinext": "wrangler dev --config dist/server/wrangler.json --port 8792 --local --persist-to .wrangler/state",
     "deploy:vinext": "node scripts/deploy-disabled.mjs",
-    "deploy:preview": "node scripts/deploy-preview.mjs --publish"
+    "deploy:preview": "node scripts/deploy-preview.mjs --publish",
+    "deploy:production": "node scripts/deploy-production.mjs --publish"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
