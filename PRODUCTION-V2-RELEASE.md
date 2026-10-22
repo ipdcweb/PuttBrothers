@@ -50,9 +50,41 @@ does not publish a website. Preview scripts retain their branch/account guard.
 
 ## Verification and publication
 
-Final tests/build, active production version and public checks will be recorded
-after the guarded release. No live lead or valid PDF is sent by the release
-checks. AWS services/secrets and DNS are not changed by this worktree.
+- Published code: `f99da081dedcd232b682760553c20f0a8983c62f`, on the clean pushed
+  `website-v2-production` branch. The guard verified 78 WebP derivatives and all
+  198 production-media receipts, then passed 56 tests and a fresh Vinext build.
+- Official Worker active at 100%:
+  `33587fb3-21dd-4055-80fc-f4ca72406f87`, created 23 October 2026 at 08:11:13
+  Brisbane (22 October at 22:11:13 UTC). Startup time: 14 ms.
+- Cloudflare metadata confirms both production R2 bindings, rate limiter namespace
+  `2026102302`, `PREVIEW_MODE=false` and all six previous secret names, including
+  `WORKORG_API_TOKEN`. No credential value was copied or printed.
+- Public verification passed for five HTML pages with HTTP 200/no-store,
+  `index, follow` metadata and no global noindex header. `robots.txt` allows
+  crawling. Home contains the approved scrolling hero and client-story section.
+- Catalogue returns all 39 products and planner all 30 machines from Cloudflare.
+  All 78 public carousel WebP match source bytes/SHA-256; all 198 R2 media HEAD
+  routes have the expected MIME/bytes/ETag, all ten Unity entrypoint hashes match,
+  and all twenty WASM/data range checks return HTTP 206. The official CDN's
+  optional compression is bypassed for byte/ETag checks with identity encoding.
+- Both hero videos and all six client-story videos pass HTTP 206 seeking checks;
+  six posters, four team portraits and the catalogue PDF return HTTP 200. All
+  seven aliases preserve path/query in HTTP 301 redirects to the canonical host.
+- Official PDF GET returns HTTP 405, and empty JSON POST returns HTTP 400 without
+  a file/write. Empty JSON at contact returns the existing unsuccessful HTTP 500
+  before constructing the external request. No valid PDF or lead was submitted.
+- The existing preview independently passes its full check: noindex headers and
+  metadata remain, robots disallows crawling, both form/PDF POST requests with
+  empty JSON are blocked with HTTP 403, and media/video reads remain functional.
+- Type checking now has only the two pre-existing `CacheStorage.default` errors
+  in `worker.ts`; naming the autoplay options object resolves the inherited
+  Swiper excess-property error without changing behavior.
+- Local evidence (ignored): `tmp/production-release.log`,
+  `tmp/check-v2-production.json`, `tmp/check-invalid-apis.json` and
+  `tmp/check-preview-unchanged.json`. Browser interaction checks are coordinated
+  separately. Technical checks do not replace Rafael's visual approval.
+- AWS services, existing secrets and DNS were not changed by this worktree.
+  The original V1 and V2 preview working directories remain preserved.
 
 Rollback with the recorded version restores the previous V1 interface with the
 Cloudflare backend, while RDS remains stopped. It does not restore deleted AWS
