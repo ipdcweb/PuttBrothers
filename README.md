@@ -45,6 +45,9 @@ Use Vinext, not the generic Next.js scripts, to include the custom media Worker.
 - `pnpm run deploy:vinext` remains blocked. The authorized command is
   `pnpm run deploy:preview`; it checks the branch, pushed commit and isolated
   configuration, then tests, rebuilds, rechecks the generated config and deploys.
+- Product media uses the dedicated private `puttbrothers-product-media-review` R2
+  bucket through the `PRODUCT_MEDIA` binding. The public Worker exposes only
+  manifest-listed read requests; no media write endpoint exists.
 - This folder has its own installed dependencies and generated build. V1 build
   output, `.wrangler` state and local secret files were not copied.
 - Integration source is preserved, but production credentials were not copied.
@@ -68,9 +71,13 @@ completed client projects. Existing approved logos and real team portraits are
 preserved. Prompts/provenance are in [assets/HERO-MEDIA.md](assets/HERO-MEDIA.md)
 and [assets/V2-MEDIA.md](assets/V2-MEDIA.md).
 
-The carousel now lives on Products, using the same AWS catalog, fallback, 3D views
-and controls. The form, `FindLead` contract, planner and API implementations have
-not been replaced. No live form submission was made during local verification.
+The carousel lives on Products. The 23 October migration bundles the complete
+catalogue and serves original images/Unity builds through private Cloudflare R2,
+with the same pagination and 3D controls. See
+[CLOUDFLARE-PRODUCT-MIGRATION.md](CLOUDFLARE-PRODUCT-MIGRATION.md).
+The form and `FindLead` contract remain unchanged. The planner retains its IDs,
+dimensions and layout behavior, with migrated catalogue/image sources.
+No live form submission was made during local verification.
 
 Rafael selected a temporary hosting link instead of `dev.puttbrothers.com`.
 The preview is public to anyone with the link, but sends `noindex` metadata and

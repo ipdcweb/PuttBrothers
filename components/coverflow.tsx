@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
+import { product3DPath } from "@/lib/product-media"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -42,7 +43,6 @@ const Coverflow = ({
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
 
   const swiperRef = useRef<SwiperType | null>(null)
-  const iframeRef = useRef<HTMLIFrameElement | null>(null)
   const ignoredInitialSlideChangeRef = useRef(false)
 
   useEffect(() => {
@@ -58,43 +58,15 @@ const Coverflow = ({
     }
   }, [])
 
-  const S3_BASE = "https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com"
-
   const getResponsiveImageSize = () => {
     if (imageVariant !== "responsive") return imageVariant
     if (windowSize.width < 768) return "mobile"
-    return "desktop" // S3 only has desktop and mobile
+    return "desktop" // Product media has desktop and mobile variants
   }
 
   useEffect(() => {
     ignoredInitialSlideChangeRef.current = false
   }, [initialSlide, products])
-
-  useEffect(() => {
-    const iframe = iframeRef.current
-    if (iframe) {
-      const handleLoad = () => {
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
-          if (iframeDoc) {
-            const footer = iframeDoc.getElementById("unity-footer")
-            if (footer) {
-              footer.style.display = "none"
-            }
-          }
-        } catch (error) {
-          console.error("Failed to access iframe content:", error)
-        }
-      }
-
-      iframe.addEventListener("load", handleLoad)
-
-      return () => {
-        iframe.removeEventListener("load", handleLoad)
-      }
-    }
-  }, [modal3D])
-
 
   return (
     <>
@@ -193,7 +165,7 @@ const Coverflow = ({
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
-                          setModal3D(`${S3_BASE}/${product.FolderName}/build/index.html`)
+                          setModal3D(product3DPath(product.FolderName))
                           setSelectedProduct(product)
                         }}
                         className="modal-3d-button"
@@ -262,7 +234,7 @@ const Coverflow = ({
             >
               {modal3D ? (
                 <iframe
-                  ref={iframeRef}
+                  title={`${selectedProduct.Machine} interactive 3D viewer`}
                   src={modal3D}
                   frameBorder="0"
                   allowFullScreen
@@ -288,7 +260,7 @@ const Coverflow = ({
             {selectedProduct.has3D && (
               <button
                 onClick={() =>
-                  setModal3D(`${S3_BASE}/${selectedProduct.FolderName}/build/index.html`)
+                  setModal3D(product3DPath(selectedProduct.FolderName))
                 }
                 className="modal-3d-button"
               >

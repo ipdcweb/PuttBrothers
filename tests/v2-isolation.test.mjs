@@ -61,6 +61,8 @@ test("V2 allows only its authorized workers.dev preview, never a production rout
   assert.equal(config.preview_urls, false)
   assertPreviewConfig(config)
   assert.throws(() => assertPreviewConfig({ ...config, name: 'puttbrothers-com' }))
+  assert.throws(() => assertPreviewConfig({ ...config, r2_buckets: [{ binding: 'PRODUCT_MEDIA', bucket_name: 'production' }] }))
+  assert.throws(() => assertPreviewConfig({ ...config, r2_buckets: [] }))
   assert.throws(() => assertPreviewConfig({ ...config, routes: [{ pattern: 'puttbrothers.com/*' }] }))
   assert.throws(() => assertPreviewConfig({ ...config, vars: { PREVIEW_MODE: 'false' } }))
   for (const [name, environment] of Object.entries(config.env ?? {})) {

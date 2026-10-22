@@ -1,4 +1,5 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -38,6 +39,17 @@ for (const [url, length] of Object.entries(videoFiles)) {
 if (!process.argv.includes('--publish')) {
   console.log('Preview preflight passed. Pass --publish to test, build and deploy only puttbrothers-v2-preview.')
 } else {
+  // All media must exist in the isolated R2 release before serving its catalogue.
+  // Receipts are written only after full remote download and SHA-256 verification.
+  const media = JSON.parse(readFileSync('assets/product-media-manifest.json', 'utf8'))
+  for (const file of media.files) {
+    const id = createHash('sha256').update(file.key).digest('hex')
+    const receipt = JSON.parse(readFileSync(`tmp/sync-product-media/catalog-20261023-v1/remote/${id}.json`, 'utf8'))
+    if (receipt.account !== source.config.account_id || receipt.bucket !== 'puttbrothers-product-media-review' ||
+      receipt.objectKey !== `catalog-20261023-v1/${file.key}` || receipt.sha256 !== file.sha256 || receipt.bytes !== file.bytes) {
+      throw new Error(`R2 media not verified; run sync-product-media.mjs --remote: ${file.key}`)
+    }
+  }
   const run = (...args) => execFileSync(process.execPath, args, { stdio: 'inherit' })
   run('--test', ...readdirSync('tests').filter(name => name.endsWith('.test.mjs')).map(name => `tests/${name}`))
   run('node_modules/vinext/dist/cli.js', 'build')

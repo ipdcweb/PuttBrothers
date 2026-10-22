@@ -12,6 +12,11 @@
   `puttbrothers-v2-preview` Worker and the guarded `deploy:preview` command.
 - No production deployment, DNS changes or credentials copying. Keep preview
   form/PDF writes disabled. Future production promotion needs separate approval.
+- On 23 October 2026 Rafael requested migrating carousel/catalogue/images/Unity
+  from AWS to Cloudflare. V2 now uses a bundled catalogue and the private
+  `puttbrothers-product-media-review` R2 bucket, read-only through the Worker.
+  Contact/PDF integrations remain outside this migration; do not remove AWS
+  resources or promote V1 production as part of preview review.
 - Preserve the form's WorkOrg JSON contract (including `FindLead`), AWS integrations,
   planner and performance fixes. Do not send real leads or upload PDFs during tests.
 - Read `README.md` and `V2-PLAN.md` before starting the next stage.

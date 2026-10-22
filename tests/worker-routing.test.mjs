@@ -5,8 +5,23 @@ import ts from "typescript"
 
 const source = await readFile(new URL("../worker.ts", import.meta.url), "utf8")
 const videoFiles = JSON.parse(await readFile(new URL("../lib/scroll-video-files.json", import.meta.url), "utf8"))
+const mediaManifest = JSON.parse(await readFile(new URL("../assets/product-media-manifest.json", import.meta.url), "utf8"))
+const mediaSource = (await readFile(new URL("../lib/product-media-response.ts", import.meta.url), "utf8")).replace('import manifest from "../assets/product-media-manifest.json"', "")
+const mediaExports = {}
+new Function("manifest", "exports", ts.transpileModule(mediaSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+}).outputText)(mediaManifest, mediaExports)
+const machines = JSON.parse(await readFile(new URL("../lib/catalog/machines.json", import.meta.url), "utf8"))
+const threeDFolders = JSON.parse(await readFile(new URL("../lib/catalog/three-d-folders.json", import.meta.url), "utf8"))
+const helperSource = (await readFile(new URL("../lib/product-media.ts", import.meta.url), "utf8")).replace('import machines from "./catalog/machines.json"', "").replace('import threeDFolders from "./catalog/three-d-folders.json"', "")
+const helperExports = {}
+new Function("machines", "threeDFolders", "exports", ts.transpileModule(helperSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+}).outputText)(machines, threeDFolders, helperExports)
 const compiled = ts.transpileModule(source.replace('import app from "vinext/server/fetch-handler"', "")
-  .replace('import videoFiles from "./lib/scroll-video-files.json"', ""), {
+  .replace('import videoFiles from "./lib/scroll-video-files.json"', "")
+  .replace('import { productMediaResponse, type ProductMediaBucket } from "./lib/product-media-response"', "")
+  .replace('import { resolveProductImagePath } from "./lib/product-media"', ""), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText
 
@@ -19,9 +34,9 @@ function fixture(appResponse = () => new Response("website"), upstream = async (
     match: async (request) => entries.get(request.url)?.clone(),
     put: async (request, response) => { entries.set(request.url, response.clone()) },
   }
-  new Function("app", "caches", "fetch", "exports", "videoFiles", compiled)(
+  new Function("app", "caches", "fetch", "exports", "videoFiles", "productMediaResponse", "resolveProductImagePath", compiled)(
     { fetch: async () => { appCalls++; return appResponse() } },
-    { default: cache }, upstream, exports, videoFiles,
+    { default: cache }, upstream, exports, videoFiles, mediaExports.productMediaResponse, helperExports.resolveProductImagePath,
   )
   return {
     request: (url, method = "GET", headers = {}) => exports.default.fetch(new Request(url, { method, headers }), env, {
@@ -166,20 +181,17 @@ test("fallback catalog responses are not cached", async () => {
   assert.equal(f.entries.size, 0)
 })
 
-test("invalid media folders do not reach Amazon or throw a server error", async () => {
+test("invalid media folders never reach any upstream or throw a server error", async () => {
   const f = fixture(undefined, async () => { throw new Error("should not fetch") })
   for (const folder of ["%ZZ", "%2Fetc", "bad.folder"]) {
     assert.equal((await f.request(`https://puttbrothers.com/product-media/${folder}/media/mobile.png`)).status, 404)
   }
 })
 
-test("Amazon failures return promptly and are not cached", async () => {
-  const f = fixture(undefined, async (_url, options) => {
-    assert.ok(options.signal instanceof AbortSignal)
-    throw new DOMException("Timed out", "TimeoutError")
-  })
+test("missing R2 binding fails closed without returning to AWS", async () => {
+  const f = fixture(undefined, async () => { throw new Error("must not fetch AWS") })
   const response = await f.request("https://puttbrothers.com/product-media/JN1-BOWLING/media/mobile.png")
-  assert.equal(response.status, 504)
+  assert.equal(response.status, 503)
   assert.equal(response.headers.get("Cache-Control"), "no-store")
   assert.equal(f.entries.size, 0)
 })
@@ -192,4 +204,21 @@ test("HTML is fresh and only the recovery link clears the site's HTTP cache", as
   const recovery = await f.request("https://puttbrothers.com/?refresh=20261001")
   assert.equal(recovery.status, 200)
   assert.equal(recovery.headers.get("Clear-Site-Data"), '"cache"')
+})
+
+test("planner image export reads R2 directly and rewrites historical S3 URLs without a subrequest", async () => {
+  const f = fixture(undefined, async () => { throw Error("No network allowed") }, {
+    PRODUCT_MEDIA: { get: async key => {
+      assert.equal(key, "catalog-20261023-v1/JN1-BOWLING/media/mobile.png")
+      return { body: new Response("png-bytes").body }
+    } },
+  })
+  for (const image of ["/product-media/JN1-BOWLING/media/mobile.png", "https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com/JN1-BOWLING/media/mobile.png"]) {
+    const r = await f.request(`https://preview.workers.dev/api/planner/image?url=${encodeURIComponent(image)}`)
+    assert.equal(r.status, 200)
+    assert.equal(r.headers.get("Content-Type"), "image/png")
+    assert.equal(await r.text(), "png-bytes")
+  }
+  assert.equal((await f.request("https://preview.workers.dev/api/planner/image?url=https://evil.example/test.png")).status, 400)
+  assert.equal(f.appCalls, 0)
 })

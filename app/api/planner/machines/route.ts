@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server"
 import type { MachineCatalogItem } from "@/lib/planner/planner-types"
 import { COURSE_HOLES_DATA } from "@/lib/planner/course-holes-data"
-
-const MACHINES_URL =
-  "https://va0d7iedl5.execute-api.ap-southeast-2.amazonaws.com/listMachines?all=true"
-const S3_BASE = "https://puttbrothers-images.s3.ap-southeast-2.amazonaws.com"
+import { getMachinesAll } from "@/app/actions/products_db"
+import { productImagePath, resolveProductImagePath } from "@/lib/product-media"
 
 function toOptionalNumber(value: unknown) {
   const parsed = Number(value)
@@ -47,30 +45,26 @@ function toCatalogItem(raw: any): MachineCatalogItem | null {
     clearance: toNumber(raw.Clearance ?? raw.clearance, 0.5),
     description: raw.Advertising || raw.description || raw.SubTitle || "",
     color: raw.Color || raw.color || "#41059a",
-    image: raw.Image || raw.image || `${S3_BASE}/${folderName}/media/desktop.png`,
+    image: resolveProductImagePath(raw.Image || raw.image) || productImagePath(folderName),
   }
 }
 
 export async function GET() {
   try {
-    const response = await fetch(MACHINES_URL, {
-      cache: "no-store",
-      headers: {
-        Accept: "application/json",
-      },
-    })
-
-    if (!response.ok) {
-      return NextResponse.json(COURSE_HOLES_DATA)
-    }
-
-    const data = await response.json()
+    const data = await getMachinesAll()
     const machines = Array.isArray(data)
       ? data.map(toCatalogItem).filter((item): item is MachineCatalogItem => Boolean(item))
       : []
 
-    return NextResponse.json(machines.length > 0 ? machines : COURSE_HOLES_DATA)
+    return NextResponse.json(machines.length > 0 ? machines : COURSE_HOLES_DATA, {
+      headers: {
+        "Cache-Control": machines.length > 0 ? "public, max-age=300" : "no-store",
+        "X-Catalog-Source": machines.length > 0 ? "cloudflare" : "fallback",
+      },
+    })
   } catch {
-    return NextResponse.json(COURSE_HOLES_DATA)
+    return NextResponse.json(COURSE_HOLES_DATA, {
+      headers: { "Cache-Control": "no-store", "X-Catalog-Source": "fallback" },
+    })
   }
 }
