@@ -3,15 +3,13 @@
 import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import { product3DPath } from "@/lib/product-media"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import type { Swiper as SwiperType } from "swiper"
-import { EffectCoverflow, Navigation, Pagination, Autoplay } from "swiper/modules"
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules"
 
 // Import Swiper styles
 import "swiper/css"
-import "swiper/css/navigation"
 import "swiper/css/pagination"
 import "swiper/css/effect-coverflow"
 import "./coverflow.css"
@@ -85,7 +83,7 @@ const Coverflow = ({
           >
             <Swiper
               className="swiper-container"
-              modules={[EffectCoverflow, Navigation, Pagination, Autoplay]}
+              modules={[EffectCoverflow, Pagination, Autoplay]}
               centeredSlides={true}
               loop={enableLoop && products.length > 3}
               initialSlide={initialSlide}
@@ -110,10 +108,6 @@ const Coverflow = ({
                   : false
               }
               slidesPerView="auto"
-              navigation={{
-                nextEl: ".swiper-button-next-coverflow",
-                prevEl: ".swiper-button-prev-coverflow",
-              }}
               pagination={true}
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
@@ -176,24 +170,6 @@ const Coverflow = ({
                   </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="max-w-[820px] w-full mx-auto relative">
-              <div className="swiper-button-prev swiper-button-prev-coverflow">
-                <button
-                  className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg z-10"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="h-6 w-6 text-[#41059a]" />
-                </button>
-              </div>
-              <div className="swiper-button-next swiper-button-next-coverflow">
-                <button
-                  className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg z-10"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="h-6 w-6 text-[#41059a]" />
-                </button>
-              </div>
-            </div>
           </div>
         </>
       )}

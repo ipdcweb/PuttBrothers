@@ -156,3 +156,14 @@ required for desktop/mobile composition, scrolling rhythm and final sales copy.
   `590183868691` (ipdc Limited). MFA/settings were not changed. Object inventory
   and historical PDF/link migration still precede resource deletion.
 - See `AWS-RETIREMENT.md` for the account retirement and historical-link boundary.
+
+## Update, 23 October 2026: remove duplicate carousel arrows
+
+- Rafael confirmed the preview's images and interactive 3D viewer work. He
+  requested removing the rectangular carousel arrows and keeping the circular
+  previous/next group buttons beside the product count, on this same preview.
+- Removed the internal Swiper Navigation controls, their module import and
+  exclusive CSS. Product group pagination, swipe, autoplay, dots and 3D handling
+  are unchanged. No new dependency or test was added for this small UI removal.
+- This correction remains preview-only. AWS inventory/shutdown and production
+  cutover remain separate following the agreed review sequence.
