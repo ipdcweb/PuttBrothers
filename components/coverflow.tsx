@@ -38,6 +38,7 @@ const Coverflow = ({
   const [isReady, setIsReady] = useState(false)
 
   const swiperRef = useRef<SwiperType | null>(null)
+  const autoplayOptions = { enabled: enableAutoplay, delay: 3000, disableOnInteraction: false }
 
   useEffect(() => {
     const swiper = swiperRef.current
@@ -90,7 +91,7 @@ const Coverflow = ({
                 depth: 280,
                 modifier: 1,
               }}
-              autoplay={{ enabled: enableAutoplay, delay: 3000, disableOnInteraction: false }}
+              autoplay={autoplayOptions}
               slidesPerView="auto"
               pagination={{ clickable: true, dynamicBullets: true, dynamicMainBullets: 3 }}
               lazyPreloadPrevNext={1}
