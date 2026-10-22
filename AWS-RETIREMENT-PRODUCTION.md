@@ -70,12 +70,22 @@ it reintroduces AWS dependencies and requires the old services to remain usable.
 Data and AWS-resource deletion cannot be reversed by a Worker rollback.
 
 
-## Isolated review publication and current hold
+## Isolated review publication and approved production step
 
 - Review source: `8ba7b9a`; version `4ebcb2f5-58cb-4a9b-9053-4a1980bd4e31`.
 - Isolated URL: https://puttbrothers-aws-retirement-review.team-web-592.workers.dev
 - No production deployment, DNS change or secret deletion was performed.
 - Rafael subsequently requested reviewing all changes at the existing V2 preview
   https://puttbrothers-v2-preview.team-web-592.workers.dev/ before stopping AWS.
-- Keep this backend-only branch ready, preserve the active production version and
-  wait for Rafael's review before production cutover or resource deletion.
+- Rafael confirmed that the preview was working and requested stopping the AWS
+  service and testing the website before cancelling its plan. The official site
+  still used AWS, so this authorization requires the backend-only production
+  cutover first. The V1 interface remains in place; V2 carousel/UI changes are not
+  part of this release.
+- The production step uses the guarded `--production --publish` command, a fresh
+  Vinext build, all 40 tests and 198 verified production media receipts. It keeps
+  all eight existing routes and all six existing secret names via `--keep-vars`.
+- Rollback baseline remains `7193bac3-40e3-4d83-b8f3-006e6bdcb91a`. This step
+  does not delete AWS resources or secrets, change DNS, cancel a subscription,
+  send a lead or upload a valid PDF. AWS inventory/reversible stopping and browser
+  checks are coordinated separately after the official site has been verified.
