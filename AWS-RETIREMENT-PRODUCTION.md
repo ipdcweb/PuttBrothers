@@ -122,3 +122,37 @@ Data and AWS-resource deletion cannot be reversed by a Worker rollback.
 - AWS resources, DNS and all existing secrets were preserved. AWS inventory,
   reversible stopping, cancellation decisions and browser checks remain with
   the coordinating task. Rollback baseline `7193bac3` remains recorded.
+
+## Reversible RDS stop and independent website checks
+
+- On 23 October 2026, the coordinating task stopped only Amazon RDS instance
+  `database-puttbrothers` in `ap-southeast-2` (Sydney), using **Stop temporarily**.
+  The AWS console subsequently confirmed **Stopped temporarily**, around 07:57
+  Brisbane. This is a reversible stop, not deletion or plan/account cancellation.
+- S3 buckets and historical PDFs, Lambda, API Gateway, IAM/secrets and backups
+  remain intact. Neither this worktree nor the post-stop checks changed them.
+- AWS displayed the automatic restart deadline as **30 October 2026 at 07:49
+  (UTC+10 / Australia/Brisbane)**. A stopped RDS instance restarts automatically
+  after seven days. Provisioned storage and backup storage remain billable;
+  public IPv4 charges can also remain if applicable. See the
+  [AWS temporary stop documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html).
+- After the stopped-state confirmation, HTTP verification passed at
+  `2026-10-22T21:57:21.956Z` (23 October at 07:57:21 Brisbane) for both
+  https://puttbrothers.com/ and
+  https://puttbrothers-v2-preview.team-web-592.workers.dev/ . Each returned five
+  HTML pages with HTTP 200, 39 catalogue machines and 30 planner machines from
+  Cloudflare, 198 media HEAD responses from R2, ten matching Unity entrypoint
+  hashes and twenty correct HTTP 206 WASM/data ranges. Image SHA-256 and
+  historical planner-image URL translation to R2 also passed on both sites.
+- All seven official-domain aliases still redirect correctly with HTTP 301.
+  Read-only GET on PDF upload returns HTTP 405 as intended. These post-stop
+  checks made only GET/HEAD requests; no contact/PDF POST was repeated and no
+  lead or valid PDF was submitted.
+- Evidence is saved locally in `tmp/post-rds-stop-check.json`; reproducible
+  read-only checks are in `tmp/post-rds-stop-check.mjs` (both ignored). The
+  coordinating task separately verifies browser interactions and retains the
+  AWS console stopped-state evidence.
+- The official site still runs backend source `cbd3ea0`, Cloudflare version
+  `62af4949-e440-4891-ad43-819665e83830`, preserving the V1 interface. The
+  backend checks now demonstrate it continues functioning while RDS is stopped.
+  No AWS resource was deleted and no paid plan was cancelled.
