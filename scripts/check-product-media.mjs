@@ -31,10 +31,13 @@ async function worker() {
     const path = `/product-media/${file.key.split('/').map(encodeURIComponent).join('/')}`
     const head = await get(path, { method: 'HEAD' })
     assert.equal(head.status, 200, path)
-    assert.equal(Number(head.headers.get('Content-Length')), file.bytes, path)
+    // Cloudflare strips length/ETag from HTML at the edge, even for HEAD.
+    // Its full GET below still must match the original SHA-256 byte for byte.
+    const html = file.contentType.startsWith('text/html')
+    if (!html || head.headers.has('Content-Length')) assert.equal(Number(head.headers.get('Content-Length')), file.bytes, path)
     assert.equal(head.headers.get('Content-Type'), file.contentType, path)
     assert.equal(head.headers.get('Content-Encoding'), null, path)
-    assert.equal(head.headers.get('ETag'), `"${file.sha256}"`, path)
+    if (!html || head.headers.has('ETag')) assert.equal(head.headers.get('ETag'), `"${file.sha256}"`, path)
     assert.equal(head.headers.get('X-Media-Source'), 'cloudflare-r2', path)
     const large = file.bytes > 1024 * 1024
     const response = await get(path, large ? { headers: { Range: 'bytes=0-1023' } } : {})

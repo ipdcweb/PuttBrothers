@@ -87,3 +87,29 @@ Rollback: restaurar a versão anterior do Worker V2
   aviso WebGL `INVALID_ENUM` neste ambiente. Não impediram a inicialização.
 - Aprovação visual/interação por Rafael permanece pendente. Publicação e
   conferência remota serão registradas abaixo quando concluídas.
+
+
+### Publicação e validação pública concluídas
+
+Código publicado: `0f7ef8d`. Versão Cloudflare:
+`b5d5fb48-571f-4393-b5e7-04a981bb3a00`.
+[Preview Products](https://puttbrothers-v2-preview.team-web-592.workers.dev/products).
+
+- R2 remoto: 198/198 objetos com SHA-256 integral, bytes e MIME confirmados.
+- Check público das 198 mídias passou em `2026-10-22T19:40:52.069Z`.
+- Verificação geral do site passou em `2026-10-22T19:39:30.079Z`.
+- Todos os dez builds Unity inicializaram no Chrome público sem faixa de erro e
+  sem requisição de mídia AWS. Fullscreen disponível. Botão do carrossel, modal,
+  fechamento e paginação funcionaram na mesma origem.
+- Desktop 1360x900 e emulação mobile 390x844: catálogo e imagens carregados,
+  grupos 1–12 e 1–8 de 39, sem overflow horizontal do documento.
+- Chrome decodificou a imagem do planejador obtida pela API local de exportação.
+  Nenhum lead ou PDF real foi enviado.
+- O edge Cloudflare remove tamanho/ETag do HTML Unity; a resposta GET manteve o
+  SHA-256 original. O verificador aceita essa omissão somente para HTML, exigindo
+  sempre o hash integral. Não foi preciso alterar o código Unity.
+- Fonte final no GitHub e aprovação visual/interação por Rafael pendente.
+
+A V1 e o upload PDF ainda têm dependências AWS. Para retirar totalmente a AWS,
+será preciso migrar esse upload e promover a versão aprovada à produção em uma
+etapa específica. Nenhum recurso AWS foi removido.

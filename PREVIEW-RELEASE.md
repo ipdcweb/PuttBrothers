@@ -90,3 +90,41 @@ required for desktop/mobile composition, scrolling rhythm and final sales copy.
 - Remote check passed at `2026-10-13T10:43:42.430Z`: all five HTML routes, catalogue APIs, both hero MP4s, six new MP4 range requests, six new WebP posters, portraits, PDF, noindex and blocked preview writes.
 - Published Chrome session confirmed six selectors, one video element, successful muted playback, the smaller Top button and removal of the duplicate sentence. No hydration/runtime error was reported; one existing-style preload warning concerned unused `v2-pages` CSS.
 - Final preview opened in Chrome at `/#real-play` for Rafael's visual approval. No screenshots were taken. These documentation-only changes do not alter the deployed source above.
+
+
+## Update, 23 October 2026: Cloudflare product media migration
+
+- Rafael requested analysis, a plan and implementation to remove AWS from the
+  product carousel, catalogue and interactive 3D viewer.
+- Deployed source: `0f7ef8d`, branch `website-v2`.
+- Cloudflare version: `b5d5fb48-571f-4393-b5e7-04a981bb3a00`.
+- Same authorized URL: https://puttbrothers-v2-preview.team-web-592.workers.dev/products
+- Private R2 bucket `puttbrothers-product-media-review`, binding `PRODUCT_MEDIA`,
+  immutable release prefix `catalog-20261023-v1`. All 198 objects (409,833,999 bytes)
+  were downloaded back from R2 and verified by complete SHA-256, size and MIME.
+- Complete 39-machine catalogue now bundled with the Worker. Planner retains
+  the same 30 machine IDs/dimensions; images and all 10 original Unity builds
+  are served on the same origin. No runtime S3/Lambda fallback for this scope.
+- Guarded publication passed 47 tests and the final Vinext build. New guard
+  requires verified upload receipts before publication.
+- General online preview check passed at `2026-10-22T19:39:30.079Z`; five routes,
+  existing media/catalogue checks, noindex and blocked contact/PDF writes.
+- Product migration online check passed at `2026-10-22T19:40:52.069Z`: 198 media
+  paths, HEAD/MIME, ranges for large files, full hashes for small files,
+  catalogue counts/source, legacy planner image URL and unsafe-host rejection.
+- Cloudflare omits Content-Length and ETag for Unity HTML at the edge; full HTML
+  GET still exactly matched its original SHA-256. The checker accounts for this
+  transport behavior. JavaScript/WASM/data/image headers retain their validators.
+- Chrome initialized all 10 Unity models on the public preview (loading indicator
+  hidden, fullscreen callback installed, no error banner, no AWS asset request).
+  Carousel button opened Rack'Em Up in the modal; close and pagination worked.
+- Desktop 1360x900 and mobile emulation 390x844: image decoding and pagination
+  work without horizontal document overflow. Planner image export response was
+  decoded by Chrome (300x198) with 30 catalogue items. No real form/PDF upload.
+- Existing Unity persistence/WebGL warnings remain nonfatal. Visual approval,
+  including rotation/zoom on Rafael's actual devices, is pending.
+- V1, production, DNS, AWS source assets and the separate PDF-upload integration
+  remain preserved. This is not authorization to close the AWS account.
+- Source and implementation plan: `CLOUDFLARE-PRODUCT-MIGRATION.md`.
+- Documentation/checker-only commits after the deployed source do not change the
+  running Worker. No production deployment occurred.
