@@ -1,0 +1,736 @@
+{
+  "minigolf": {
+    "title": "Mini Golf",
+    "pdf": "/catalogues/minigolf-latest.pdf",
+    "sourceSha256": "849e55526620f8e9c657b0bee3f0f5653a4e5bd74ec08da359f181780b754502",
+    "pages": [
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-01-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 18736,
+          "sha256": "22a03c3e384a91e4075ffdc2bc645efe554bdae408ba57945a16deca4dbcc48d"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-01-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 38878,
+          "sha256": "a45e0491cd25bb745e122a831acc466bc8dcec4e4d36919f672bb63299a16370"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-02-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 64152,
+          "sha256": "b4e5fb19d892e5e9f4892eeb302f432ef923c95030c729bc938ce3d0d788a36a"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-02-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 152018,
+          "sha256": "1ca1bf58b280d575e7d13260ae85d78a804795ba2663180a7997d5eb939673e3"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-03-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 77032,
+          "sha256": "661f9b2ccb6c69c1019249634880e25861a0a484100f2f61374f5e751e031814"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-03-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 214624,
+          "sha256": "3ffe0533fb99d2ee3542afdaba10289e7e4f3781ba9422c69d405f5bd9b17031"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-04-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 55268,
+          "sha256": "0aca82d5f4b4a440ea1b87bd572bd10d18571a8bda0a5ebb6324fc540fbc2610"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-04-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 137578,
+          "sha256": "1f78466337e2a021e0d2998b5a53a6f67149723c9465bd71a1dbfdaf99cc5a69"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-05-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 57836,
+          "sha256": "972b00612ee91aacaad5a23fd94869bac8b3020b64a4f5af400f338b8c9dcb7d"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-05-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 147046,
+          "sha256": "2c189c7e3048c2473c29cd82f3ff35386f9e2db76ff6fb881099dd9676ba5952"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-06-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 55652,
+          "sha256": "94fbfbcd0913b6381891de7bd52d8d87a93e9cc1286e5f9be7bf9185be1f5866"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-06-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 213292,
+          "sha256": "6a8d563abb778e465cc900b6ed2ee0baea67416f0fcb2e87b44e2d2800d50f6f"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-07-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 60862,
+          "sha256": "10c2f4621af3f8ed2579e3da0269c9c4ac60d6d2de965e7333731df843cde7d3"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-07-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 141056,
+          "sha256": "354aea26bbda58d319c160a5f052259b55d343aa0e6240175a2dfa6c834b384a"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-08-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 58412,
+          "sha256": "af72c3d509d05eff0a1dc00bc066ddff2b5d3665c2bc5b138a3f030034d8b7e2"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-08-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 145008,
+          "sha256": "acc8f2acaa6e7455c9b2811caa48922aa4554d870f8a274655bd1db20c310916"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-09-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 47348,
+          "sha256": "477b3839f1816beec1fb51cf0a57eea7468f2227cede98a3f6bddd863934d95c"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-09-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 116384,
+          "sha256": "74b90418d322e6ed6baee821298e2aa6e2a4b5808ab193179883c83c6d23d018"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-10-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 60456,
+          "sha256": "71b92c062bf17068307cfa0dbc08ec4422e9ed52ffbbcb9cab2086e7c8132339"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-10-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 148584,
+          "sha256": "ce3af7a73f38290a41079acbebfeb762614c1b5b177183ff084067950ea7cf3b"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-11-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 47622,
+          "sha256": "a5eed9dfbb8cb392c09e8d91a42f2b0d0da6cac659cf2eba8f605f8f16a7074b"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-11-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 129150,
+          "sha256": "9a5d77f652ea467a310dc310549933be6ffa4647408ecff3445c8f95f1b6d08f"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-12-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 47610,
+          "sha256": "a63e1b12bb865682d284d19e58dcc815ebf0b4bd85ed4debd571a0c3178e0c09"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-12-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 116374,
+          "sha256": "08bcac07bd3e45b5d490ae8b6773f64dc020cbdd94bda3d4a480e1c5b61c8d81"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-13-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 43018,
+          "sha256": "ac00a8fd8b099119a782ebb888c358e59e7c00222c2ba13d6f99b4dd209dba12"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-13-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 99752,
+          "sha256": "fadff1c928a8a04a20cb378b34c622b6a9cbbaed2d950298ae5b279df3c128d1"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-14-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 58974,
+          "sha256": "b9899bc4cbc345d8eae6d76b5b6424f2da8e47a675712f9d79a6a9e778a2701c"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-14-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 141546,
+          "sha256": "ba92bfea9a09fed7f04ab8021385c60b08dce3db34b074b95ae319a0b39346f9"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-15-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 41314,
+          "sha256": "ed66895d7173cdcbd0836270f38ce6820f775cbbd2d597cb2835f807ac38ebda"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-15-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 100078,
+          "sha256": "a0e7ce8ffb5b3932ad279622192c54ca0080ff1dd6dd8648bcb525e97571b0cd"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-16-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 64100,
+          "sha256": "46440c6b642526092028932e6f1527521c04de9bac64362cd822ef073248eed5"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-16-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 155108,
+          "sha256": "5951f90a9f58c7fd3005cda9fe1b5d0f924849f432abf77df7aab301683a276f"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-17-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 59234,
+          "sha256": "8d69cd4ab39d7eda5d9da1f8a2de47affec055f067cc2c8c2e05c9799cc5e512"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-17-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 152954,
+          "sha256": "4fba5c06efd45a12b89a7618474e1aba4e87c07c7dd762191d18422aecda54a5"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-18-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 47708,
+          "sha256": "f0342c941df9ea71221ec09b9bd190be23d2e57988fb2f0f54f9ff67339d1922"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-18-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 112552,
+          "sha256": "282503fb506a0b1d5073115afc13f4c6d0592afff8c4dc1721380fac3bfa49c5"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-19-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 50386,
+          "sha256": "dcf80c712c4b35107d9c257c6b4773608c0cda54fe831db7ea94501d845c2841"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-19-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 118700,
+          "sha256": "c4fd836fc900dfaaf87a9d7bec251adc64505cbd5f4c9a9006bc85bdba46eaaf"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-20-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 48912,
+          "sha256": "75198a0c95bdfb393686d0b246601fb3b24ee57b6dd4a4802fa12a211ce08250"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-20-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 119032,
+          "sha256": "fb97b4643424356e83cac276b3f14efd9b001ebd4509d5c9538b2f145fc1778a"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-21-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 45924,
+          "sha256": "b02f590e6df82b9224ec83ad747d7027211781413b94fb99da83dc06235b84d6"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-21-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 116500,
+          "sha256": "46f8599de76c1b50c326bfcfdc04a4f46257841c7850763f35fbbe7043e8c40e"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-22-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 55716,
+          "sha256": "3eeb14f5a75d84a3c49216cfddb2c4264cf2257bd0a6523c2a47f5139a161a30"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-22-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 130382,
+          "sha256": "cb0cd7947ec247d881f01bda5097d165f6704164e3dcb6a135dbf6272e05d04e"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-23-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 40604,
+          "sha256": "88b8c87d0231298f545f1090cbf0d949ebd2b7d1e6c1354738f72f14de7e1942"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-23-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 107626,
+          "sha256": "66928424590f13446e700e6398813e8ff1c01b8eb192eb57ba5ef3b9d4a0795e"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-24-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 50348,
+          "sha256": "bd0c76d7b55d4623a06f4649b7c37c5899f78e55bd5701d9dbcb5a7dfe248984"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-24-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 128440,
+          "sha256": "2692b18e193ee2e90706a0f8b4fe9b3047ae306db40da062ee9b00029f92a284"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-25-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 41132,
+          "sha256": "fb274aef6cba364363158cdc779dc402609cad30878c7fdca5aad9f05cddb47a"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-25-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 99496,
+          "sha256": "6efcddc43cbe71ad954ce096a9cda6036d678dbf9c399071066ec57ed496650b"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-26-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 52764,
+          "sha256": "32039517095c3170eb4a6953a2fb5ee3b27a1f171ad1d510322ed440ed4e1131"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-26-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 144298,
+          "sha256": "cdc95cf8cc3945eb4cd51babd32db1e83955464965226cdfd31d286995a09f29"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-27-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 42398,
+          "sha256": "20bb027f92f03534d7f9f88ac0cf7d35458e4b72648b6b8e589004e44b37dfdd"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-27-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 111290,
+          "sha256": "e25c03d7267217480f540cd7b4370d12852c5bb7b85ec7312788d76aa0fbc91e"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-28-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 62542,
+          "sha256": "8a0d91f4897ec67863c2c451bf5247451f019bf7a516846b7d97077d8502e8bb"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-28-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 147424,
+          "sha256": "96cf26a45f5a1ec9a8db675afaee98e72e4dcfc6c1aa24c87b11866cef741658"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-29-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 51188,
+          "sha256": "ec02d5c599579503c0a1df6ccb19217e44fc35667ea4c15c6e180d64eee2363d"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-29-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 131498,
+          "sha256": "e2d638366869d7645cd779ce86dff75f7548acd408934694aef95d958de9fa6a"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-30-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 62836,
+          "sha256": "a89976be8f974ae6d0b297d400c541f5c1a72ab563b4e7044db6e00a0674696b"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-30-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 150152,
+          "sha256": "304e97e313e4953368d80921e2e52a83f6346c56aeeb271e9268d7ab28b69c5d"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-31-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 43934,
+          "sha256": "73699d415e75b66d6bc691cf5f909882a9c9607283801f89869f447cfbb129c0"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-31-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 118074,
+          "sha256": "0b72a42a7290f4d3df16d7f931453c328240da18864a17da64e6baff41e1805a"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-32-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 50190,
+          "sha256": "e56dda549e0eab820b42b321bec11851588b3082ebc1e94599c63f8f59fc2644"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-32-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 118468,
+          "sha256": "e756c6222fe3fae335903943822416abe53f0813804f0c1721c69da2095a9b10"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/minigolf-849e555266/page-33-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 50904,
+          "sha256": "a8008f57261fdddf6b96c14f1402c0d334c810b7d347b6c7ac3c2ff158140113"
+        },
+        "1800": {
+          "src": "/images/catalogues/minigolf-849e555266/page-33-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 123534,
+          "sha256": "2bf7d6232f8a0cc05a19e056a953b0dfec815b317ec1fec5af2ad29c7c1a6af2"
+        }
+      }
+    ]
+  },
+  "tablegolf": {
+    "title": "Table Golf",
+    "pdf": "/catalogues/tablegolf-latest.pdf",
+    "sourceSha256": "c5dfb25bdd1eb61e3e5c4fd06e35c24ff2389d9194ed38d882bb282d2ac20034",
+    "pages": [
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-01-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 18360,
+          "sha256": "5140e49801fb59c5ea2254b0efeaa3e120c330362170b09a286e1b29ea4fb07b"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-01-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 40520,
+          "sha256": "e69f1d73acbeff13b792452c39f08866132b2cd8948cec3ece5d8bbfbcc5f044"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-02-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 111962,
+          "sha256": "2ce0104b339f3103e01fa1a38b1e8ca943e15505af9505db211bc88d8d3af119"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-02-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 283566,
+          "sha256": "e38f2c3924e0b8c768c73d1cc922f3c8076f4264b8170b6018f8975db4d20886"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-03-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 54704,
+          "sha256": "f168826c6ec6737c6e5fd89aecc8b3e7e6e7297fa695ec5ce89c6f45ce0fbbae"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-03-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 143152,
+          "sha256": "08b05fe1b5bc390e0d3747d3fa97bb2271bf5c90c7cad20f49d66c6191dbb7c2"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-04-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 41368,
+          "sha256": "a2350fb9680c9777a47808167d1e944f9f7fcfb5a95be245a5e19ac3d8409418"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-04-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 123088,
+          "sha256": "19a7c71222dcdceb9ee5006dce0e045110f51cd0be698407622a86f4705cda45"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-05-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 33034,
+          "sha256": "f1f20b6c26ed619eb1e67e34185a49d8fff966eb68d6cc71cad01c55bab682e3"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-05-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 91546,
+          "sha256": "737c375e95665444e206b7abc447f63ed348a05e8db0ae30090960dce5af60c7"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-06-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 37802,
+          "sha256": "6571662acef8ef7376a7400358269a28e38d96d9e7b538933c5671c2680a2e8e"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-06-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 103254,
+          "sha256": "9b107ba268953d3afc539d47ab59b780476e37b3538a5f5b3c49978846c72232"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-07-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 34308,
+          "sha256": "4fe586e0178140e4c3f936cce6accb3455e5b9e96fea93f1fd3ae7b0e8e4d196"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-07-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 97184,
+          "sha256": "81128a1671993bda7b087d4e24efd31d6ca1017170fce4fe038bb5519b824169"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-08-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 38086,
+          "sha256": "f610860825d0d2bef70ad87f63fbdc116a8a509e5b64964ab7479cf897391d12"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-08-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 104246,
+          "sha256": "de3aa3a36cc25c091663e300f46016f7c345fbb628bff8aab7dcd047e0dc7aba"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-09-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 35094,
+          "sha256": "580ce89c545ab8cffcf972f9be22c39101b34dc39f3992ac0e4ac0bc52be1218"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-09-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 94828,
+          "sha256": "81d3160d0abb95e69591e2db63015acb7938d8c7d445b1b81ac97ee1141198e1"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-10-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 40350,
+          "sha256": "54f89dfeb40b1682a042f75282a0bf2163e3208566059ac0236def05cd3b5cf8"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-10-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 122530,
+          "sha256": "614f46278129f52ebf60f9c13a650299d2ef467d3ab66e87ec583206d2a11581"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-11-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 35842,
+          "sha256": "b4d57b1e0ad33423134a06dea69265eee15549ca5e39ed1e50a1277c9260aedd"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-11-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 86940,
+          "sha256": "f565f3822278e9bb0815d56b6374c001fb5bb7bc7b76c81160ef1aad45b69418"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-12-900.webp",
+          "width": 900,
+          "height": 658,
+          "bytes": 38742,
+          "sha256": "2e7cb42338ad980304850b9109209558a062fd53dbd100b2974618b728b31085"
+        },
+        "1800": {
+          "src": "/images/catalogues/tablegolf-c5dfb25bdd/page-12-1800.webp",
+          "width": 1800,
+          "height": 1315,
+          "bytes": 103898,
+          "sha256": "366edb73fe7c741a6c91f4057c56e04ec30d57bf373aa152a152e2bb49f07ce1"
+        }
+      }
+    ]
+  }
+}

@@ -5,6 +5,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Download } from "lucide-react"
 import { ProductsShowcase } from "@/components/products-showcase"
 import { SceneImage } from "@/components/v2/scene-image"
 import { PlannerIllustration } from "@/components/v2/planner-illustration"
+import { CatalogueViewer } from "@/components/v2/catalogue-viewer"
 import "@/styles/v2-pages.css"
 
 export const metadata: Metadata = {
@@ -105,23 +106,20 @@ export default function ProductsPage() {
                   <p className="pb-eyebrow">{collection.category}</p>
                   <h3>{collection.title}</h3>
                   <p>{collection.description}</p>
-                  {collection.catalogue ? (
-                    <a className="pb-collection__download" href={collection.href} target="_blank" rel="noopener noreferrer">
-                      <span>{collection.actionLabel}<small>PDF catalogue<span className="sr-only">, opens in a new tab</span></small></span>
-                      <ArrowUpRight size={22} aria-hidden="true" />
-                    </a>
-                  ) : (
-                    <Link className="pb-collection__download" href={collection.href}>
-                      <span>{collection.actionLabel}</span><ArrowUpRight size={22} aria-hidden="true" />
-                    </Link>
-                  )}
                 </div>
+                {collection.catalogue ? (
+                  <CatalogueViewer catalogueId={collection.title === "Table Golf" ? "tablegolf" : "minigolf"} label={collection.actionLabel} />
+                ) : (
+                  <Link className="pb-collection__download" href={collection.href}>
+                    <span>{collection.actionLabel}</span><ArrowUpRight size={22} aria-hidden="true" />
+                  </Link>
+                )}
               </article>
             ))}
           </div>
           <a className="pb-full-catalogue" href="/catalogues/puttbrothers-2026.pdf" download>
-            <span><strong>The complete 2026 collection</strong><small>Explore the full Putt Brothers product catalogue · PDF, 18 MB</small></span>
-            <span>Download catalogue <Download size={19} aria-hidden="true" /></span>
+            <span><span className="pb-full-catalogue__eyebrow">Explore the latest collection</span><strong>The complete 2026 collection</strong><small>Explore the full Putt Brothers product catalogue · PDF, 18 MB</small></span>
+            <span className="pb-full-catalogue__action">Download catalogue <Download size={22} aria-hidden="true" /></span>
           </a>
         </div>
       </section>

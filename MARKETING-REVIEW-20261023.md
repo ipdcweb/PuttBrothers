@@ -1,5 +1,27 @@
 # Marketing review, 23 October 2026
 
+## Preview-only catalogue reader and collection calls to action
+
+Rafael requested viewing the existing Mini Golf and Table Golf catalogues inside
+a large branded modal, one PDF page at a time, with arrows and mobile swiping.
+CatalogueViewer reuses Radix Dialog for focus management, scroll lock and Escape,
+and the installed Swiper for single-page navigation, swipe/pinch and zoom. The
+reader provides previous/next controls, a page counter, keyboard arrows/Home/End,
+fit/zoom and an optional original PDF download. Opening resets to the first page.
+Only the current page and its neighbours mount images; no catalogue page images
+are requested until its modal opens. Image failures retain the PDF fallback.
+
+The existing PDFs remain unchanged. scripts/prepare-catalogue-pages.py renders
+all 33 Mini Golf and 12 Table Golf pages using Poppler, with 900px and 1800px WebP
+variants and source-content versioned paths. lib/catalogue-pages.json records
+source and page checksums; tests reject missing/stale/corrupted reader assets.
+
+At Rafael's follow-up request, the four collection actions now sit outside the
+flexible copy area in equal-height yellow footer strips, keeping each pair's
+separator aligned and making the whole strip clickable. The complete 2026 PDF
+retains its download behaviour with a yellow panel, larger heading and a black
+button. Scope is only V2 preview, preserving production, DNS and integrations.
+
 ## Preview-only original planner image and product modal fit
 
 Rafael requested restoring the original planner illustration from the enquiry
