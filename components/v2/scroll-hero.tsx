@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowDown, ArrowUpRight, Pause, Play } from "lucide-react"
 import { SceneImage } from "@/components/v2/scene-image"
+import { IaapaExpoDetails } from "@/components/iaapa-expo"
 import { chapterPresentation, clamp, heroChapters, HERO_MOTION_KEY, mediaTimeForProgress, smooth } from "@/lib/scroll-hero"
 import "@/styles/scroll-hero.css"
 
@@ -170,15 +171,16 @@ export function ScrollHero() {
         <div ref={posterRef} className="pb-scroll-hero__poster"><SceneImage name="hero" alt="Concept of an entertainment venue combining mini golf, social spaces and hospitality" priority /></div>
         <div className="pb-scroll-hero__shade" aria-hidden="true" />
         <div ref={openingRef} className="pb-container pb-scroll-hero__opening">
-          <p className="pb-eyebrow">More than play</p>
+          <p className="pb-eyebrow">Turning ideas into experiences</p>
           <h1 id="home-title">We build<br />what&apos;s next<br /><em>in play.</em></h1>
-          <p className="pb-home-hero__intro">Extraordinary places. Unforgettable experiences.<br className="pb-desktop-break" /> Designed, engineered and built together.</p>
+          <p className="pb-home-hero__intro">Extraordinary places. Unforgettable moments.<br className="pb-desktop-break" /> Designed, engineered and built together.</p>
           <div className="pb-actions"><Link href="/contact" className="pb-button">Let&apos;s build your vision <ArrowUpRight aria-hidden="true" /></Link><a href="#experiences" className="pb-text-link">Discover the possibilities <ArrowDown aria-hidden="true" /></a></div>
         </div>
         {heroChapters.map((chapter, index) => <article key={chapter.id} ref={element => { chapterRefs.current[index] = element }} className={`pb-scroll-copy pb-scroll-copy--${chapter.position}`} aria-hidden="true" inert>
           <p className="pb-eyebrow">{chapter.label}</p>
           <h2>{chapter.title}<br /><em>{chapter.accent}</em></h2>
           <p className="pb-scroll-copy__body">{chapter.body}</p>
+          {'expo' in chapter && <IaapaExpoDetails />}
           {'cta' in chapter && <Link href={chapter.href} className="pb-button">{chapter.cta}<ArrowUpRight aria-hidden="true" /></Link>}
         </article>)}
         <div className="pb-scroll-hero__controls">
@@ -191,7 +193,7 @@ export function ScrollHero() {
         </div>
         <div className="pb-scroll-hero__progress" aria-hidden="true"><span ref={progressRef} /></div>
       </div>
-      {(mode === 'static' || status === 'error') && <div className="pb-container pb-scroll-hero__static">{heroChapters.map(chapter => <article key={chapter.id}><p className="pb-eyebrow">{chapter.label}</p><h2>{chapter.title} <em>{chapter.accent}</em></h2><p>{chapter.body}</p></article>)}<Link href="/contact#contact" className="pb-button">Plan my entertainment project <ArrowUpRight aria-hidden="true" /></Link></div>}
+      {(mode === 'static' || status === 'error') && <div className="pb-container pb-scroll-hero__static">{heroChapters.map(chapter => <article key={chapter.id}><p className="pb-eyebrow">{chapter.label}</p><h2>{chapter.title} <em>{chapter.accent}</em></h2><p>{chapter.body}</p>{'expo' in chapter && <IaapaExpoDetails />}{'cta' in chapter && <Link href={chapter.href} className="pb-button">{chapter.cta}<ArrowUpRight aria-hidden="true" /></Link>}</article>)}</div>}
     </section>
   )
 }

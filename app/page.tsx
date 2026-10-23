@@ -9,7 +9,7 @@ import { PreviewNotice } from "@/components/v2/preview-notice"
 
 const experiences = [
   { name: "minigolf" as const, icon: Flag, title: "Custom mini golf", text: "Immersive courses. Unexpected challenges. A little friendly competition that brings everyone together.", href: "/products", link: "Explore the collection" },
-  { name: "hospitality" as const, icon: GlassWater, title: "Spaces with character", text: "Bars, lounges and social spaces that make the whole venue part of the experience.", href: "/contact", link: "Talk about your space" },
+  { name: "hospitality" as const, icon: GlassWater, title: "Interiors & fit-outs", text: "Bars, lounges and social spaces that make the whole venue part of the experience.", href: "/contact", link: "Talk about your space" },
   { name: "interactive" as const, icon: Target, title: "Interactive experiences", text: "Physical play meets digital possibility. Simulators and integrated technology that keep people engaged.", href: "/contact", link: "Explore the possibilities" },
 ]
 const journey = [
