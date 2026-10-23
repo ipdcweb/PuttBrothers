@@ -14,6 +14,18 @@ contain overrides Vinext Image's default inline cover style, which previously
 beat the Tailwind object-contain class and cropped the original machine PNGs.
 Original product assets, carousel thumbnails and Unity viewer paths are retained.
 Only V2 is authorized for publication; official source and deployment stay intact.
+- Published source `7bbb404`, preview version
+  `e1bba36d-284b-431d-90a9-2a7ddcbc3094`. ESLint, all 60 tests, media verification
+  and the guarded Vinext build/deploy passed.
+- Chrome confirmed loaded original PNGs for Space Z (1280 x 953) and Raptor Run
+  (1280 x 923), with computed object-fit contain. The modal and caption remain
+  within 1360 x 900, 1366 x 700 and 390 x 844 viewports. Close/reopen works.
+- The restored planner asset loads at its original 1429 x 879 proportion on
+  mobile and desktop, with no mobile horizontal overflow. No console errors.
+- Proofs: tmp/product-modal-fit-20261023.png and
+  tmp/original-planner-restored-20261023.png. Visual approval remains Rafael's.
+- Read-only deployment inventory confirms the official Worker still serves
+  version `2781ce5f-a326-41a9-97e6-d52ae30c7165` from source `6895dbf`.
 
 ## Preview-only mobile menu header contrast
 
