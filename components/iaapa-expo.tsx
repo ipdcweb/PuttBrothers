@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight, X } from "lucide-react"
+import { ArrowUpRight, ExternalLink, X } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { iaapaExpo } from "@/lib/scroll-hero"
 
@@ -12,6 +12,15 @@ export function IaapaExpoDetails() {
       <div><dt>When</dt><dd><time dateTime="2026-11-17">{iaapaExpo.dates}</time></dd></div>
       <div><dt>Where</dt><dd><strong>Booth {iaapaExpo.booth}</strong><span>{iaapaExpo.location} · {iaapaExpo.building}</span></dd></div>
     </dl>
+  )
+}
+
+export function IaapaExpoMapLink() {
+  return (
+    <a className="pb-expo-map-link" href={iaapaExpo.mapHref} target="_blank" rel="noopener noreferrer">
+      <span>View our booth on the map<small>IAAPA floor plan · opens in a new tab</small></span>
+      <ExternalLink size={17} aria-hidden="true" />
+    </a>
   )
 }
 
@@ -30,7 +39,10 @@ export function IaapaExpoInvite() {
         <h2 id="iaapa-expo-title">{iaapaExpo.name}</h2>
         <p>Visit us to explore the experience and talk with the team about what you want to create.</p>
         <IaapaExpoDetails />
-        <Link href={iaapaExpo.href} className="pb-button pb-button--dark" onClick={() => setOpen(false)}>{iaapaExpo.cta}<ArrowUpRight size={18} aria-hidden="true" /></Link>
+        <div className="pb-expo-actions">
+          <Link href={iaapaExpo.href} className="pb-button pb-button--dark" onClick={() => setOpen(false)}>{iaapaExpo.cta}<ArrowUpRight size={18} aria-hidden="true" /></Link>
+          <IaapaExpoMapLink />
+        </div>
       </PopoverContent>
     </Popover>
   )

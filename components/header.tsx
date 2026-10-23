@@ -41,7 +41,7 @@ function HeaderNavigation({ pathname }: { pathname: string }) {
   }, [])
 
   return (
-    <header ref={headerRef} className="pb-shell-header pb-v2">
+    <header ref={headerRef} className="pb-shell-header pb-v2" data-menu-open={mobileMenuOpen}>
       <a href="#main-content" className="pb-shell-header__skip">Skip to content</a>
       <div className="pb-container pb-shell-header__bar">
         <div className="pb-shell-header__brand">

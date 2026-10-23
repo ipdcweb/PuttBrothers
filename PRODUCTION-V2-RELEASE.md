@@ -1,5 +1,27 @@
 # Approved V2 production promotion
 
+## Approved preview refinements promoted with the official form preserved
+
+Rafael approved publishing all reviewed V2 refinements on 23 October 2026,
+explicitly requiring that the working official form remain unchanged. Only the
+reviewed presentation/media paths were restored from preview source 61019bb
+(runtime 60c63b4): IAAPA booth-map invitations, dark mobile-menu header,
+uncropped product detail modal, original planner illustration, aligned yellow
+collection actions and all three catalogue readers with internal PDF downloads.
+
+The production Home/Contact pages, Contact component and submission dialog,
+planner components, API handlers, worker.ts, package/lockfile, production and
+preview configurations, public indexing and headers remain unchanged. SHA-256
+checks preserve 44 protected files; the inventory is ignored under
+`tmp/approved-promotion-protected-20261023.json`. No production form/backend
+source, DNS, secret or R2 binding was copied from the preview environment.
+
+The existing production guard, --keep-vars, eight routes, public indexing,
+production R2 buckets, limiter namespace 2026102302 and PREVIEW_MODE=false are
+preserved. Preview remains separately disabled for form/PDF writes. No real lead
+or PDF upload is authorized for testing. Previous official runtime: 6895dbf,
+version `2781ce5f-a326-41a9-97e6-d52ae30c7165`, available for rollback.
+
 ## Contact sending feedback and planner reset, 23 October 2026
 
 Rafael requested collapsing Plan your venue layout after successful submission
