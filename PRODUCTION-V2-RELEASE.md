@@ -21,6 +21,30 @@ production R2 buckets, limiter namespace 2026102302 and PREVIEW_MODE=false are
 preserved. Preview remains separately disabled for form/PDF writes. No real lead
 or PDF upload is authorized for testing. Previous official runtime: 6895dbf,
 version `2781ce5f-a326-41a9-97e6-d52ae30c7165`, available for rollback.
+### Publication verified
+
+- Runtime source `97a681a`, active official version
+  `a3879bd6-9fcc-4735-9fe3-3d39590de52b`. Guard passed all 63 tests, fresh Vinext
+  build, 78 carousel WebPs and 198 existing production R2 receipts. ESLint passed.
+- All 44 protected file hashes match the pre-promotion inventory after deployment.
+  The existing WORKORG_API_TOKEN name remains configured; no value was retrieved
+  or replaced. The eight production routes and production-only bindings remain.
+- Home, Products, About and Contact return HTTP 200 with public indexing and no
+  preview notice. All 162 catalogue images match their hashes; all three original
+  PDFs return 200 application/pdf. All seven aliases preserve canonical redirects.
+- Official empty contact and PDF upload requests return exactly the same 400 JSON
+  responses as before publication. Both preview endpoints remain blocked at 403.
+  No real contact was submitted or PDF uploaded; downstream receipt was not tested.
+- Chrome confirmed the existing form, aria-busy=false, planner expansion and no
+  mobile horizontal overflow. All three catalogue readers open (33/12/36 pages),
+  page navigation works, and mobile reads loaded 900px WebPs with contain. The
+  original machine PNG loads with contain. Card footer pairs align at 104px; the
+  mobile menu header is rgb(11,13,16), and the IAAPA booth-map link is present.
+- No Chrome console errors reported. Official catalogue is open for Rafael.
+  Proof: tmp/approved-catalogues-official-20261023.png. Technical/HTTP reports:
+  tmp/approved-refinements-production-checks-20261023.json and
+  tmp/approved-refinements-production-20261023.log. Final appearance on Rafael's
+  devices remains his review; the preview Worker was not redeployed.
 
 ## Contact sending feedback and planner reset, 23 October 2026
 
