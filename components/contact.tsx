@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,6 +11,7 @@ import { BorderGlowPanel } from "@/components/ui/border-glow-panel"
 import { MobilePlannerWarningDialog } from "@/components/planner/mobile-planner-warning-dialog"
 import { TradingShowPicker } from "@/components/trading-show-picker"
 import { useIsPlannerMobileDevice } from "@/hooks/use-planner-device-warning"
+import { ContactSubmissionDialog } from "@/components/contact-submission-dialog"
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -38,6 +39,7 @@ export function Contact() {
   const [emailError, setEmailError] = useState("") // Added email validation state
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submittedWithLayout, setSubmittedWithLayout] = useState(false)
   const [submitError, setSubmitError] = useState("")
   const [showLayoutPlanner, setShowLayoutPlanner] = useState(false)
   const [isCollapsingLayout, setIsCollapsingLayout] = useState(false)
@@ -47,6 +49,9 @@ export function Contact() {
   const [layoutPdfUrl, setLayoutPdfUrl] = useState("")
   const [layoutPdfFilename, setLayoutPdfFilename] = useState("")
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const submissionRef = useRef(false)
+  const firstNameRef = useRef<HTMLInputElement>(null)
+  const submitButtonRef = useRef<HTMLButtonElement>(null)
   const isPlannerMobileDevice = useIsPlannerMobileDevice()
   const plannerIframeSrc = `/layout-planner/space?embedded=1&new=1&email=${encodeURIComponent(formData.email.trim())}`
 
@@ -186,6 +191,7 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (submissionRef.current) return
     const emailValidationError = validateEmail(formData.email) // Check email validation before submitting
     if (emailValidationError) {
       setEmailError(emailValidationError)
@@ -201,6 +207,7 @@ export function Contact() {
       return
     }
 
+    submissionRef.current = true
     setIsSubmitting(true)
     setSubmitError("")
     setSubmitSuccess(false)
@@ -237,11 +244,14 @@ export function Contact() {
 
       const result = await response.json()
 
-      if (!response.ok) {
+      if (!response.ok || result.success !== true) {
         throw new Error(result.message || "Failed to submit form")
       }
 
+      setSubmittedWithLayout(Boolean(layoutPdfUrl))
       setSubmitSuccess(true)
+      setShowLayoutPlanner(false)
+      setIsCollapsingLayout(false)
       // Reset form
       setFormData({
         firstName: "",
@@ -264,13 +274,10 @@ export function Contact() {
       setLayoutPdfFilename("")
       setFindUsError("")
 
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false)
-      }, 5000)
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : "An error occurred. Please try again.")
     } finally {
+      submissionRef.current = false
       setIsSubmitting(false)
     }
   }
@@ -330,11 +337,12 @@ export function Contact() {
             </aside>
 
             <div className="bg-white px-6 py-9 sm:px-9 sm:py-11 lg:px-12 lg:py-14">
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5" aria-busy={isSubmitting}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-medium text-gray-700 mb-2 text-base">First Name *</label>
                     <Input
+                      ref={firstNameRef}
                       required
                       placeholder="John"
                       className="w-full h-12 placeholder:text-gray-300 text-base"
@@ -713,6 +721,7 @@ export function Contact() {
                     </div>
 
                     <Button
+                      ref={submitButtonRef}
                       type="submit"
                       disabled={!isCaptchaValid || isSubmitting}
                       size="lg"
@@ -727,15 +736,10 @@ export function Contact() {
                   </div>
                 </div>
 
-                {submitSuccess && (
-                  <div className="mb-4 p-4 rounded-lg bg-green-100 border border-green-400 text-green-700">
-                    <p className="font-medium">✓ Message sent successfully! We'll get back to you soon.</p>
-                  </div>
-                )}
-
                 {submitError && (
-                  <div className="mb-4 p-4 rounded-lg bg-red-100 border border-red-400 text-red-700">
+                  <div role="alert" className="mb-4 p-4 rounded-lg bg-red-100 border border-red-400 text-red-700">
                     <p className="font-medium">✗ {submitError}</p>
+                    <p className="mt-1 text-sm">Your details are still here. Please try again.</p>
                   </div>
                 )}
 
@@ -744,6 +748,14 @@ export function Contact() {
           </div>
         </BorderGlowPanel>
       </div>
+
+      <ContactSubmissionDialog
+        sending={isSubmitting}
+        success={submitSuccess}
+        withLayout={submittedWithLayout}
+        onClose={() => setSubmitSuccess(false)}
+        onRestoreFocus={() => { if (submitError) submitButtonRef.current?.focus(); else firstNameRef.current?.focus() }}
+      />
 
       {showPlannerModal && (
         <div

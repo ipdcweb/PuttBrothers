@@ -1,5 +1,34 @@
 # Approved V2 production promotion
 
+## Contact sending feedback and planner reset, 23 October 2026
+
+Rafael requested collapsing Plan your venue layout after successful submission
+and a loading/success experience inspired by the Santos Sisters interaction.
+The existing Contact form now opens a Putt Brothers branded accessible dialog
+while sending, then a persistent success confirmation with an optional note that
+the venue layout was included. Closing returns focus to the first field. The
+planner collapses and fields/PDF clear only after HTTP success plus success=true.
+Failed sends retain all data and the PDF, show an accessible inline error and
+return focus to the submit button. A ref prevents concurrent duplicate requests.
+The WorkOrg payload, FindLead, PDF storage, CAPTCHA and always-on hero are preserved.
+
+The new dialog reuses Radix, the original logo and purple/yellow palette. It
+blocks dismissal while sending, permits closing after success, announces state,
+fits small screens with bounded scrolling, and disables spinner motion when
+requested by the device. No artificial loading delay was added to the real form.
+
+Three isolated handler tests cover pending/duplicate sends, success/reset and
+failure preservation, including HTTP 200 with success=false. The local component
+harness under ignored tmp/contact-feedback-review exercises the actual dialog
+with inert state changes and no requests to the contact endpoint. Browser checks
+confirmed loading-to-success, close/focus restoration, loaded logo, no console
+errors and a fitting 390x844 mobile dialog. ESLint had no errors; eight existing
+Contact warnings remain. No real lead or PDF was created during verification.
+
+Previous official version: `5c2488fd-9585-46e9-b520-e2d93f7e25be`.
+The guarded release record follows after publication. Future preview promotions
+must preserve this explicitly approved form behavior and the always-on hero.
+
 ## Always-on scroll experience, 23 October 2026
 
 Rafael requested that the Home scroll experience remain enabled. The hero now
