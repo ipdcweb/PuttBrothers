@@ -1,5 +1,19 @@
 # Marketing review, 23 October 2026
 
+## Preview-only IAAPA booth map invitation
+
+Rafael requested adding the supplied IAAPA map URL to the header invitation and
+alongside Let's meet at IAAPA in chapter 05, exclusively in V2. The shared
+IaapaExpoMapLink uses the exact URL with hallID=A, level=1 and selectedBooth
+booth~W2701. Chrome confirmed Putt Brothers and West Building, W2701 at that link.
+Both placements retain the existing internal contact CTA and add View our booth
+on the map, an external-link icon and a visible opens in a new tab description.
+The external anchor uses target=_blank with noopener noreferrer. The static
+media-error fallback also includes the same final-chapter invitation.
+
+This is a new preview-only refinement after synchronization. Production remains
+at its approved baseline until Rafael separately approves this addition.
+
 ## Preview synchronization with the approved official site
 
 Rafael approved the official website and requested updating the preview to match

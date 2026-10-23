@@ -7,6 +7,7 @@ export const iaapaExpo = {
   building: 'West Building',
   href: '/contact#contact',
   cta: "Let’s meet at IAAPA",
+  mapHref: 'https://iaapaexpo26.mapyourshow.com/8_0/floorplan/index.cfm?hallID=A&level=1&selectedBooth=booth%7EW2701',
 } as const
 export const clamp = (value: number, min = 0, max = 1) => Math.max(min, Math.min(max, value))
 export function smooth(start: number, end: number, value: number) {

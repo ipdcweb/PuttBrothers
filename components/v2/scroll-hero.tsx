@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowDown, ArrowUpRight } from "lucide-react"
 import { SceneImage } from "@/components/v2/scene-image"
-import { IaapaExpoDetails } from "@/components/iaapa-expo"
+import { IaapaExpoDetails, IaapaExpoMapLink } from "@/components/iaapa-expo"
 import { chapterPresentation, clamp, heroChapters, mediaTimeForProgress, smooth } from "@/lib/scroll-hero"
 import "@/styles/scroll-hero.css"
 
@@ -155,7 +155,7 @@ export function ScrollHero() {
           <h2>{chapter.title}<br /><em>{chapter.accent}</em></h2>
           <p className="pb-scroll-copy__body">{chapter.body}</p>
           {'expo' in chapter && <IaapaExpoDetails />}
-          {'cta' in chapter && <Link href={chapter.href} className="pb-button">{chapter.cta}<ArrowUpRight aria-hidden="true" /></Link>}
+          {'cta' in chapter && <div className="pb-expo-actions"><Link href={chapter.href} className="pb-button">{chapter.cta}<ArrowUpRight aria-hidden="true" /></Link>{'expo' in chapter && <IaapaExpoMapLink />}</div>}
         </article>)}
         <div className="pb-scroll-hero__controls">
           <span className="pb-scroll-hero__status" role="status">{status === 'loading' ? 'Preparing your experience…' : status === 'error' ? 'The film could not load.' : 'Scroll to explore'}</span>
@@ -166,7 +166,7 @@ export function ScrollHero() {
         </div>
         <div className="pb-scroll-hero__progress" aria-hidden="true"><span ref={progressRef} /></div>
       </div>
-      {status === 'error' && <div className="pb-container pb-scroll-hero__static">{heroChapters.map(chapter => <article key={chapter.id}><p className="pb-eyebrow">{chapter.label}</p><h2>{chapter.title} <em>{chapter.accent}</em></h2><p>{chapter.body}</p>{'expo' in chapter && <IaapaExpoDetails />}{'cta' in chapter && <Link href={chapter.href} className="pb-button">{chapter.cta}<ArrowUpRight aria-hidden="true" /></Link>}</article>)}</div>}
+      {status === 'error' && <div className="pb-container pb-scroll-hero__static">{heroChapters.map(chapter => <article key={chapter.id}><p className="pb-eyebrow">{chapter.label}</p><h2>{chapter.title} <em>{chapter.accent}</em></h2><p>{chapter.body}</p>{'expo' in chapter && <IaapaExpoDetails />}{'cta' in chapter && <div className="pb-expo-actions"><Link href={chapter.href} className="pb-button">{chapter.cta}<ArrowUpRight aria-hidden="true" /></Link>{'expo' in chapter && <IaapaExpoMapLink />}</div>}</article>)}</div>}
     </section>
   )
 }
