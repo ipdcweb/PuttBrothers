@@ -21,6 +21,31 @@ The pre-release rollback is the previous official version
 committed and pushed production source, original media receipts, tests and fresh
 build. Publication results are recorded below after verification.
 
+### Publication verified
+
+- Published runtime source: `83851956b2bc9636beae7d56413d2311e029f04d`, pushed on
+  `website-v2-production`. Active official version:
+  `79f38e5c-8af1-47f8-a67e-999e01677d5f`.
+- Guard passed all 57 tests, a fresh Vinext build, 78 carousel WebPs and 198
+  production-media receipts. ESLint passed for changed TS/TSX files.
+- Five public HTML routes returned 200, public indexing and no preview notice.
+  Four planner-illustration WebPs and 14 CSS/JS/font assets returned 200. Catalogue
+  endpoints returned all 39 products and 30 planner designs. All seven aliases
+  retained canonical path/query redirects. No DNS or secret values changed.
+- Empty official contact and PDF POST requests returned 400 rather than preview
+  403. Contact returned the expected required-fields validation, proving that the
+  configured handler ran. Both preview write endpoints still return 403. No real
+  contact or PDF was submitted; real WorkOrg receipt is not claimed.
+- Chrome confirmed the notice absent, form present, planner expansion, mobile
+  navigation and the updated Products illustration. At 390px there was no horizontal
+  overflow, loaded renders were 300px WebP, placed thumbnails were 60px and only
+  Air Hockey was larger. The internal CTA opened official /contact#contact. No
+  console errors were reported. Chrome is left on that official form.
+- Evidence is ignored locally under `tmp/production-marketing-release-20261023.log`,
+  `tmp/verify-marketing-production-20261023.json` and
+  `tmp/official-form-published-20261023.png`. Rafael retains final visual approval
+  and can perform a real submission to confirm downstream receipt.
+
 ## Original V2 promotion
 
 Date: 23 October 2026, Australia/Brisbane. Rafael explicitly requested making
