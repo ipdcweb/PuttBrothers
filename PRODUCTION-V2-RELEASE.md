@@ -1,5 +1,28 @@
 # Approved V2 production promotion
 
+## Approved marketing and local refinements, 23 October 2026
+
+Rafael explicitly requested publishing the reviewed changes to the official site
+and removing the preview notice. The release promotes the marketing text from
+preview commit `d446104` plus the locally approved IAAPA header, contextual enquiry
+tab and always-visible planner illustration. The illustration reuses four genuine
+300px catalogue WebPs, displays 60px miniatures and enlarges only the dragged example.
+The preview notice is removed from both official form placements, Home and Contact.
+
+Production retains its eight routes, public indexing, `PREVIEW_MODE=false`,
+production R2 buckets, rate limiter and existing `WORKORG_API_TOKEN`. The preview
+Worker remains separately blocked and noindex. No DNS, secrets or AWS changes are
+part of this publication. The WorkOrg JSON contract and existing form are preserved;
+incomplete or malformed JSON is now rejected with 400 before contacting WorkOrg.
+Automated successful submissions use an in-memory upstream, never real contacts.
+
+The pre-release rollback is the previous official version
+`33587fb3-21dd-4055-80fc-f4ca72406f87`. The guarded publication requires the exact
+committed and pushed production source, original media receipts, tests and fresh
+build. Publication results are recorded below after verification.
+
+## Original V2 promotion
+
 Date: 23 October 2026, Australia/Brisbane. Rafael explicitly requested making
 the current V2 preview official, keeping a separate preview for future work,
 and retiring AWS services afterward. This release performs the website promotion

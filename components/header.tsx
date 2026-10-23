@@ -5,6 +5,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { IaapaExpoInvite } from "@/components/iaapa-expo"
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -43,15 +44,17 @@ function HeaderNavigation({ pathname }: { pathname: string }) {
     <header ref={headerRef} className="pb-shell-header pb-v2">
       <a href="#main-content" className="pb-shell-header__skip">Skip to content</a>
       <div className="pb-container pb-shell-header__bar">
-        <Link href="/" aria-label="Putt Brothers home" className="pb-shell-header__logo" onClick={() => setMobileMenuOpen(false)}>
-          <Image src="/images/design-mode/Logo-White.webp" alt="Putt Brothers" width={216} height={60} priority />
-        </Link>
+        <div className="pb-shell-header__brand">
+          <Link href="/" aria-label="Putt Brothers home" className="pb-shell-header__logo" onClick={() => setMobileMenuOpen(false)}>
+            <Image src="/images/design-mode/Logo-White.webp" alt="Putt Brothers" width={216} height={60} priority />
+          </Link>
+        </div>
         <nav className="pb-shell-header__desktop" aria-label="Primary navigation">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>{item.name}</Link>
           ))}
         </nav>
-        <Link href="/contact#contact" className="pb-button pb-shell-header__cta">Start your project <ArrowUpRight size={18} aria-hidden="true" /></Link>
+        <IaapaExpoInvite />
         <button
           ref={menuButtonRef}
           type="button"
@@ -71,7 +74,6 @@ function HeaderNavigation({ pathname }: { pathname: string }) {
               <span className="pb-shell-header__index" aria-hidden="true">0{index + 1}</span>{item.name}<ArrowUpRight size={22} aria-hidden="true" />
             </Link>
           ))}
-          <Link href="/contact#contact" className="pb-button pb-shell-header__mobile-cta" onClick={() => setMobileMenuOpen(false)}>Start your project <ArrowUpRight size={20} aria-hidden="true" /></Link>
         </div>
       </nav>
     </header>

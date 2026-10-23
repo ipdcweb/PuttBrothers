@@ -5,11 +5,10 @@ import { ScrollHero } from "@/components/v2/scroll-hero"
 import { ClientStories } from "@/components/v2/client-stories"
 import { BorderGlowPanel } from "@/components/ui/border-glow-panel"
 import { Contact } from "@/components/contact"
-import { PreviewNotice } from "@/components/v2/preview-notice"
 
 const experiences = [
   { name: "minigolf" as const, icon: Flag, title: "Custom mini golf", text: "Immersive courses. Unexpected challenges. A little friendly competition that brings everyone together.", href: "/products", link: "Explore the collection" },
-  { name: "hospitality" as const, icon: GlassWater, title: "Spaces with character", text: "Bars, lounges and social spaces that make the whole venue part of the experience.", href: "/contact", link: "Talk about your space" },
+  { name: "hospitality" as const, icon: GlassWater, title: "Interiors & fit-outs", text: "Bars, lounges and social spaces that make the whole venue part of the experience.", href: "/contact", link: "Talk about your space" },
   { name: "interactive" as const, icon: Target, title: "Interactive experiences", text: "Physical play meets digital possibility. Simulators and integrated technology that keep people engaged.", href: "/contact", link: "Explore the possibilities" },
 ]
 const journey = [
@@ -64,7 +63,6 @@ export default function Home() {
         <section className="pb-section pb-paper"><div className="pb-container pb-faq-grid"><div><p className="pb-eyebrow">07 / Let&apos;s talk possibilities</p><h2 className="pb-title">Big ideas.<br /><em>Good questions.</em></h2><p>Here&apos;s a little more about working together.</p><Link href="/contact" className="pb-text-link">Ask us anything <ArrowUpRight aria-hidden="true" /></Link></div><BorderGlowPanel className="pb-faq-board" contentClassName="pb-faq-board__content">{questions.map(({ q, a }) => <details key={q} className="pb-question"><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</BorderGlowPanel></div></section>
       </div>
       {/* The unchanged V1 form sits outside the V2 typography scope. */}
-      <PreviewNotice />
       <Contact />
     </main>
   )

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { ArrowDown, ArrowUpRight } from "lucide-react"
 import { Contact } from "@/components/contact"
-import { PreviewNotice } from "@/components/v2/preview-notice"
 import { InteractiveWorldMap } from "@/components/interactive-world-map"
 import "@/styles/v2-pages.css"
 
@@ -37,7 +36,6 @@ export default function ContactPage() {
       </section>
 
       {/* Keep the approved form outside the V2 typography and colour scope. */}
-      <PreviewNotice />
       <Contact />
 
       <section id="worldwide" className="pb-v2 pb-section pb-paper pb-contact-world" aria-labelledby="worldwide-title">

@@ -41,15 +41,23 @@ export async function POST(request: Request) {
   try {
     const data: ContactFormData = await request.json();
 
-    // Basic validation
-    // if (!data?.personalInformation?.firstName || 
-    //     !data?.personalInformation?.email || 
-    //     !data?.serviceService?.Service) {
-    //   return NextResponse.json(
-    //     { success: false, message: 'Missing required fields' },
-    //     { status: 400 }
-    //   );
-    // }
+    const requiredFields = [
+      data?.personalInformation?.firstName,
+      data?.personalInformation?.lastName,
+      data?.personalInformation?.mobile,
+      data?.personalInformation?.email,
+      data?.howDidYouFindUs?.FindUs,
+      data?.industryInformation?.industry,
+      data?.industryInformation?.businessStatus,
+      data?.industryInformation?.deployment,
+      data?.message,
+    ];
+    if (requiredFields.some((value) => typeof value !== 'string' || !value.trim())) {
+      return NextResponse.json(
+        { success: false, message: 'Please complete all required fields' },
+        { status: 400 },
+      );
+    }
 
     const response = await fetch(API_URL, {
       method: 'POST',
@@ -97,6 +105,12 @@ export async function POST(request: Request) {
     });
 
   } catch (error) {
+    if (error instanceof SyntaxError) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid form data' },
+        { status: 400 },
+      );
+    }
     console.error('Error processing request:', error);
     return NextResponse.json(
       { 
