@@ -11,6 +11,21 @@ remain available. No videos, timings, forms or deployment bindings changed.
 Previous official version for this adjustment:
 `79f38e5c-8af1-47f8-a67e-999e01677d5f`.
 
+- Published source: `d66c92c6213cf621a564d4347f6402fe79ee938e`, active version
+  `5c2488fd-9585-46e9-b520-e2d93f7e25be`. The guard passed all 57 tests, a fresh
+  build and unchanged media/configuration checks. ESLint passed.
+- Chrome confirmed active state without opt-in, decoded desktop video, no
+  enable/pause button, activation after refresh and active mobile video at 390px
+  with no horizontal overflow. Real PageDown/PageUp input advanced the presented
+  frame to 4.429 seconds and reversed it to 2.707 seconds. Home is left at the top.
+- Browser logs contained asynchronous message-channel errors also seen in prior
+  sessions; no media-load failure occurred. Technical checks do not approve the
+  visual experience on Rafael's devices. Evidence is in the ignored local files
+  `tmp/production-always-on-scroll-20261023.log` and
+  `tmp/official-always-on-scroll-20261023.png`.
+- The preview Worker/source was not redeployed. Preserve this explicitly approved
+  always-on production behavior when promoting future preview refinements.
+
 ## Approved marketing and local refinements, 23 October 2026
 
 Rafael explicitly requested publishing the reviewed changes to the official site
