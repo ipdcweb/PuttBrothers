@@ -1,5 +1,20 @@
 # Marketing review, 23 October 2026
 
+## Preview-only original planner image and product modal fit
+
+Rafael requested restoring the original planner illustration from the enquiry
+form. Products now uses the existing /images/layout-drag-drop.png in its natural
+1429 x 879 proportion, retaining the section text and enquiry link. The former
+catalogue collage and its unused board styles were removed from this component.
+
+The product detail modal now reserves space for its caption inside a bounded
+90dvh container. The media area can shrink in both desktop and mobile layouts;
+long captions scroll within their allocated space. Explicit inline objectFit:
+contain overrides Vinext Image's default inline cover style, which previously
+beat the Tailwind object-contain class and cropped the original machine PNGs.
+Original product assets, carousel thumbnails and Unity viewer paths are retained.
+Only V2 is authorized for publication; official source and deployment stay intact.
+
 ## Preview-only mobile menu header contrast
 
 Rafael reported that opening the mobile menu left the header bar white behind the

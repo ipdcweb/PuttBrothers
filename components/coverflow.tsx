@@ -182,16 +182,15 @@ const Coverflow = ({
           }}
         >
           <div
-            style={{
-              height: "auto",
-              maxHeight: "90vh",
-              width: "90vw",
-              maxWidth: "90vw",
-            }}
-            className="relative bg-[#0c022f] rounded-2xl p-4 border-4 border-[#ffcc00]"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="product-modal-title"
+            className="product-detail-modal relative bg-[#0c022f] rounded-2xl p-4 border-4 border-[#ffcc00]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              type="button"
+              aria-label="Close product details"
               onClick={() => {
                 setSelectedProduct(null)
                 setModal3D(false)
@@ -202,11 +201,7 @@ const Coverflow = ({
             </button>
 
             <div
-              className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#0c022f]"
-              style={{
-                height: "auto",
-                maxHeight: "70vh",
-              }}
+              className="product-detail-modal__media relative w-full rounded-xl overflow-hidden bg-[#0c022f]"
             >
               {modal3D ? (
                 <iframe
@@ -224,14 +219,16 @@ const Coverflow = ({
                   src={productImagePath(selectedProduct.FolderName)}
                   alt={selectedProduct.Machine}
                   fill
+                  sizes="90vw"
+                  style={{ objectFit: "contain", objectPosition: "center" }}
                   className="object-contain"
                 />
               )}
             </div>
 
-            <div className="mt-4 text-center">
-              <h3 className="text-3xl font-bold text-[#ffcc00] mb-2">{selectedProduct.Machine}</h3>
-              <p className="text-white text-lg max-w-[90%] mx-auto block">{selectedProduct.Advertising}</p>
+            <div className="product-detail-modal__caption text-center">
+              <h3 id="product-modal-title" className="text-3xl font-bold text-[#ffcc00] mb-2">{selectedProduct.Machine}</h3>
+              <p className="text-white text-lg mx-auto block">{selectedProduct.Advertising}</p>
             </div>
             {selectedProduct.has3D && (
               <button
