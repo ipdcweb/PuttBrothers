@@ -14,6 +14,27 @@ media-error fallback also includes the same final-chapter invitation.
 This is a new preview-only refinement after synchronization. Production remains
 at its approved baseline until Rafael separately approves this addition.
 
+- Published source `d357a4c`, preview version
+  `45e88723-1cfa-4f60-851b-e0c75df6f272`. ESLint, all 60 tests, the build and media
+  guard checks passed. Public checks confirmed the exact booth query, new-tab
+  attributes and visible hint, noindex and blocked preview writes (403).
+- Chrome verified that clicking the header map link opens a separate map tab.
+  Chapter 05 retains its contact CTA and shows the map option beside it on desktop,
+  wrapping below it at 390px. The final chapter and header popover fit the mobile
+  viewport without horizontal overflow. Local proof is ignored under
+  tmp/iaapa-map-invite-preview-20261023.png and
+  tmp/iaapa-map-chapter05-preview-20261023.png.
+- Official deployment history, excluding the CLI update-notification banner,
+  remains identical before/after publication, active version
+  `2781ce5f-a326-41a9-97e6-d52ae30c7165`. Its Home does not contain the new map link.
+- Rafael subsequently asked whether the interactive map can open inside a modal.
+  A fresh HTTP response from the exact supplied map URL returns X-Frame-Options:
+  DENY and CSP frame-ancestors 'self'. Therefore third-party iframe embedding is
+  blocked by the map provider. No embedding/proxy workaround was implemented.
+  A static map-preview modal with a link to the live map is an optional alternative,
+  pending Rafael's preference; current V2 links continue opening the real map in
+  a new tab. Neither the official site nor the preview's write restrictions changed.
+
 ## Preview synchronization with the approved official site
 
 Rafael approved the official website and requested updating the preview to match
