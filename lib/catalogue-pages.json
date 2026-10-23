@@ -732,5 +732,588 @@
         }
       }
     ]
+  },
+  "complete2026": {
+    "title": "Complete 2026",
+    "pdf": "/catalogues/puttbrothers-2026.pdf",
+    "sourceSha256": "c7e9472c73ada4d3e5ff99cc8807b4ed947c3f043f9fcc2c53b8368940a02812",
+    "pages": [
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-01-900.webp",
+          "width": 900,
+          "height": 507,
+          "bytes": 100148,
+          "sha256": "9dbd14fe210905e545f524f39315f55439c233aabcde62b9772052df8cdf5bfa"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-01-1800.webp",
+          "width": 1800,
+          "height": 1013,
+          "bytes": 231704,
+          "sha256": "86fe5760a1625242755a4062e3773a49fac605182704369273747b702741a6ed"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-02-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 116246,
+          "sha256": "6b3b54cf26fb298add225f787fa1507111e21342385e0a6779ca5ebfa31520e4"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-02-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 262746,
+          "sha256": "5f5e402b75e616f4a830237b818b6275bdc61df489ec6260337dd3e942d880ef"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-03-900.webp",
+          "width": 900,
+          "height": 507,
+          "bytes": 102676,
+          "sha256": "92e9dbdae2f8eedb59c704d397b84fba9ba9f286d24368f2162f5070987929f3"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-03-1800.webp",
+          "width": 1800,
+          "height": 1013,
+          "bytes": 234686,
+          "sha256": "e1388fab7e57f0026aaa75ddce991b29cc4ef5170a705d6f021cce3c5d282c80"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-04-900.webp",
+          "width": 900,
+          "height": 507,
+          "bytes": 89754,
+          "sha256": "b81d788128bdd451cf6bafdef9833aa43e34b325f1cc21bbcebeeed4cafcbd85"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-04-1800.webp",
+          "width": 1800,
+          "height": 1013,
+          "bytes": 214654,
+          "sha256": "08f268097f137d4c5c5c42dd465a6af7608c484ee74a576196b246238d8fa84a"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-05-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 100390,
+          "sha256": "1e8ba84ffdf956e14083e4b13208ec0fea359a7ddf253e54d0ee786f67196f6a"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-05-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 228332,
+          "sha256": "5b557cf568f1fc3b6a1161563e54356817357683bf0f816b6b0af338bf302057"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-06-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 87024,
+          "sha256": "c7dfd4f28575f08216f348ad55d1a072d8ff8b0004dc0cd5265639023b8788dd"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-06-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 197890,
+          "sha256": "3676c25ca3dc707a098147191f51f7568325d8752351d9a79f4bf733f626e5c7"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-07-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 89258,
+          "sha256": "b38febe4efd22c73173ade919a7a31cb34f91bcabb02399bec727f26f59aa32d"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-07-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 198572,
+          "sha256": "22475f67027420c22664083ad94f4bd0e51d479462998a60df2960a33e466603"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-08-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 101344,
+          "sha256": "513d8c157379a04fbcba09ee331b99c368a5a7eae1781607f3d8f63dbbad0e0f"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-08-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 227672,
+          "sha256": "45fd9275f086ec36a9f737b225c0e5caf5ae1c6ede0ec0e28ff6d08e42e5864b"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-09-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 88510,
+          "sha256": "57230c345ded95ec0a95b747d9d50cc78971ad7a2780bd651ccecf9774cac7d9"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-09-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 202152,
+          "sha256": "ffda79f941fc688175ba0a42c32d16dd3042a4fb1cd45899ddae8aa42e7d629a"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-10-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 94046,
+          "sha256": "6f272b1a849e6777cc554ca0b4603c2fbcc353b571515d8213a8ff476d7c7885"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-10-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 215684,
+          "sha256": "1421a6009c63963800d01b51642a1f2ca42cb5338e621e8ff7accac7dc4700fc"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-11-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 109160,
+          "sha256": "cbbf3d108e6ef9eeefafaaa237a526ebac20e71e1a80fb5ab889e40aa099288e"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-11-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 257842,
+          "sha256": "8aa4dccf7eebf84d7537d7ce0d4b0651d52aff11fec9ee35f0952b92cb11ce0c"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-12-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 103806,
+          "sha256": "b0f2e386e9fe98a88c02c38a070f4e4a73aabf21ef0850f184bb9b2673eb2da1"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-12-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 241824,
+          "sha256": "4845c32425c553aecae32972a8743c870af6d728b6b025ad27c4910ea2e689d1"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-13-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 105234,
+          "sha256": "c69d8751b4cadedf7dfe686544adc9c2d85eb00f62ce7f8dcb60a57c9035e5bf"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-13-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 243120,
+          "sha256": "8db8283e9db9df78a6491932350e66113d3318591dd77ef74005afd07228830a"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-14-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 98594,
+          "sha256": "ea8a95fcd4e5708766dc3d109dfafad1a4b7f2fa806e93730bc249809f7b3b23"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-14-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 231626,
+          "sha256": "44222d185a53b75649f2b9be12aa5b4bcb2344d3e1565633abf8419b130dafc2"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-15-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 89580,
+          "sha256": "7bdab93e64a9fe8f3e5b9fae481962263c2a28f6bd69be2097bcc80ed37b878e"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-15-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 207440,
+          "sha256": "8cdd8c1c8f13b4969fb0c0f776e178bca64d02a80820f22b78d66a837cd86bf5"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-16-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 109502,
+          "sha256": "81deb2e5281bf29a2e8073bafecc9f844eb7cec786d3d5faac32008158c69abf"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-16-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 254538,
+          "sha256": "bbc740f424448c0bf407b4d8a3dbd839568a3a472b8415d080d6e6f06db1c9c2"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-17-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 106502,
+          "sha256": "ed7616f08f1b81a5dd025998873accb8c5a5fed7782d781a039e0d491be3c8dc"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-17-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 251420,
+          "sha256": "7b0969d3aa39eec8b1e43221161bfbe314d4e747fcd29857858c63d99bebfc02"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-18-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 89662,
+          "sha256": "ac425bcb5a54c21ee006f6e6bc1752653d80e6357588d532f19ccf44847dae5b"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-18-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 201986,
+          "sha256": "5e6ba8417513a77f06b0c5ea0943433eeacaf51dc9ef277855cb3f989494204b"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-19-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 105192,
+          "sha256": "3ec0f0bdd5885bb80a4938721e5ce7b4fa6bf375ccca50798744ac60e98cd099"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-19-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 250040,
+          "sha256": "99a3e8c16762bbc1a89fe19b769ab51261b2b7978bba4c4ee64763cfb9b396a0"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-20-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 97556,
+          "sha256": "df05cb217ae17e47ae1dcdc3f77e040f0af318263333cbdd3047ed639a177459"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-20-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 221606,
+          "sha256": "73ae93c15b586b5c3406383a1ec1a0a1a9e36a460c37e0c8f5035b76a92785c9"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-21-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 98852,
+          "sha256": "6e205518e5331177105632d7e426f0ea01ae4eda32c88bc4841898c773f09839"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-21-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 227482,
+          "sha256": "4584c9941b06b410d1fb519ec45588e6d93e62a98f8fe5f18c512e58d4e2f49d"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-22-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 101096,
+          "sha256": "5c9fd5cd7452821dab9efa8ba4efc9a904cac8b73c4f16e4496d41307ae1d3d3"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-22-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 228262,
+          "sha256": "2152b26b6fd5851c9fab1c5666f1ffca33d237887dfe730709c68751e6d95d48"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-23-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 90272,
+          "sha256": "a79d6b5c7dbd99bd2db070107efe1aeeeaf3415a8862097e8b0e7e78db2c473a"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-23-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 213422,
+          "sha256": "3980aca434a96f554c41babb73cb63398bab9bc7930a861530712e0b5cd0be04"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-24-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 105348,
+          "sha256": "0f565b8d523c0b0d7c2cc9fedd74f00c68e24c780cdfac5e9be3958a80dce30b"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-24-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 243016,
+          "sha256": "d53903eb57f6c3b73245c77da43265c6438c8d021612d6382d66d558b429ccb9"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-25-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 92246,
+          "sha256": "71c56b5de083f74e4d47f4ea4cfe4a75c210fea7a5f34e4c1dc1eda160c72a58"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-25-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 223060,
+          "sha256": "63f02e2a25592cd58e9f152048028767d434eccad66594dc420f0463f1b887e9"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-26-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 82204,
+          "sha256": "49d5bc9a70957f9b53ff8fad0cef787308ac0933525beca30977f15b88ec2420"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-26-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 198632,
+          "sha256": "ba8b4862020cf523d8fc070cd67f9302863be6117710413fedca93f9884ce8d6"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-27-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 113150,
+          "sha256": "3e3865590ecd933e54bd6ab9cd71bbb85b5297a481a3bf6fdc2be5cae4bc4881"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-27-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 268286,
+          "sha256": "add0c213a0af63f882a74c0510e144eca6523b7c945500bb73812596f60c8971"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-28-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 106616,
+          "sha256": "c3d46d6f82e35138de610a26cc9bc7a9f12cc88e8835016bb983ae572ba61312"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-28-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 253632,
+          "sha256": "86d6630a944674a9d698239cc2998b57a0af52b45e017407c2b02fd2e58b1e54"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-29-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 95392,
+          "sha256": "9eb16c1583e34c0adebdf47ce83a7f9caa1bfe0461225c78328614dc39f128ab"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-29-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 218346,
+          "sha256": "935f21e7788a9e1ed388b1de5a239cb34d880924dc303b6ae0628ed23a7d0957"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-30-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 91638,
+          "sha256": "e776581f3128491048c360a2e8bd690cbc9f7e5b1e3d731aa34965e8ca6a75c5"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-30-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 206934,
+          "sha256": "6ea173cd569ad1fbb77de6fe75af3d4b117d919ff85e5be0620e004c309427c6"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-31-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 98570,
+          "sha256": "10bc40b3101ca4d698430f65bd25f5c80811bd3b787d1c2684ff6c7a029642e6"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-31-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 228220,
+          "sha256": "13b361c55269943eecf31f37cd11ba6cdedb2fd16aabd1fa80bdae04c3de99a8"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-32-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 90094,
+          "sha256": "722253e5e25fced95db9f4fb316f19e46393c067488051669c9709623deb491c"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-32-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 203782,
+          "sha256": "8ea6132323091603e04487b89bb111eea3ed2f604024b5a0b4f29f4ff4623239"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-33-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 96360,
+          "sha256": "f6ace40600f9e12e1a251c030bd26591376aacd04f2d17ae0bf446733369ed7c"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-33-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 224702,
+          "sha256": "38646140e2f33cfd20f4bc4b34f06522ef19d9723986fd0f7b9882f3141b4e53"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-34-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 116198,
+          "sha256": "f3a88d81710f95b9a44b2c10b2d195bd429718e5389fbe703d0795b8341e6c52"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-34-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 263218,
+          "sha256": "5fe258912c7c171d0f7b1419bd459c52773b4fe44399ab035f1d51e32f0ca83e"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-35-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 138374,
+          "sha256": "2a2554e3a25b3614473e65b0f81998633fc5836d83bc54e4b11faebbdda4fdd1"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-35-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 336980,
+          "sha256": "67aaa904cbefea5685870048b548a1d4abb3988378fc0861c637feb0815b8da5"
+        }
+      },
+      {
+        "900": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-36-900.webp",
+          "width": 900,
+          "height": 601,
+          "bytes": 100590,
+          "sha256": "9fb362a4d821b2e835271a0d7f675d7ad012e40bffb138e90bb039b8c4242dab"
+        },
+        "1800": {
+          "src": "/images/catalogues/complete2026-c7e9472c73/page-36-1800.webp",
+          "width": 1800,
+          "height": 1202,
+          "bytes": 224590,
+          "sha256": "737517db646c16cedf59efa12979a43e9be9e236ad1afc716d05321d137692ff"
+        }
+      }
+    ]
   }
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowDown, ArrowRight, ArrowUpRight, Download } from "lucide-react"
+import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react"
 import { ProductsShowcase } from "@/components/products-showcase"
 import { SceneImage } from "@/components/v2/scene-image"
 import { PlannerIllustration } from "@/components/v2/planner-illustration"
@@ -117,10 +117,7 @@ export default function ProductsPage() {
               </article>
             ))}
           </div>
-          <a className="pb-full-catalogue" href="/catalogues/puttbrothers-2026.pdf" download>
-            <span><span className="pb-full-catalogue__eyebrow">Explore the latest collection</span><strong>The complete 2026 collection</strong><small>Explore the full Putt Brothers product catalogue · PDF, 18 MB</small></span>
-            <span className="pb-full-catalogue__action">Download catalogue <Download size={22} aria-hidden="true" /></span>
-          </a>
+          <CatalogueViewer catalogueId="complete2026" label="View catalogue" variant="complete" />
         </div>
       </section>
 

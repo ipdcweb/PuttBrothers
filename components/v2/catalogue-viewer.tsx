@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { ArrowRight, ChevronLeft, ChevronRight, Download, LoaderCircle, X, ZoomIn, ZoomOut } from "lucide-react"
+import { ArrowRight, BookOpen, ChevronLeft, ChevronRight, Download, LoaderCircle, X, ZoomIn, ZoomOut } from "lucide-react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { A11y, Zoom } from "swiper/modules"
 import type { Swiper as SwiperType } from "swiper"
@@ -45,7 +45,7 @@ function PageImage({ page, title, number }: { page: CataloguePage; title: string
   )
 }
 
-export function CatalogueViewer({ catalogueId, label }: { catalogueId: CatalogueId; label: string }) {
+export function CatalogueViewer({ catalogueId, label, variant = "card" }: { catalogueId: CatalogueId; label: string; variant?: "card" | "complete" }) {
   const catalogue = catalogues[catalogueId]
   const [open, setOpen] = useState(false)
   const [page, setPage] = useState(0)
@@ -72,9 +72,18 @@ export function CatalogueViewer({ catalogueId, label }: { catalogueId: Catalogue
       }
     }}>
       <DialogTrigger asChild>
-        <button type="button" className="pb-collection__download">
-          <span>{label}<small>Browse the catalogue</small></span>
-          <ArrowRight size={23} aria-hidden="true" />
+        <button type="button" className={variant === "complete" ? "pb-full-catalogue" : "pb-collection__download"}>
+          {variant === "complete" ? (
+            <>
+              <span><span className="pb-full-catalogue__eyebrow">Explore the latest collection</span><strong>The complete 2026 collection</strong><small>Explore the full Putt Brothers product catalogue · PDF, 18 MB</small></span>
+              <span className="pb-full-catalogue__action">{label}<BookOpen size={22} aria-hidden="true" /></span>
+            </>
+          ) : (
+            <>
+              <span>{label}<small>Browse the catalogue</small></span>
+              <ArrowRight size={23} aria-hidden="true" />
+            </>
+          )}
         </button>
       </DialogTrigger>
       {open && (

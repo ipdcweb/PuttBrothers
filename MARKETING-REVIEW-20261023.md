@@ -1,5 +1,18 @@
 # Marketing review, 23 October 2026
 
+## Preview-only complete 2026 catalogue reader
+
+Rafael requested extending the same in-site reader to the highlighted complete
+2026 collection. The yellow panel now opens CatalogueViewer instead of starting
+a download; its black action says View catalogue with a book icon. The original
+18 MB PDF remains available from Download PDF inside the modal.
+
+The existing shared reader supplies single-page browsing, arrows, mobile swipe,
+zoom, page counter and accessible closing. All 36 original PDF pages are rendered
+at 900px/1800px WebP with versioned paths. The generator verifies and reuses the
+unchanged Mini Golf and Table Golf exports rather than regenerating them. The
+asset tests now cover all three PDFs. V2 only; production remains unchanged.
+
 ## Preview-only catalogue reader and collection calls to action
 
 Rafael requested viewing the existing Mini Golf and Table Golf catalogues inside

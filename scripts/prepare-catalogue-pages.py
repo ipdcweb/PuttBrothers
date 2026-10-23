@@ -16,10 +16,25 @@ POPPLER = shutil.which("pdftoppm")
 if not POPPLER:
     raise SystemExit("Poppler pdftoppm is required")
 
+manifest = ROOT / "lib" / "catalogue-pages.json"
+previous = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else {}
 catalogues = {}
-for key, title in (("minigolf", "Mini Golf"), ("tablegolf", "Table Golf")):
-    pdf = ROOT / "public" / "catalogues" / f"{key}-latest.pdf"
+for key, title, filename in (
+    ("minigolf", "Mini Golf", "minigolf-latest.pdf"),
+    ("tablegolf", "Table Golf", "tablegolf-latest.pdf"),
+    ("complete2026", "Complete 2026", "puttbrothers-2026.pdf"),
+):
+    pdf = ROOT / "public" / "catalogues" / filename
     digest = sha256(pdf.read_bytes()).hexdigest()
+    cached = previous.get(key)
+    if cached and cached["sourceSha256"] == digest and len(cached["pages"]) == len(PdfReader(pdf).pages):
+        variants = [variant for page in cached["pages"] for variant in page.values()]
+        if all((ROOT / "public" / item["src"].lstrip("/")).is_file() and
+               sha256((ROOT / "public" / item["src"].lstrip("/")).read_bytes()).hexdigest() == item["sha256"]
+               for item in variants):
+            catalogues[key] = cached
+            print(f"{title}: {len(cached['pages'])} existing pages verified", flush=True)
+            continue
     release = f"{key}-{digest[:10]}"
     output = ROOT / "public" / "images" / "catalogues" / release
     output.mkdir(parents=True, exist_ok=True)
@@ -53,12 +68,11 @@ for key, title in (("minigolf", "Mini Golf"), ("tablegolf", "Table Golf")):
         pages.append(variants)
     catalogues[key] = {
         "title": title,
-        "pdf": f"/catalogues/{key}-latest.pdf",
+        "pdf": f"/catalogues/{filename}",
         "sourceSha256": digest,
         "pages": pages,
     }
-    print(f"{title}: {len(pages)} pages rendered")
+    print(f"{title}: {len(pages)} pages rendered", flush=True)
 
-manifest = ROOT / "lib" / "catalogue-pages.json"
 manifest.write_text(json.dumps(catalogues, indent=2) + "\n", encoding="utf-8")
 print(f"Manifest: {manifest.relative_to(ROOT)}")

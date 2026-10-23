@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto'
 const manifest = JSON.parse(readFileSync(new URL('../lib/catalogue-pages.json', import.meta.url), 'utf8'))
 const digest = data => createHash('sha256').update(data).digest('hex')
 
-for (const [id, expectedPages] of [['minigolf', 33], ['tablegolf', 12]]) {
+for (const [id, expectedPages] of [['minigolf', 33], ['tablegolf', 12], ['complete2026', 36]]) {
   test(`${id} reader has every page and responsive WebP exports from the current PDF`, () => {
     const catalogue = manifest[id]
     const pdf = readFileSync(new URL(`../public${catalogue.pdf}`, import.meta.url))
@@ -16,7 +16,7 @@ for (const [id, expectedPages] of [['minigolf', 33], ['tablegolf', 12]]) {
     for (const page of catalogue.pages) {
       for (const width of [900, 1800]) {
         const variant = page[width]
-        assert.match(variant.src, /^\/images\/catalogues\/[a-z]+-[a-f0-9]{10}\/page-\d{2}-(900|1800)\.webp$/)
+        assert.match(variant.src, /^\/images\/catalogues\/[a-z0-9]+-[a-f0-9]{10}\/page-\d{2}-(900|1800)\.webp$/)
         assert.ok(!paths.has(variant.src), 'Each page must have a unique image')
         paths.add(variant.src)
         const image = readFileSync(new URL(`../public${variant.src}`, import.meta.url))

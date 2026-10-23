@@ -219,6 +219,9 @@
 
 .pb-full-catalogue {
   display: flex;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
