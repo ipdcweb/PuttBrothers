@@ -21,6 +21,24 @@ flexible copy area in equal-height yellow footer strips, keeping each pair's
 separator aligned and making the whole strip clickable. The complete 2026 PDF
 retains its download behaviour with a yellow panel, larger heading and a black
 button. Scope is only V2 preview, preserving production, DNS and integrations.
+- Published source `6e50001`, preview version
+  `8dd6161e-2fe3-4dd2-8962-2ff8d654afaa`. ESLint, all 62 tests, media checks and
+  the guarded build/release passed. Typecheck reports only the two pre-existing
+  worker.ts CacheStorage.default errors; no catalogue/component type errors.
+- Verified all 90 published WebP variants via HTTP 200 and their SHA-256 hashes.
+  The preview retains noindex, nofollow, noarchive. PDF originals are unchanged.
+- Chrome confirmed both catalogues, page counters (33 and 12), next/last/first
+  navigation, disabled end controls, fit/zoom, Escape/close, focus restoration,
+  scroll lock and reopening at page one. No reader images mount before opening;
+  only current/adjacent pages mount while reading. No console errors reported.
+- Reader bounds fit 1360x900, 1366x700, 820x1000 and 390x844. Mobile uses 900px
+  WebPs with contain and no horizontal page overflow. Native phone swipe/pinch
+  and visual approval remain for Rafael to check on his device.
+- Paired card footer tops match exactly on desktop, with a common 104px outer
+  height and yellow background. The complete 2026 panel is yellow, the heading
+  is enlarged, and the black download action retains its original PDF link.
+- Proofs: tmp/catalogue-reader-v2-20261023.png and
+  tmp/catalogue-yellow-actions-v2-20261023.png. The preview reader is open in Chrome.
 
 ## Preview-only original planner image and product modal fit
 
