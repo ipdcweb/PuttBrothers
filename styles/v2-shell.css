@@ -2,6 +2,7 @@
 /* Offset in-page anchors for the sticky shell without changing the form's layout. */
 main #contact { scroll-margin-top: 100px; }
 .pb-shell-header { --header-shade: 0; position: sticky; top: 0; z-index: 40; background: transparent; color: #fff; isolation: isolate; }
+.pb-shell-header[data-menu-open="true"] { background: #0b0d10; color: #fff; }
 .pb-shell-header::before { content: ""; position: absolute; inset: 0 0 -24px; z-index: -1; background: linear-gradient(#080808d9, #08080894, transparent); opacity: var(--header-shade); pointer-events: none; }
 .pb-shell-header + main { margin-top: -94px; }
 .pb-shell-header + main > .pb-v2:first-child > .pb-home-hero { padding-top: 94px; min-height: 100svh; }

@@ -1,5 +1,13 @@
 # Marketing review, 23 October 2026
 
+## Preview-only mobile menu header contrast
+
+Rafael reported that opening the mobile menu left the header bar white behind the
+white Putt Brothers wordmark. The header now exposes its existing menu-open state
+and uses solid #0b0d10 while open, matching the navigation panel. The original logo
+and closed-state transparency/scroll shade remain unchanged. This correction is
+limited to the V2 preview; production is not part of this publication.
+
 ## Preview-only IAAPA booth map invitation
 
 Rafael requested adding the supplied IAAPA map URL to the header invitation and
