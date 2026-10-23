@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowDown, ArrowRight, ArrowUpRight, Download } from "lucide-react"
 import { ProductsShowcase } from "@/components/products-showcase"
 import { SceneImage } from "@/components/v2/scene-image"
+import { PlannerIllustration } from "@/components/v2/planner-illustration"
 import "@/styles/v2-pages.css"
 
 export const metadata: Metadata = {
@@ -134,19 +135,28 @@ export default function ProductsPage() {
         />
       </div>
 
-      <section className="pb-products-planner" aria-labelledby="planner-title">
-        <div className="pb-container pb-products-planner__grid">
-          <div>
-            <p className="pb-eyebrow">Your space. Your possibilities.</p>
-            <h2 id="planner-title">See how it fits.</h2>
-            <p>Sketch your venue, arrange your favourite designs and bring your idea one step closer to reality with our layout planner.</p>
-            <Link href="/layout-planner" className="pb-button pb-products-planner__button">Plan your space <ArrowUpRight size={20} aria-hidden="true" /></Link>
+      <section id="planner-guide" className="pb-products-planner" aria-labelledby="planner-title">
+        <div className="pb-container">
+          <div className="pb-products-planner__intro">
+            <div>
+              <p className="pb-eyebrow">Your space. Your possibilities.</p>
+              <h2 id="planner-title">See how it fits.</h2>
+            </div>
+            <p>Explore how your favourite designs could work in your venue. Our enquiry form includes a layout planner, so you can try different ideas before sharing them with our team.</p>
           </div>
-          <ol className="pb-products-planner__steps">
-            <li><span>01</span><div><h3>Map your space</h3><p>Start with your venue’s shape and dimensions.</p></div></li>
-            <li><span>02</span><div><h3>Make it your own</h3><p>Explore the placement of your chosen course designs.</p></div></li>
-            <li><span>03</span><div><h3>Start the conversation</h3><p>Share your layout with our team through the contact form.</p></div><ArrowRight size={24} aria-hidden="true" /></li>
-          </ol>
+          <div className="pb-products-planner__preview">
+              <PlannerIllustration />
+              <div>
+                <p className="pb-products-planner__instruction">Make room for your ideas in three simple steps.</p>
+                <ol className="pb-products-planner__steps">
+                  <li><span>01</span><div><h3>Start in the enquiry form</h3><p>Add your details, open <strong>Plan your venue layout</strong> and select <strong>Create your Layout</strong>.</p></div></li>
+                  <li><span>02</span><div><h3>Map your space in m²</h3><p>Draw your venue’s shape and enter its dimensions to see your available area in square metres.</p></div></li>
+                  <li><span>03</span><div><h3>Choose, place and try again</h3><p>Pick your designs, drag them into position and explore different arrangements. Your finished layout summary PDF is added to your enquiry.</p></div></li>
+                </ol>
+                <Link href="/contact#contact" className="pb-button pb-products-planner__button">Open the enquiry form <ArrowRight size={20} aria-hidden="true" /></Link>
+                <p className="pb-products-planner__device-note">For the full drag-and-drop experience, use a desktop or laptop.</p>
+              </div>
+          </div>
         </div>
       </section>
     </main>

@@ -1,9 +1,74 @@
 # Marketing review, 23 October 2026
 
+## Preview synchronization with the approved official site
+
+Rafael approved the official website and requested updating the preview to match
+it for future improvements without affecting production. The synchronization
+includes all prior local marketing/header/planner changes, the always-on scroll
+hero, contact loading/success dialog, planner reset after successful submission,
+failure preservation, duplicate-send protection and server-side validation.
+
+Source baseline: production runtime `6895dbf`, documented at `a6f0997`, official
+Worker version `2781ce5f-a326-41a9-97e6-d52ae30c7165`. The V2 branch retains its
+own preview notice, noindex metadata/headers/robots, PREVIEW_MODE=true, review R2
+buckets, rate limiter and guarded preview deployment. Real form/PDF writes remain
+blocked. No production files, routes, DNS, secrets or deployments are changed.
+
+The local changes described below are historical. They are now included in this
+synchronization rather than left pending as uncommitted preview refinements.
+Publication and verification results follow after the guarded release.
+
 Source: the twelve-page `Review website Pb_01.pdf` supplied by Rafael.
 Rafael approved applying the review to the existing V2 temporary preview only,
 keeping the product carousel. Marketing approval and production promotion are
 separate steps. Do not deploy this revision to `puttbrothers-com` automatically.
+
+## Local follow-up and subsequent official promotion
+
+Rafael requested further local changes after reviewing the published preview.
+These working-tree changes remain uncommitted here and have not been deployed to
+the preview Worker. Rafael subsequently authorized promoting their exact UI
+snapshot to the separate official production worktree. Official runtime source
+`8385195`, version `79f38e5c-8af1-47f8-a67e-999e01677d5f`, includes them and removes
+the preview notice from Home and Contact. Production form/PDF writes are enabled;
+this preview remains blocked. See the production worktree's release record.
+
+- The IAAPA invitation now replaces the far-right header project CTA. It is no
+  longer beside the logo. Its existing details popup and contact destination remain.
+- A narrow yellow enquiry tab stays at the right edge, centered in the viewport.
+  Contextual invitations change with the visible section. It uses the existing
+  Montserrat font, a message icon and an internal contact link. Width is 38px on
+  desktop and 32px on phones; it hides behind dialogs, menus and focused form fields.
+  It is excluded from the standalone/embedded planner through AppShell's existing
+  planner boundary.
+- Products' yellow planner section is now always visible, with no expansion button.
+  A responsive HTML/CSS illustration replaces the AI image in this section. It uses
+  four real catalogue renders with catalogue-derived names: Air Hockey (4), Bob's
+  Plinko (7), Soccer (13) and Golden Gate (20). The four existing transparent 300px
+  WebPs total 37,348 bytes and need no new image service or animation dependency.
+  Following Rafael's size review, the library thumbnails and placed designs render
+  at 60px; only the illustrative dragged Air Hockey design is larger (up to 160px).
+  The composition is labelled as an illustrative arrangement, not to scale, and
+  presents no fake interactive controls. The actual planner, Contact form and its
+  original image are unchanged. The three steps explain square metres, selecting
+  and positioning designs, and the summary PDF. Its CTA opens the enquiry form.
+- Local validation: ESLint, fresh Vinext build and all 56 existing tests passed.
+  Chrome confirmed contextual caption changes, the internal contact destination,
+  the earlier guide expansion, the header placement and mobile sizing.
+  Local image HEAD returned 200 and an empty local contact request stayed blocked.
+- The always-visible illustration follow-up passed ESLint and a fresh Vinext build.
+  Chrome verified all four original 300px WebPs loaded, seven miniatures render at
+  60px, only the dragged design is larger, and no details/summary remains. There
+  was no horizontal overflow at 1360x900, 1366x768, 768x1024 or 390x844. The desktop
+  section measured about 868px high. The CTA opened local /contact#contact with
+  the existing form and planner entry present; no form data was submitted. The
+  final local browser check reported no console errors. Chrome remains on the
+  local Products planner guide. Visual approval is Rafael's next step.
+- Review URL: http://127.0.0.1:8792/products#planner-guide . Wrangler runs only on
+  loopback with local bindings and PREVIEW_MODE=true. Visual approval is pending.
+
+The release record below describes the earlier published preview, which has not
+been redeployed with these local adjustments.
 
 ## Implemented changes
 

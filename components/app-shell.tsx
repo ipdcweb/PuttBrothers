@@ -6,6 +6,7 @@ import ScrollToTop from "@/components/scroll-to-top"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTopOnRouteChange } from "@/components/scroll-to-top-on-route-change"
+import { FloatingEnquiry } from "@/components/floating-enquiry"
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -21,6 +22,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <Header />
       {children}
       <Footer />
+      <FloatingEnquiry key={pathname ?? "/"} pathname={pathname ?? "/"} />
       <ScrollToTop />
     </>
   )

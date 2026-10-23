@@ -124,6 +124,18 @@ test("missing WorkOrg credentials fail without contacting the upstream", async (
   assert.equal(f.calls.length, 0)
 })
 
+test("incomplete or mistyped contact data returns 400 without creating an upstream lead", async () => {
+  for (const payload of [{}, null, { ...contactPayload(), message: "   " }, {
+    ...contactPayload(), personalInformation: { ...contactPayload().personalInformation, email: 123 },
+  }]) {
+    const f = fixture()
+    const response = await f.post(payload)
+    assert.equal(response.status, 400)
+    assert.equal((await response.json()).success, false)
+    assert.equal(f.calls.length, 0)
+  }
+})
+
 test("an upstream failure stays a failure without exposing its response body in production", async () => {
   const f = fixture({ upstream: async () => new Response("private upstream diagnostic", { status: 503, statusText: "Service Unavailable" }) })
   const response = await f.post(contactPayload())

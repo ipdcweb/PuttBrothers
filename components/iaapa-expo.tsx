@@ -24,7 +24,7 @@ export function IaapaExpoInvite() {
           <span>Meet us at</span><strong>IAAPA Expo 2026!</strong>
         </button>
       </PopoverTrigger>
-      <PopoverContent align="start" sideOffset={12} collisionPadding={16} className="pb-v2 pb-expo-popover" aria-labelledby="iaapa-expo-title">
+      <PopoverContent align="end" sideOffset={12} collisionPadding={16} className="pb-v2 pb-expo-popover" aria-labelledby="iaapa-expo-title">
         <button type="button" className="pb-expo-popover__close" aria-label="Close IAAPA details" onClick={() => setOpen(false)}><X size={20} aria-hidden="true" /></button>
         <p className="pb-eyebrow">Meet the team</p>
         <h2 id="iaapa-expo-title">{iaapaExpo.name}</h2>

@@ -1,5 +1,14 @@
 # V2 workspace boundary
 
+- On 23 October 2026 Rafael approved the current official website and requested
+  bringing this preview up to date as the isolated workspace for future changes.
+  Baseline: production source `6895dbf`, documented at `a6f0997`, active version
+  `2781ce5f-a326-41a9-97e6-d52ae30c7165`. Include the approved contact feedback,
+  planner collapse after success and always-on hero in all future work. Those
+  scoped Contact changes supersede the historical unchanged-form restriction.
+  Preserve the WorkOrg contract and picker. Deploy only this preview Worker,
+  retaining review R2, PREVIEW_MODE=true, noindex and blocked contact/PDF writes.
+
 - Work only in `WebsiteLocal_02` on `website-v2` for the redesign.
 - `../WebsiteLocal` is the stable V1 on `main`. Do not edit it as part of V2.
 - Baseline: tag `v1.0.0-2026-10-01`, commit `30bccc445d63a70344674a6d9fddd7785488d9ce`.
