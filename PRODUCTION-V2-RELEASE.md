@@ -1,5 +1,16 @@
 # Approved V2 production promotion
 
+## Always-on scroll experience, 23 October 2026
+
+Rafael requested that the Home scroll experience remain enabled. The hero now
+starts active without opt-in, ignores the old browser motion choice and removes
+the enable/pause toggle. Native scroll still controls the same reversible video
+seeks and chapter timeline. Skip intro, media retry and static error fallback
+remain available. No videos, timings, forms or deployment bindings changed.
+
+Previous official version for this adjustment:
+`79f38e5c-8af1-47f8-a67e-999e01677d5f`.
+
 ## Approved marketing and local refinements, 23 October 2026
 
 Rafael explicitly requested publishing the reviewed changes to the official site
