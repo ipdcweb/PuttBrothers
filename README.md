@@ -1,5 +1,12 @@
 # Putt Brothers website - V2 review workspace
 
+Current baseline: synchronized with the approved official site on 23 October 2026,
+preview runtime source `1af8fe3`. Start future improvements here. Contact feedback,
+planner reset and always-on scroll match production; preview-only notice, noindex,
+review storage and disabled form/PDF writes remain intentional. Publish only with
+the preview guard, and obtain separate approval before updating the official site.
+See `PREVIEW-RELEASE.md` and `MARKETING-REVIEW-20261023.md` for the verified release.
+
 Local redesign implemented on 1 October 2026 from the stable V1. The new Home,
 Products, About, Contact surrounds, header and footer follow the supplied brand
 direction. The approved contact form and WorkOrg contract remain unchanged. PDF storage

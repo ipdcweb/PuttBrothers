@@ -18,6 +18,29 @@ The local changes described below are historical. They are now included in this
 synchronization rather than left pending as uncommitted preview refinements.
 Publication and verification results follow after the guarded release.
 
+- Published preview source: `1af8fe3`, version
+  `e39bca17-fb7d-46a2-bcd4-7fdf88183947`, on the existing workers.dev URL.
+- The preview guard passed all 60 tests, a fresh Vinext build, 78 WebP checks and
+  original media receipts. ESLint had no errors, with the eight pre-existing
+  Contact warnings. Approved UI/contact source hashes match production.
+- A full diff across app/components/lib/styles/hooks/assets/public and worker.ts
+  has only the five expected environment files: Home/Contact preview notice,
+  metadata layout, global noindex headers and robots.txt. The notice is the only
+  Home/Contact markup difference; review storage/deployment configuration remains
+  isolated. Common contact/scroll code and the new tests are synchronized.
+- Public checks passed five HTML pages, noindex, blocked contact/PDF POST (403),
+  all 39 products, 30 planner records, four illustration WebPs and desktop/mobile
+  video byte ranges (206). Browser checks confirmed automatic hero readiness,
+  mobile layout with 60px miniatures, contact/planner expansion, no horizontal
+  overflow or console errors. Chrome is left on the preview Home.
+- Official deployment history was read before and after publication and is
+  identical. Official version remains `2781ce5f-a326-41a9-97e6-d52ae30c7165`.
+  Production worktree/files, Worker, DNS and secrets were not changed.
+- Local evidence is ignored under tmp/preview-sync-release-20261023.log,
+  tmp/verify-preview-sync-20261023.json and
+  tmp/preview-synced-with-official-20261023.png. New improvements should start from
+  this baseline and be approved in preview before any future official release.
+
 Source: the twelve-page `Review website Pb_01.pdf` supplied by Rafael.
 Rafael approved applying the review to the existing V2 temporary preview only,
 keeping the product carousel. Marketing approval and production promotion are

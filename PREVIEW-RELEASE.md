@@ -1,5 +1,18 @@
 # V2 client review release
 
+## Current baseline, synchronized with official on 23 October 2026
+
+Rafael approved the official site and authorized updating this preview for future
+improvements. Preview source `1af8fe3`, version
+`e39bca17-fb7d-46a2-bcd4-7fdf88183947`, includes the official marketing/header,
+planner illustration, always-on scroll and contact feedback/reset improvements.
+All 60 tests, the build and public/browser checks passed. Form/PDF writes remain
+blocked, review buckets and noindex remain isolated, and the preview notice is
+retained. The official deployment was confirmed unchanged at version
+`2781ce5f-a326-41a9-97e6-d52ae30c7165` before/after this publication.
+See `MARKETING-REVIEW-20261023.md` for source parity and verification details.
+The records below describe earlier preview releases.
+
 Date: 12 October 2026.
 
 ## Authorized scope
