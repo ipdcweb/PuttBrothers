@@ -29,6 +29,22 @@ Previous official version: `5c2488fd-9585-46e9-b520-e2d93f7e25be`.
 The guarded release record follows after publication. Future preview promotions
 must preserve this explicitly approved form behavior and the always-on hero.
 
+- Published source: `6895dbf`, active official version
+  `2781ce5f-a326-41a9-97e6-d52ae30c7165`. The guard passed 60 tests, a fresh
+  Vinext build, 78 WebP checks and 198 unchanged production-media receipts.
+- Public smoke checks passed five pages, required assets, 39 products, 30 planner
+  records and all aliases. Empty official contact/PDF requests still return 400;
+  preview writes still return 403. Production credentials/bindings remain intact.
+- Chrome on the official Contact page confirmed the form present with aria-busy
+  false initially, no dialog before sending, no preview notice, no horizontal
+  overflow and no console errors. No valid form or PDF was submitted.
+- The isolated local dialog review remains at http://127.0.0.1:8795 for Rafael's
+  visual approval. It uses the production dialog with local state transitions and
+  a native image shim, not a real contact submission. Proof images are ignored
+  under tmp/contact-sending-review-20261023.png and
+  tmp/contact-success-review-20261023.png. The standalone browser review is separate
+  from the handler tests that verify planner reset and failure preservation.
+
 ## Always-on scroll experience, 23 October 2026
 
 Rafael requested that the Home scroll experience remain enabled. The hero now
