@@ -8,6 +8,15 @@ and uses solid #0b0d10 while open, matching the navigation panel. The original l
 and closed-state transparency/scroll shade remain unchanged. This correction is
 limited to the V2 preview; production is not part of this publication.
 
+- Published source `26a291a`, preview version
+  `4fecce31-5fcb-443c-9703-36e94ecb4775`. ESLint and the guarded build/release passed.
+- Chrome reproduced the transparent header before publication, then confirmed
+  rgb(11,13,16) for both header and menu at 390px and 320px, with a loaded original
+  logo and no horizontal overflow. Closing restores transparency, and selecting
+  Products closes the menu and resets the state. No console errors were reported.
+- Local proof: tmp/mobile-menu-dark-header-20261023.png. Production files and
+  deployment were not modified. Rafael retains visual approval on the phone.
+
 ## Preview-only IAAPA booth map invitation
 
 Rafael requested adding the supplied IAAPA map URL to the header invitation and
