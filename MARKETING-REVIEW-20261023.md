@@ -12,6 +12,17 @@ zoom, page counter and accessible closing. All 36 original PDF pages are rendere
 at 900px/1800px WebP with versioned paths. The generator verifies and reuses the
 unchanged Mini Golf and Table Golf exports rather than regenerating them. The
 asset tests now cover all three PDFs. V2 only; production remains unchanged.
+- Published source `60c63b4`, preview version
+  `17afd18d-16f4-4aea-aa01-256fa2bf7a02`. ESLint, all 63 tests, media checks and
+  the guarded build/release passed. All 162 published page variants across the
+  three catalogues return HTTP 200 and match their recorded SHA-256 hashes.
+- Chrome verified the complete panel opens Complete 2026 catalogue with 36
+  pages, next/end/home navigation, disabled last-page control and the original
+  /catalogues/puttbrothers-2026.pdf download link inside the reader. At 390x844
+  the modal fits the viewport, uses loaded 900px WebPs with contain and has no
+  horizontal overflow. No console errors were reported. Preview stays noindex.
+- Desktop proof: tmp/complete-2026-reader-v2-20261023.png. Reader is open in Chrome;
+  visual approval and native phone swipe remain with Rafael.
 
 ## Preview-only catalogue reader and collection calls to action
 
