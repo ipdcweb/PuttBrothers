@@ -1,145 +1,152 @@
-# Putt Brothers: retirada completa das dependências AWS
+# Putt Brothers: migração Cloudflare e retirada da AWS
 
-Solicitado por Rafael em 23 de outubro de 2026, após a migração do catálogo/3D.
+Estado final verificado em **23 de outubro de 2026, às 10:11 de Brisbane**.
+Este registro substitui os estados intermediários de preparação e pausa.
 
-## Execução
+**O website oficial funciona na Cloudflare e os recursos AWS da Putt Brothers
+incluídos no inventário e no escopo aprovado foram excluídos. A conta AWS
+permanece aberta por decisão expressa de Rafael; seu fechamento não está
+pendente.** Isso não representa certificado de cobrança futura zerada.
 
-1. Substituir o upload S3 por armazenamento nativo R2 e URLs próprias do site.
-2. Retirar SDK, configuração e código opcional de integração AWS da aplicação.
-3. Migrar o backend da produção mantendo sua aparência V1, o WorkOrg e os oito
-   caminhos de domínio atuais. A revisão V2 segue em seu Worker separado.
-4. Conferir catálogo, imagens, dez modelos Unity e armazenamento de PDF antes e
-   depois da publicação. Preservar a versão anterior para recuperação.
-5. Com acesso autenticado à conta AWS, inventariar todos os recursos atribuíveis
-   à Putt Brothers, copiar conteúdo adicional e PDFs históricos e tratar seus
-   links. Somente então preparar a exclusão dos alvos identificados.
+## Website oficial e preview
 
-## Recursos conhecidos e isolamento
+- Oficial: [puttbrothers.com](https://puttbrothers.com). A V2 aprovada foi publicada
+  em 23/10 às 08:11 de Brisbane, com código `f99da08`, na branch
+  `website-v2-production`. As atualizações deste documento não publicam código.
+- Foram mantidas as oito rotas dos domínios `.com`, `.ch`, `.de` e `.uk`, o
+  domínio canônico `.com` e os sete redirecionamentos. Não houve alteração DNS.
+  O formulário e seu contrato WorkOrg/`FindLead` foram preservados.
+- Catálogo, imagens, dez builds Unity e armazenamento de novos PDFs usam
+  Cloudflare. Mídia e PDFs ficam em R2 privado, acessíveis por URLs próprias
+  do site. Os nomes e identificadores de infraestrutura ficam nos registros
+  privados da operação.
+- A publicação passou por 56 testes, verificação de 78 WebP do carousel, 198
+  arquivos de mídia R2 e oito vídeos. No celular, os 39 produtos circulam
+  individualmente nos dois sentidos, com WebP de 300 px; no desktop, 720 px.
+- O [preview V2](https://puttbrothers-v2-preview.team-web-592.workers.dev/) permanece
+  separado, com `noindex`, armazenamento de revisão e contato/upload PDF
+  bloqueados. Seu código publicado continua `d28307b`; o ajuste de tipagem
+  `ef3215f` e os commits posteriores de documentação não geraram outro deploy.
 
-- Produção Cloudflare: `puttbrothers-com`, conta
-  `5929fdac0cd2d82d7378551cf4c20774`. Versão anterior:
-  `7193bac3-40e3-4d83-b8f3-006e6bdcb91a`.
-- Fonte isolada de produção: `../WebsiteLocal_AwsRetirement`, branch
-  `aws-retirement-production`. A pasta original V1 e suas alterações locais
-  permanecem preservadas.
-- R2 de mídia: `puttbrothers-product-media-production`, prefixo
-  `catalog-20261023-v1`, 198 arquivos / 409.833.999 bytes, todos confirmados por
-  download, tamanho, MIME e SHA-256.
-- PDFs: bucket privado `puttbrothers-layout-pdfs-production`; revisão usa
-  `puttbrothers-layout-pdfs-review`. Os links novos são
-  `/layout-pdfs/YYYY/MM/<UUID>.pdf`, sem e-mail no nome da chave.
-- Origem AWS conhecida de mídia: `puttbrothers-images`, região
-  `ap-southeast-2`. API pública antiga: `va0d7iedl5`, mesma região.
-- Nomes de Secrets existentes de produção, valores não lidos: `AWS_ACCESS_KEY_ID`,
-  `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `LAYOUT_PDF_BUCKET`,
-  `LAYOUT_PDF_PUBLIC_BASE_URL` e `WORKORG_API_TOKEN`.
-- Preservar `WORKORG_API_TOKEN`. Segredos AWS obsoletos só serão removidos do
-  Worker após a publicação e os testes da substituição.
+## Aplicativo antigo preservado
 
-## PDFs e contratos preservados
+A cópia integral do código, das configurações e dos objetos recuperáveis foi
+salva na pasta privada do aplicativo escolhida por Rafael no OneDrive. O arquivo
+foi reconstruído, verificado integralmente e extraído. Nenhum código do aplicativo,
+registro de cliente, variável de ambiente, objeto privado ou inventário detalhado
+foi incluído no Git público do website.
 
-O upload continua devolvendo `success`, `url`, `key`, `filename`; o planner e o
-formulário continuam usando `layoutPdfUrl` e o mesmo JSON WorkOrg/`FindLead`.
-O campo de evento legado `s3Url` permanece como compatibilidade, contendo a URL
-Cloudflare. Não há envio de lead real durante testes.
+| Evidência da preservação local | Resultado |
+| --- | --- |
+| Arquivo completo | 3.075.105.043 bytes |
+| SHA-256 do arquivo | `98e4721e818eb913ef60d91aae520e7e6e861c35cf7b6ec30bdca66d27e48b82` |
+| Extração verificada | 2.090 arquivos/membros |
+| Objetos S3 preservados | 418 objetos, 719.160.718 bytes |
+| Lambda preservado | 24 funções, 901 versões, 95 ZIPs únicos |
+| Pacotes Lambda | 2.790.463.966 bytes |
+| Fontes do backend recuperadas | 29 arquivos |
 
-O upload exige origem igual, multipart com exatamente um PDF, assinatura `%PDF-`,
-limite de 10 MiB e limitador de frequência. Corpo multipart é lido com limite de
-12 MiB. Downloads têm UUID, R2 privado, cabeçalhos sem cache, `noindex`, `nosniff`
-e sem referrer. Não há endpoint público de listagem/exclusão de PDFs.
+O recibo local registra validação e extração **PASS**. Código Lambda, metadados
+de configuração, templates CloudFormation, exportações da API e objetos S3,
+incluindo PDFs históricos, estão nessa preservação. Os comprovantes e a relação
+exata dos recursos permanecem privados, fora deste repositório.
+O pacote final de comprovantes também foi salvo nessa pasta privada e validado
+localmente: 14 membros TAR, com todos os tamanhos e hashes conferidos, incluindo
+as provas de ausência dos recursos e o inventário final sem resíduos.
 
-## Conteúdo antigo antes da exclusão
+Limites informados e aceitos antes da exclusão:
 
-Os 198 arquivos representam os usados atualmente pelo website, não um inventário
-integral da conta ou do bucket AWS, cuja listagem pública é bloqueada. Não presumir
-que não existam outros arquivos, versões, bancos, funções ou serviços cobrados.
+- **A interface mobile original não foi encontrada.** A inspeção dos 95 pacotes
+  encontrou zero marcadores de UI mobile e 35 ocorrências de metadados `.expo`.
+  Os 29 arquivos recuperados são fontes do backend; não constituem o aplicativo
+  mobile completo.
+- **Os registros SQL foram dispensados por Rafael.** Não foi feito BACPAC,
+  `.bak` ou export desses dados. O banco foi excluído sem snapshot final e sem
+  retenção de backups automáticos, conforme o escopo confirmado.
+- **O disco raiz EC2 de 8 GiB não foi copiado nem convertido em imagem.** Rafael
+  aceitou explicitamente seu descarte. A instância foi terminada e o volume
+  excluído; o backup do aplicativo não representa uma imagem desse disco.
+- O manifesto original foi capturado antes da dispensa dos registros SQL. Sua
+  indicação histórica de backup de banco pendente foi mantida intacta para
+  preservar os hashes; não representa uma pendência atual.
 
-URLs históricas hospedadas em `amazonaws.com` não podem ser redirecionadas pelo
-Cloudflare. É necessário inventariar PDFs e referências salvas no WorkOrg antes
-de apagar seus objetos. Links de e-mails já enviados também precisam de decisão.
-Inventários com dados de clientes ficam fora do Git público.
+## Retirada AWS concluída no escopo aprovado
 
-## Verificação até aqui
+Depois da preservação local, houve uma pausa reversível, confirmada às 09:19.
+Rafael então confirmou a exclusão permanente dos alvos apresentados, incluindo
+o banco sem backup final, o disco EC2 sem cópia, o backend e os quatro buckets:
+“Pode excluir tudo, vou finalizar todos os serviços com a AWS.”
 
-- V2: 56 testes passaram, incluindo os contratos de contato e nove testes PDF.
-- Vinext V2 compilou com sucesso; tipagem retém apenas dois erros preexistentes
-  de `CacheStorage.default`, sem novo erro do armazenamento PDF.
-- Teste nativo Miniflare/R2/limitador passou em `2026-10-22T20:05:16.396Z`:
-  PDF sintético de 3.215 bytes, upload 200, download 200 com bytes idênticos,
-  HEAD 200, Range 206 e origem externa bloqueada. Nenhuma chamada externa.
-- SDK AWS removido, junto com 47 pacotes desnecessários; demais versões mantidas.
-- Rafael forneceu a sessão AWS autenticada. A leitura do IAM confirmou a conta
-  `590183868691`, ipdc Limited. Nenhuma configuração de MFA, chave ou permissão
-  foi alterada. A listagem de objetos ainda não foi concluída: a conexão de
-  automação do navegador caiu ao navegar para S3. A aba existente mostra o bucket
-  `puttbrothers-images` em Sydney; retomar por essa sessão, sem pedir senhas.
-  Não há perfil/CLI AWS local, e Secrets do Worker não foram exportados.
-- Nenhum recurso AWS foi excluído nesta preparação.
+As solicitações foram acompanhadas até a confirmação de ausência dos recursos.
+O inventário final somente leitura cobriu as **17 regiões habilitadas**, com
+`complete: true`, `observedRetired: true`, **zero erros, lacunas de cobertura ou
+resíduos** nas categorias auditadas.
 
-## Estado publicado para revisão, registro anterior à aprovação
+| Recurso do escopo aprovado | Resultado final observado |
+| --- | --- |
+| Banco RDS | Ausente |
+| Backups automáticos e snapshots RDS | Zero |
+| Instância EC2 | Terminada; apenas registro histórico, sem instância ativa |
+| Volume raiz EBS de 8 GiB | Ausente |
+| Volumes EBS e IPs elásticos cobertos pelo inventário | Zero |
+| Quatro buckets S3 | Todos ausentes; 418 objetos preservados foram excluídos da origem |
+| 24 funções Lambda e API antiga | Ausentes |
+| Stack CloudFormation | `DELETE_COMPLETE`, identidade exata conferida em registro privado |
+| Role IAM exclusiva do projeto | Ausente |
+| Grupos de logs do projeto | Zero |
 
-A V2 foi publicada em https://puttbrothers-v2-preview.team-web-592.workers.dev/,
-fonte `2f78bc9`, versão `9311c4a5-95b3-4a9e-9795-94501f6f6ebb`.
-Check geral público passou em `2026-10-22T20:17:49.118Z` e check de todas as mídias
-em `2026-10-22T20:17:51.907Z`. Contato e upload PDF permanecem bloqueados no
-preview; o novo armazenamento PDF foi verificado isoladamente com arquivo sintético.
+O IP elástico gerenciado pelo RDS desapareceu com a retirada do serviço; não foi
+liberado manualmente como se pertencesse à instância NAT. O reinício automático
+anteriormente anunciado para o banco parado não se aplica ao banco já excluído.
 
-A produção V1 está preparada na branch `aws-retirement-production`, mas não foi
-atualizada. A cópia temporária isolada dessa branch foi publicada sem rotas:
-`puttbrothers-aws-retirement-review`, versão `4ebcb2f5-58cb-4a9b-9053-4a1980bd4e31`.
-O link que Rafael pediu para revisar continua sendo o V2 acima.
+O executor normal recusou uma verificação posterior porque a resposta de um
+stack já excluído omitiu o campo de proteção. O executor de exclusão e seu
+baseline permaneceram intactos. Um verificador separado, somente leitura,
+confirmou `DELETE_COMPLETE`, o inventário global recente e a ausência física dos
+recursos. Ele apenas concluiu os comprovantes locais e preservou o diagnóstico
+anterior; não executou exclusões adicionais.
 
-A última instrução de Rafael estabelece a ordem: publicar as alterações na V2,
-permitir sua revisão e então parar com a AWS. Portanto, aguardar sua revisão antes
-de promover a produção, apagar recursos AWS ou remover credenciais antigas.
-Nenhum recurso AWS nem Secret de produção foi removido.
+A conta compartilhada permanece aberta conforme solicitado. Não foram
+eliminados indiscriminadamente permissões ou recursos alheios à Putt Brothers.
+O inventário descreve as categorias verificadas; não equivale à auditoria de
+todos os serviços possíveis da AWS.
 
-## Etapa autorizada após a aprovação, 23 de outubro de 2026
+## Website verificado após as exclusões
 
-Rafael confirmou que a revisão V2 funciona, incluindo a navegação individual e
-os WebP de 300 px no celular, e pediu parar o serviço AWS para testar antes de
-cancelar. Essa etapa autoriza uma parada reversível; não exclui dados nem cancela
-planos. A interface V2 permanece na prévia, sem promoção do redesign.
+O relatório local `tmp/post-aws-deletion-public-check.json` registra **24 de 24
+verificações HTTP aprovadas**, distribuídas entre o oficial e o preview:
 
-- O domínio oficial ainda usava AWS na auditoria inicial. Foi publicado somente
-  o backend V1 preparado, fonte `cbd3ea0`, versão Cloudflare
-  `62af4949-e440-4891-ad43-819665e83830`. Os oito caminhos, seis Secrets existentes,
-  formulário WorkOrg e aparência V1 foram preservados. Não houve alteração DNS.
-- Antes da parada: 40 testes e build passaram; catálogo 39 e planner 30 identificam
-  origem Cloudflare. As 198 mídias R2, dez HTML Unity e vinte Range WASM/data,
-  hashes de imagens, aliases e compatibilidade de imagens antigas passaram.
-  Chrome abriu o 3D Rack'Em Up, inicializou Unity sem erro e sem chamadas AWS.
-- Inventário autenticado na conta `590183868691`: Lightsail não mostra instâncias
-  nem bancos. RDS Sydney tem `database-puttbrothers`, SQL Server Express Edition,
-  classe `db.t3.small`, Single-AZ `ap-southeast-2c`, inicialmente `Available`.
-  Backups automáticos habilitados (retenção de um dia), três snapshots disponíveis
-  e último ponto de restauração observado em 23/10/2026 às 07:40 de Brisbane.
-- S3 tem quatro buckets: `puttbrothers-api-dev-serverlessdeploymentbucket-llgusddubyyi`,
-  `puttbrothers-app`, `puttbrothers-images`, `puttbrothers-layout-pdfs-prod`.
-  Mídia possui itens adicionais fora do catálogo migrado; PDFs históricos existem
-  sob `layout-plans/2026/`. Todos permanecem preservados e acessíveis como antes.
-- A única mutação AWS desta etapa é RDS **Stop temporarily** para
-  `database-puttbrothers`. Depois de `Stopping`, o console confirmou
-  **Stopped temporarily** em 23/10/2026, aproximadamente às 07:57 de Brisbane.
-  O aviso de confirmação informa reinício automático em **30/10/2026 às 07:49**
-  de Brisbane. Comprovante local: `tmp/aws-rds-stopped-20261023.png`, fora do Git.
-- Parar RDS preserva dados/configuração e permite **Actions > Start**. A AWS
-  reinicia automaticamente após sete dias; armazenamento e backups continuam
-  sujeitos a cobrança. Não prometer fatura zerada durante a pausa.
-- S3, Lambda, API Gateway, IAM, credenciais e conta não foram desativados ou
-  excluídos. O fechamento financeiro permanece para depois da validação humana.
-- Depois do estado parado, oficial e prévia passaram novamente: cinco páginas,
-  catálogo 39, planner 30, 198 mídias R2 com HEAD/MIME/bytes/hash por site, dez
-  entradas HTML Unity, vinte Range WASM/data por site, imagens/exportação do
-  planner e sete aliases oficiais. Apenas GET/HEAD, sem lead ou PDF enviado.
-  Evidência: `../WebsiteLocal_AwsRetirement/tmp/post-rds-stop-check.json`,
-  execução em 23/10/2026 às 07:57 de Brisbane.
-- Chrome oficial inicializou o modelo Bridge após a parada, com canvas ativo,
-  carregamento concluído, sem aviso de erro nem recurso AWS. No preview mobile,
-  Bridge `33 / 39` avançou para Bulls Eye `34 / 39`, com WebP de 300px, catálogo
-  Cloudflare e autoplay desligado. Nenhum erro de aplicação observado no console.
-- A validação humana final continua antes de cancelar: abrir imagens/3D no celular,
-  testar o planejador e, pelo próprio Rafael, um envio real do formulário/PDF.
-  Documentação de produção e evidências da pausa: commit `0be7be0` na branch
-  `aws-retirement-production`. Rollback exige **Actions > Start** no RDS antes de
-  restaurar a versão antiga do Worker; o início do banco não é instantâneo.
+- Cinco páginas por site com HTTP 200. Oficial indexável e preview com `noindex`.
+- Catálogo de 39 produtos e planner de 30 máquinas, ambos de origem Cloudflare,
+  com imagens locais e dimensões válidas.
+- WebP Bridge de 300 × 214 px, com tamanho e hash iguais ao manifesto.
+- HTML e loader Unity Bridge disponíveis e íntegros; WASM/data com HTTP 206,
+  Range e tipos corretos.
+
+Essa checagem usou apenas GET, sem chamadas AWS, formulários ou PDFs enviados.
+Não houve novo deploy. As verificações completas de 198 mídias e 78 WebP já
+registradas na publicação não foram repetidas nessa checagem curta.
+
+Na verificação anterior do navegador oficial desktop, Bridge iniciou com canvas
+ativo, carregamento concluído e nenhum recurso AWS na página ou iframe. No
+celular, a navegação voltou de 1 para 39 e avançou de 39 para 1 sem travamento.
+
+**Limitação mobile preexistente:** abaixo de 720 px, uma regra CSS esconde o botão
+3D, inclusive no modal. Não foi alterada nesta migração. A interação 3D pelo botão
+no celular continua sem validação; a disponibilidade dos arquivos e o teste real
+de interação no desktop foram confirmados.
+
+## Cobrança e recuperação
+
+O consumo anterior à exclusão ainda pode ser faturado. A conta foi mantida
+aberta e nenhum recurso pago remanescente foi identificado no escopo auditado.
+Isso não constitui uma confirmação de cobrança futura zerada.
+
+Os PDFs históricos foram preservados localmente. Seus links antigos na AWS
+deixam de funcionar após a exclusão dos objetos; a cópia local não redireciona
+URLs anteriormente enviadas. Os novos PDFs usam URLs próprias da Cloudflare.
+
+O rollback registrado do website restaura a interface V1 com backend Cloudflare,
+sem necessidade de iniciar RDS. Não restaura os dados ou o disco AWS descartados.
+O código atual continua na Cloudflare, com o preview separado para futuras
+melhorias. Não há fechamento da conta AWS a executar.

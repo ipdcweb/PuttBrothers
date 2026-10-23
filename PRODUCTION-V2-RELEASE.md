@@ -87,5 +87,34 @@ does not publish a website. Preview scripts retain their branch/account guard.
   The original V1 and V2 preview working directories remain preserved.
 
 Rollback with the recorded version restores the previous V1 interface with the
-Cloudflare backend, while RDS remains stopped. It does not restore deleted AWS
+Cloudflare backend, without starting any AWS database. It does not restore deleted AWS
 data or alter DNS. Confirm the active version and bindings before any rollback.
+
+## Subsequent AWS retirement, 23 October 2026
+
+The promotion above was followed by the separately authorized AWS retirement.
+At 10:11 Brisbane, the agreed Putt Brothers resources were verified deleted:
+database and backups, active compute and its root volume, four storage buckets,
+24 functions, the old API, the completed deployment stack, its exclusive role
+and project log groups. The read-only inventory covered all 17 enabled regions
+with no errors, coverage gaps or residuals in the audited categories.
+
+The complete 3 GB application preservation archive and the final evidence pack
+were saved and verified locally in the private application folder. Backend
+sources were recovered; the original mobile UI source was not found. Rafael
+explicitly waived database records and accepted discarding the unimaged root
+disk before permanent deletion. Operational identifiers, private object paths,
+source archives and detailed proof files remain outside the public repository.
+
+The official site and separate preview passed 24 focused public HTTP checks
+after compute and storage deletion, including pages, catalogue, planner, mobile
+WebP and Unity Bridge files/ranges. No form/PDF submission or new deployment was
+performed. Published website code remains the release recorded above. Mobile
+carousel navigation was verified; a pre-existing mobile CSS restriction on the
+3D button remains a separately documented limitation.
+
+The AWS account remains open by Rafael's explicit decision, with no account
+closure pending. Prior usage charges can still appear; no zero-bill certificate
+is claimed. The recorded V1 rollback uses Cloudflare and requires no RDS start;
+it cannot recover discarded database records or the deleted root disk. See
+`AWS-RETIREMENT.md` for the consolidated sanitized status.
