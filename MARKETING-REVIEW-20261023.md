@@ -45,3 +45,26 @@ separate steps. Do not deploy this revision to `puttbrothers-com` automatically.
   remain unrelated to this marketing revision.
 - Verify the invitation, menu, collection CTAs, PDF links and carousel in a real
   browser. Final visual approval remains with Rafael and marketing.
+
+## Published preview verification
+
+- Runtime source commit: `d446104` on `website-v2`.
+- Preview version: `63b9da8b-5dd0-4fd4-b4c5-2d4643ee9c9c`.
+- URL: https://puttbrothers-v2-preview.team-web-592.workers.dev/
+- Guarded publication passed: 56 regression tests, 78 carousel WebP files,
+  existing private media receipts and a fresh five-stage Vinext build.
+- ESLint passed for the changed TS/TSX components.
+- Post-publication checks passed: 39 content/isolation checks, 22 existing preview
+  route/media/write-blocking checks and both individual PDF catalogue HEAD checks.
+- The four official pages retained their exact extracted text hashes from the
+  pre-implementation capture. No official deployment occurred.
+- Chrome confirmed the invitation opens/closes and its CTA navigates to the preview
+  contact anchor. The four collection links have the intended destinations and
+  catalogue PDFs open in a new tab. The 39-product carousel advanced one item with
+  loaded 720px WebP images; its source and media were not modified.
+- Functional DOM checks covered desktop 1360x900, mobile 390x844, tablet 768x1024
+  and notebook 1280x720. No horizontal document overflow or application console
+  errors were observed. The mobile invitation fits within the viewport; its menu
+  navigates to About and closes. All three partners and Faith & Purpose are present.
+- These checks establish technical behavior, not aesthetic approval. Rafael and
+  marketing must review the changed pages before any official promotion.
