@@ -1,49 +1,27 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# Local environment and credentials (only sanitized examples may be committed)
+# One local workspace; private runtime data and generated artifacts stay local.
+# The operational platform is an independent local project, not public website source.
+/app/
+node_modules/
+.pnpm-store/
+.next/
+.vinext/
+.wrangler/
+dist/
+out/
+coverage/
+*.tsbuildinfo
+/website/tmp/
+/app/tmp/
+/app/.local-preview/
+/ops/
 .env*
 .dev.vars*
 !.env.example
 !.dev.vars.example
+*.pem
 *.key
 *.p12
 *.pfx
-
-# debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-/public/tablegolf
-/public/minigolf
-/dist/
-.vinext/
-.wrangler/
-*.tsbuildinfo
-/tmp/
-/assets/v2-originals/
-# Production/editing masters stay local; only web-ready derivatives are published.
-/assets/ScrollingVideo_v01/**/*.mp4
-/assets/ScrollingVideo_v01/**/*.png
-/assets/ScrollingVideo_v01/references/
-/assets/hero-scroll/characters/*.png
+pnpm-debug.log*
+.DS_Store

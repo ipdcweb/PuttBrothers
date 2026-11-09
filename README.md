@@ -1,121 +1,47 @@
-# Putt Brothers website - V2 production
+# Putt Brothers: único ambiente local
 
-This separate production worktree, `WebsiteLocal_V2Production` on
-`website-v2-production`, promotes the approved preview source `8e759f3` following
-Rafael's explicit instruction on 23 October 2026. Use the guarded
-`pnpm run deploy:production` command. Production uses the existing eight domain
-routes and native production R2 bindings, with public indexing enabled. Read
-[PRODUCTION-V2-RELEASE.md](PRODUCTION-V2-RELEASE.md) for scope and recovery.
+Esta é a pasta usada para todo o trabalho ativo da Putt Brothers, conforme a decisão de Rafael em 06/11/2026.
 
-The original `WebsiteLocal_02` / `website-v2` and the existing preview Worker stay
-separate and unchanged for future improvements. Its preview-only configuration
-is retained here as `wrangler.preview.jsonc` for isolation verification. The
-remaining sections below describe the inherited preview implementation history.
-
-## V2 preview implementation history
-
-Local redesign implemented on 1 October 2026 from the stable V1. The new Home,
-Products, About, Contact surrounds, header and footer follow the supplied brand
-direction. The approved contact form and WorkOrg contract remain unchanged. PDF storage
-now uses native private Cloudflare R2 rather than AWS.
-
-## Locations and version control
-
-- V2: `C:\Users\Rafael\Wesbites\puttbrothers.com\WebsiteLocal_02`
-- V2 branch: `website-v2`
-- V1 remains in `../WebsiteLocal` on `main`.
-- Common repository: `https://github.com/ipdcweb/PuttBrothers`
-- Starting tag: `v1.0.0-2026-10-01`
-- Starting commit: `30bccc445d63a70344674a6d9fddd7785488d9ce`
-
-This is a Git worktree: source files are separate physical copies, while Git
-history is shared. Editing a file here does not edit the corresponding V1 file.
-The `.git` file links to the original repository metadata; do not delete/move
-either working directory or copy that file to make another checkout manually.
-Rafael authorized pushing V2 and publishing a temporary Cloudflare hosting link
-on 12 October 2026. No custom domain or DNS change is included. See
-[PREVIEW-RELEASE.md](PREVIEW-RELEASE.md) for the actual publication record.
-
-## Run locally
-
-Use Node.js 24.18.0 and the pinned pnpm 11.19.0. Keep `pnpm-lock.yaml` unchanged
-unless a dependency change is explicitly needed.
-
-```powershell
-pnpm install --frozen-lockfile
-pnpm test
-pnpm run build:vinext
-pnpm run start:vinext
+```text
+WebsiteLocal/
+  website/  código único do website
+  app/      plataforma local e documentação
 ```
 
-The compiled V2 preview runs at `http://127.0.0.1:8792`. For live code editing,
-use `pnpm run dev:vinext` on port 3002. These ports differ from V1, including
-the browser origin/local-storage space used by the layout planner.
-Use Vinext, not the generic Next.js scripts, to include the custom media Worker.
+Não existe uma segunda cópia local de desenvolvimento. A mesma fonte do website é preparada para dois ambientes Cloudflare separados: dev e oficial.
 
-## Isolation and safety
+## Fluxo de trabalho
 
-- Worker configuration is named `puttbrothers-v2-preview`, with no domain
-  routes, an authorized workers.dev endpoint, and no version-preview URLs enabled.
-- `pnpm run deploy:vinext` remains blocked. The authorized command is
-  `pnpm run deploy:preview`; it checks the branch, pushed commit and isolated
-  configuration, then tests, rebuilds, rechecks the generated config and deploys.
-- Product media uses the dedicated private `puttbrothers-product-media-review` R2
-  bucket through the `PRODUCT_MEDIA` binding. The public Worker exposes only
-  manifest-listed read requests; no media write endpoint exists.
-- This folder has its own installed dependencies and generated build. V1 build
-  output, `.wrangler` state and local secret files were not copied.
-- The WorkOrg integration is preserved. PDF upload/download uses native R2 with
-  size/type/origin checks and rate limiting. Production credentials were not copied.
-  Do not submit real contact forms or upload PDFs during local testing. Credentials
-  inherited from the machine could still permit external writes; local development
-  is not an automatic network sandbox. Use mocked tests instead.
-- Preview publication touches only the separate V2 Worker and `website-v2` branch.
-  `PREVIEW_MODE=true` blocks contact/PDF writes before the unchanged handlers run.
-  Production source, main, production Worker, DNS and secrets remain untouched.
+1. Fazer alterações locais em `website/`.
+2. Validar a mudança e preparar o alvo dev com `pnpm run build:dev`.
+3. Publicar no dev com `pnpm run deploy:dev`, quando essa publicação estiver autorizada.
+4. Rafael e a equipe revisam o endereço dev.
+5. Após aprovação, promover a mesma revisão com `pnpm run deploy:production`.
 
-## Implemented scope and review
+`pnpm run build:production` prepara e valida o alvo oficial sem publicar. Os comandos de publicação preservam guardas de configuração e revisão. A produção exige o recibo de publicação no dev correspondente ao mesmo HEAD; alterar a fonte depois da revisão exige voltar ao dev. A existência de um recibo não substitui a aprovação de Rafael.
 
-Read [V2-PLAN.md](V2-PLAN.md) for the page map, brand-source interpretation and
-preserved components. [V2-VERIFICATION.md](V2-VERIFICATION.md) records technical
-checks and remaining review items. Visual/client approval is still pending.
+- Dev: https://dev.puttbrothers.com/ (Worker de prévia existente, com endereço workers.dev preservado).
+- Oficial: https://puttbrothers.com/
 
-All new scenes are responsive WebP assets, with separate desktop/tablet/mobile
-sources and a newly composed portrait hero. Text, icons and navigation are real
-HTML, not baked into the artwork. Generated scenes are labelled as concepts, not
-completed client projects. Existing approved logos and real team portraits are
-preserved. Prompts/provenance are in [assets/HERO-MEDIA.md](assets/HERO-MEDIA.md)
-and [assets/V2-MEDIA.md](assets/V2-MEDIA.md).
+Os ambientes têm Worker, armazenamento, limites e comportamento de indexação separados. O dev mantém bloqueados os envios do formulário e os uploads PDF. O formulário oficial continua com o contrato WorkOrg atual.
 
-The carousel lives on Products. The 23 October migration bundles the complete
-catalogue and serves original images/Unity builds through private Cloudflare R2,
-with the same pagination and 3D controls. See
-[CLOUDFLARE-PRODUCT-MIGRATION.md](CLOUDFLARE-PRODUCT-MIGRATION.md).
-The form and `FindLead` contract remain unchanged. The planner retains its IDs,
-dimensions and layout behavior, with migrated catalogue/image sources.
-No live form submission was made during local verification.
+## Website e plataforma
 
-Rafael selected a temporary hosting link instead of `dev.puttbrothers.com`.
-The preview is public to anyone with the link, but sends `noindex` metadata and
-headers and a restrictive robots.txt. This is not password protection.
-Form submissions and PDF uploads are explicitly disabled in the preview.
-Preview-to-production promotion is a separate approval and is never caused by
-switching branches alone. Future `website-v3` can have its own branch/preview;
-promote a tested build deliberately and preserve prior release tags for rollback.
-Raw media masters remain local; deployable WebP/MP4/PDF assets are tracked.
+[website/README.md](website/README.md) contém os detalhes do website. Seu diretório `website/app/` pertence ao roteamento Next/Vinext.
 
-[V1-README.md](V1-README.md), [RELEASE-V1.md](RELEASE-V1.md) and
-[PERFORMANCE-2026-10-01.md](PERFORMANCE-2026-10-01.md) remain historical references
-for the stable site and recovery. They do not describe a V2 deployment.
+`app/` é a plataforma operacional independente, mantida localmente fora deste repositório público. Seus arquivos, banco, uploads e configuração Microsoft são preservados. A publicação do website não publica a plataforma. A documentação local fica em `app/README.md`.
 
+Padrão de ambientes confirmado por Rafael em 10/11/2026:
 
-## Complete AWS retirement, 23 October 2026
+- Plataforma staging: `staging-app.puttbrothers.com`, comunicando-se somente com `dev.puttbrothers.com`.
+- Plataforma oficial: `app.puttbrothers.com`, comunicando-se com `puttbrothers.com`.
 
-The AWS SDK has been removed. Layout PDF storage uses `LAYOUT_PDFS` and
-`PDF_UPLOAD_RATE_LIMITER` bindings, random document URLs and private response
-headers. Preview uploads remain disabled. Legacy event field `s3Url` is retained
-only for browser compatibility; its value is now a Cloudflare URL.
+Esses destinos definem o isolamento futuro; este fluxo publica apenas os websites. A criação das plataformas e de sua autenticação/integração pertence a uma implantação própria.
 
-See [AWS-RETIREMENT.md](AWS-RETIREMENT.md) for production scope, account cleanup,
-historical links and verification. The stable V1 UI is preserved in a separate
-backend migration branch; this does not promote the V2 redesign.
+## Git e arquivos históricos
+
+O repositório GitHub existente continua sendo `ipdcweb/PuttBrothers`. A branch `dev.puttbrothers.com` recebe alterações para revisão no Dev; `website-v2-production` registra a revisão promovida ao oficial. As branches históricas permanecem preservadas. A branch `main` contém o histórico anterior e não é alvo deste fluxo. Consulte [o fluxo de branches e publicação](website/DEV-WORKFLOW.md).
+
+O arquivo `.git` desta pasta aponta para os metadados compartilhados em `../Backup/WebsiteLocal_V1/.git`. Não excluir esse arquivo histórico. As antigas pastas de preview e snapshots estão em Backup, sem papel de desenvolvimento ativo.
+
+A organização não publica por si só e não altera serviços remotos. Resultados da movimentação e validação ficam no [registro da consolidação](../Backup/organization-2026-11-06-single-workspace/README.md). Consulte também o [mapa geral](../README.md).
