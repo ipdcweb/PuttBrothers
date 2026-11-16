@@ -50,7 +50,7 @@ export default function AppSection() {
               </a>
 
               <a
-                href="https://www.instagram.com/puttbrothersnz/"
+                href="https://www.instagram.com/puttbrothers_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-6 py-3 rounded-lg bg-[#41059a] hover:bg-[#41059a]/90 transition-all duration-300 group"

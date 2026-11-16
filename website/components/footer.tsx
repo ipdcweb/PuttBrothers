@@ -10,7 +10,7 @@ const footerLinks = [
 ]
 const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61551240330686", icon: Facebook },
-  { name: "Instagram", href: "https://www.instagram.com/puttbrothersnz/", icon: Instagram },
+  { name: "Instagram", href: "https://www.instagram.com/puttbrothers_/", icon: Instagram },
   { name: "LinkedIn", href: "https://www.linkedin.com/company/puttbrothers/", icon: Linkedin },
 ]
 
