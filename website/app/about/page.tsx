@@ -15,7 +15,7 @@ const team = [
   { name: "Douglas Tonsic", role: "Chief Operating Officer", image: "/images/v2/team/douglas-tonsic-studio-v3.webp" },
   { name: "João Nascimento", role: "Chief Strategy Officer", image: "/images/v2/team/joao-nascimento-studio-v3.webp" },
   { name: "Rubens Tonsic", role: "Chief Technical Officer", image: "/images/v2/team/rubens-tonsic-studio-v4.webp" },
-  { name: "Imre Szenttornyay", role: "Board Member", image: "/images/v2/team/imre-szenttornyay-studio-v4.webp" },
+  { name: "Imre Szenttornyay", role: "Advisory Board Member", image: "/images/v2/team/imre-szenttornyay-studio-v4.webp" },
 ]
 const values = [
   { title: "Quality", description: "Care in every detail, from design and fabrication to installation and ongoing support." },
