@@ -1,5 +1,19 @@
 # Real play carousel, 13 October 2026
 
+## Addition authorized on 16 November 2026
+
+Rafael supplied three Instagram MP4 files and requested publication on both Dev and official. They are appended after the original six films, giving nine films in total: The putting challenge, Mini golf for venues and Your next attraction. Original downloaded files are preserved in Downloads.
+
+The new web copies are `public/videos/client-story-*-instagram-v1.mp4`, with WebP posters at `public/images/v2/client-story-*-instagram-v1.webp`. They use 720x1280 H.264, 30 fps and faststart. The complete source content and original AAC audio are retained; preparation checks matching compressed audio stream hashes and a maximum 150 ms container-duration difference. No replacement soundtrack or assumed Mixkit license is attached to these supplied clips.
+
+`scripts/prepare-instagram-stories.mjs` prepares only the three new files and refuses overwrites. `--verify` validates source/output hashes, original audio and manifest sizes without rewriting media. `assets/client-stories-web.json` records their provenance separately from the original six soundtrack records. The video byte-size map includes the new files for Worker range serving.
+
+The counter derives its total from the story list. Mobile selectors wrap into two rows with at least 44px targets. The one-player, muted playback, offscreen pause, sound toggle and optional auto-next behavior remain in place. New video accessibility labels describe original audio rather than assuming instrumental music without speech.
+
+The three MP4 derivatives total 14,360,618 bytes versus 19,913,962 source bytes, a 27.9% reduction. Their three WebP posters total 176,968 bytes. Local manifest/audio verification and all five carousel/media tests passed before publication.
+
+The sections below record the original six-film delivery and its verification at that time.
+
 ## Scope
 
 - Home: six approved films after What we create, before the turnkey section.

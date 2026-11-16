@@ -12,12 +12,12 @@ const stories=JSON.parse(await read('lib/client-stories.json'))
 const {storyIndex,storyOffset,mayPlayStory,mayAdvanceStory,storyTime}=helpers
 
 test('carousel wraps forwards/backwards and has exactly one active position',()=>{
- for(let active=0;active<6;active++){
-  const positions=stories.map((_,i)=>storyOffset(i,active,6))
+ for(let active=0;active<stories.length;active++){
+  const positions=stories.map((_,i)=>storyOffset(i,active,stories.length))
   assert.equal(positions.filter(x=>x===0).length,1)
   assert.equal(positions.filter(x=>Math.abs(x)===1).length,2)
  }
- assert.equal(storyIndex(-1,6),5);assert.equal(storyIndex(6,6),0);assert.equal(storyIndex(0,0),0)
+ assert.equal(storyIndex(-1,stories.length),stories.length-1);assert.equal(storyIndex(stories.length,stories.length),0);assert.equal(storyIndex(0,0),0)
 })
 test('playback stops outside the viewport, on a hidden tab, or on user pause',()=>{
  const base={inView:true,visible:true,requested:true,loaded:true,reducedMotion:false,saveData:false,userStarted:false}
@@ -35,10 +35,11 @@ test('auto-next respects focus, motion, data saving, visibility and its pause sw
  for(const key of ['keyboardFocus','reducedMotion','saveData'])assert.equal(mayAdvanceStory({...base,[key]:true}),false)
  assert.equal(storyTime(25.2),'0:25');assert.equal(storyTime(NaN),'0:00');assert.equal(storyTime(80),'1:20')
 })
-test('six approved anonymous films have lightweight posters and ready-to-host audio/video',async()=>{
+test('nine films preserve their provenance and have lightweight posters and ready-to-host audio/video',async()=>{
  const manifest=JSON.parse(await read('assets/client-stories-web.json'))
  const sizes=JSON.parse(await read('lib/scroll-video-files.json'))
- assert.equal(stories.length,6);assert.equal(new Set(stories.map(s=>s.video)).size,6)
+ assert.equal(stories.length,9);assert.equal(new Set(stories.map(s=>s.video)).size,9)
+ assert.equal(stories.filter(s=>s.sourceType==='client-supplied-instagram').length,3)
  for(const story of stories){
   assert.doesNotMatch(`${story.label} ${story.title} ${story.description} ${story.alt}`,/[\u2013\u2014]/u)
   assert.doesNotMatch(JSON.stringify(story),/Extremesim|Lets Go Putt|Whanganui|Melbourne|Putt Social|Tauranga/i)
@@ -47,7 +48,13 @@ test('six approved anonymous films have lightweight posters and ready-to-host au
   assert.equal(sizes[story.video],videoStat.size);assert.ok(videoStat.size<24*1024*1024)
   assert.ok(posterStat.size<200000);assert.match(story.poster,/\.webp$/)
   const record=manifest.find(m=>m.id===story.id)
-  assert.equal(record.audioCopiedExactly,true);assert.equal(record.attributionRequired,false)
+  assert.equal(record.audioCopiedExactly,true)
+  if(story.sourceType==='client-supplied-instagram'){
+   assert.equal(record.sourceType,story.sourceType)
+   assert.match(record.rightsBasis,/Supplied by Rafael/)
+   assert.equal(record.music,undefined)
+   assert.match(story.audioDescription,/Original audio/)
+  }else assert.equal(record.attributionRequired,false)
   const probe=spawnSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',fileURLToPath(file)],{encoding:'utf8',windowsHide:true})
   assert.equal(probe.status,0)
   const media=JSON.parse(probe.stdout),video=media.streams.find(s=>s.codec_type==='video')
@@ -65,4 +72,6 @@ test('home mounts stories once and media remains lazy, inline and muted by defau
  assert.match(component,/playsInline/);assert.match(component,/video\.pause\(\)/)
  assert.doesNotMatch(component,/addEventListener\(['"]wheel/)
  assert.match(component,/<noscript>/)
+ assert.match(component,/String\(stories\.length\)\.padStart/)
+ assert.doesNotMatch(component,/\/ 06<\/span>/)
 })

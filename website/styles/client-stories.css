@@ -86,7 +86,10 @@
   .pb-stories__cta { justify-self:start; }
   .pb-stories__player-controls { gap:6px; padding-inline:5px; }
   .pb-stories__sound span { display:none; }
-  .pb-stories__navigation { gap:20px; }
+  .pb-stories__navigation { gap:10px; flex-wrap:wrap; }
+  .pb-stories__selectors { flex-basis:100%; display:grid; grid-template-columns:repeat(5,minmax(44px,1fr)); gap:0 8px; }
+  .pb-stories__selectors button { min-width:44px; }
+  .pb-stories__arrows { margin-left:auto; }
 }
 @media (prefers-reduced-motion:reduce) {
   .pb-stories__card,.pb-stories__story { transition:none; animation:none; }

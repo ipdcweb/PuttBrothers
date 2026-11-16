@@ -146,7 +146,7 @@ export function ClientStories() {
           <p className="pb-stories__lead">The best part of an attraction?<br />The people enjoying it.</p>
           <p className="pb-stories__context">Step inside real entertainment spaces. See the games, the shared moments and the energy your next project could bring.</p>
           <div className="pb-stories__story" key={story.id}>
-            <p className="pb-stories__category"><span>{String(active + 1).padStart(2, '0')} / 06</span>{story.label}</p>
+            <p className="pb-stories__category"><span>{String(active + 1).padStart(2, '0')} / {String(stories.length).padStart(2, '0')}</span>{story.label}</p>
             <h3>{story.title}</h3>
             <p>{story.description}</p>
           </div>
@@ -177,7 +177,7 @@ export function ClientStories() {
                   <div role="group" aria-roledescription="slide" aria-label={`${active + 1} of ${stories.length}: ${item.label}`}>
                     <video key={`${item.id}-${attempt}`} ref={videoRef} className="pb-stories__video" src={loadMedia ? item.video : undefined} poster={item.poster}
                       width={720} height={1280} muted={muted} playsInline preload={loadMedia ? 'auto' : 'none'} disablePictureInPicture
-                      aria-label={`${item.alt}. Instrumental music, no dialogue.`}
+                      aria-label={`${item.alt}. ${'audioDescription' in item ? item.audioDescription : 'Instrumental music, no dialogue.'}`}
                       onLoadStart={() => setStatus('loading')} onLoadedData={() => setStatus('ready')} onWaiting={() => setStatus('loading')}
                       onPlaying={() => { setPlaying(true); setStatus('ready') }} onPause={() => setPlaying(false)}
                       onError={() => { setStatus('error'); setPlaying(false) }} onEnded={ended}

@@ -12,7 +12,7 @@ const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex
 const files=JSON.parse(fs.readFileSync(path.join(root,'lib/scroll-video-files.json'),'utf8'))
 const records=[]
 function run(bin,args){const r=spawnSync(bin,args,{encoding:'utf8',maxBuffer:8e6,windowsHide:true});if(r.status!==0)throw Error(r.stderr||r.error);return r.stdout}
-for(const story of stories){
+for(const story of stories.filter(story=>story.sourceType!=='client-supplied-instagram')){
  const input=path.join(source,story.sourceFile),master=masters.find(m=>m.file===story.sourceFile)
  if(!master||hash(input)!==master.sha256)throw Error('Unverified master: '+story.id)
  const output=path.join(root,'public',story.video),poster=path.join(root,'public',story.poster)
@@ -29,4 +29,5 @@ for(const story of stories){
  console.log(`${story.id}: ${(files[story.video]/1e6).toFixed(2)} MB, audio preserved`)
 }
 fs.writeFileSync(path.join(root,'lib/scroll-video-files.json'),JSON.stringify(files,null,2)+'\n')
-fs.writeFileSync(path.join(root,'assets/client-stories-web.json'),JSON.stringify(records,null,2)+'\n')
+const additional=JSON.parse(fs.readFileSync(path.join(root,'assets/client-stories-web.json'),'utf8')).filter(record=>record.sourceType==='client-supplied-instagram')
+fs.writeFileSync(path.join(root,'assets/client-stories-web.json'),JSON.stringify([...records,...additional],null,2)+'\n')

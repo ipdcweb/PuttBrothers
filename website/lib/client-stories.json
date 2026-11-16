@@ -1,8 +1,107 @@
 [
-  {"id":"racing","sourceFile":"PuttBrothers_01_Racing.mp4","label":"Racing simulators","title":"Take the driver's seat.","description":"The concentration. The corners. The thrill of one more lap. Bring the excitement of racing into your entertainment mix.","alt":"Guests driving racing simulators","duration":25.2,"video":"/videos/client-story-racing-v3.mp4","poster":"/images/v2/client-story-racing-v3.webp"},
-  {"id":"adventure","sourceFile":"PuttBrothers_02_Adventure.mp4","label":"Mini golf adventures","title":"Make every putt a moment.","description":"A little challenge. A lot of personality. Turn a simple round into an experience guests can share.","alt":"People playing mini golf in a themed entertainment space","duration":18.2,"video":"/videos/client-story-adventure-v3.mp4","poster":"/images/v2/client-story-adventure-v3.webp"},
-  {"id":"family","sourceFile":"PuttBrothers_03_FamilyPlay.mp4","label":"Play together","title":"Bring everyone into the game.","description":"Shared challenges and spontaneous smiles. Create a place where playing together is part of the attraction.","alt":"Guests enjoying games together","duration":19.8,"video":"/videos/client-story-family-v3.mp4","poster":"/images/v2/client-story-family-v3.webp"},
-  {"id":"interactive","sourceFile":"PuttBrothers_04_InteractivePlay.mp4","label":"Interactive experiences","title":"Turn curiosity into play.","description":"Hands on. Game on. Discover interactive entertainment that invites guests to get involved.","alt":"People using interactive entertainment attractions","duration":19.1,"video":"/videos/client-story-interactive-v3.mp4","poster":"/images/v2/client-story-interactive-v3.webp"},
-  {"id":"social","sourceFile":"PuttBrothers_05_SocialPlay.mp4","label":"Social play","title":"Good games. Great company.","description":"Friendly competition, shared laughs and time well spent. Make play the reason people come together.","alt":"Groups enjoying mini golf and social play","duration":31.7,"video":"/videos/client-story-social-v3.mp4","poster":"/images/v2/client-story-social-v3.webp"},
-  {"id":"themed","sourceFile":"PuttBrothers_06_ThemedGolf.mp4","label":"Themed mini golf","title":"Give play a world of its own.","description":"Surprising settings and playful challenges. Explore how a themed course can become part of a venue's character.","alt":"Guests exploring and playing a themed mini golf course","duration":21.8,"video":"/videos/client-story-themed-v3.mp4","poster":"/images/v2/client-story-themed-v3.webp"}
+  {
+    "id": "racing",
+    "sourceFile": "PuttBrothers_01_Racing.mp4",
+    "label": "Racing simulators",
+    "title": "Take the driver's seat.",
+    "description": "The concentration. The corners. The thrill of one more lap. Bring the excitement of racing into your entertainment mix.",
+    "alt": "Guests driving racing simulators",
+    "duration": 25.2,
+    "video": "/videos/client-story-racing-v3.mp4",
+    "poster": "/images/v2/client-story-racing-v3.webp"
+  },
+  {
+    "id": "adventure",
+    "sourceFile": "PuttBrothers_02_Adventure.mp4",
+    "label": "Mini golf adventures",
+    "title": "Make every putt a moment.",
+    "description": "A little challenge. A lot of personality. Turn a simple round into an experience guests can share.",
+    "alt": "People playing mini golf in a themed entertainment space",
+    "duration": 18.2,
+    "video": "/videos/client-story-adventure-v3.mp4",
+    "poster": "/images/v2/client-story-adventure-v3.webp"
+  },
+  {
+    "id": "family",
+    "sourceFile": "PuttBrothers_03_FamilyPlay.mp4",
+    "label": "Play together",
+    "title": "Bring everyone into the game.",
+    "description": "Shared challenges and spontaneous smiles. Create a place where playing together is part of the attraction.",
+    "alt": "Guests enjoying games together",
+    "duration": 19.8,
+    "video": "/videos/client-story-family-v3.mp4",
+    "poster": "/images/v2/client-story-family-v3.webp"
+  },
+  {
+    "id": "interactive",
+    "sourceFile": "PuttBrothers_04_InteractivePlay.mp4",
+    "label": "Interactive experiences",
+    "title": "Turn curiosity into play.",
+    "description": "Hands on. Game on. Discover interactive entertainment that invites guests to get involved.",
+    "alt": "People using interactive entertainment attractions",
+    "duration": 19.1,
+    "video": "/videos/client-story-interactive-v3.mp4",
+    "poster": "/images/v2/client-story-interactive-v3.webp"
+  },
+  {
+    "id": "social",
+    "sourceFile": "PuttBrothers_05_SocialPlay.mp4",
+    "label": "Social play",
+    "title": "Good games. Great company.",
+    "description": "Friendly competition, shared laughs and time well spent. Make play the reason people come together.",
+    "alt": "Groups enjoying mini golf and social play",
+    "duration": 31.7,
+    "video": "/videos/client-story-social-v3.mp4",
+    "poster": "/images/v2/client-story-social-v3.webp"
+  },
+  {
+    "id": "themed",
+    "sourceFile": "PuttBrothers_06_ThemedGolf.mp4",
+    "label": "Themed mini golf",
+    "title": "Give play a world of its own.",
+    "description": "Surprising settings and playful challenges. Explore how a themed course can become part of a venue's character.",
+    "alt": "Guests exploring and playing a themed mini golf course",
+    "duration": 21.8,
+    "video": "/videos/client-story-themed-v3.mp4",
+    "poster": "/images/v2/client-story-themed-v3.webp"
+  },
+  {
+    "id": "putting-challenge",
+    "label": "The putting challenge",
+    "title": "One putt. Plenty of reactions.",
+    "description": "A playful challenge and the fun of giving it a go. See a Putt Brothers hole in action.",
+    "alt": "A player trying a Putt Brothers mini golf hole",
+    "sourceFile": "WHO DOESN’T WANT TO PLAY A PUTT BROTHERS HOLE! 😮_💨⛳🔥Raleigh is having way too much fun with t.mp4",
+    "sourceType": "client-supplied-instagram",
+    "audioDescription": "Original audio from the supplied Instagram film.",
+    "duration": 15.266016,
+    "video": "/videos/client-story-putting-challenge-instagram-v1.mp4",
+    "poster": "/images/v2/client-story-putting-challenge-instagram-v1.webp"
+  },
+  {
+    "id": "operator-courses",
+    "label": "Mini golf for venues",
+    "title": "Make room for more play.",
+    "description": "Take a closer look at mini golf designed for entertainment venues and the people who run them.",
+    "alt": "Putt Brothers mini golf courses presented for venue operators",
+    "sourceFile": "Or maybe you’re an operator.Our mini golf courses are built to last and built for revenue 🤑#min.mp4",
+    "sourceType": "client-supplied-instagram",
+    "audioDescription": "Original audio from the supplied Instagram film.",
+    "duration": 14.233333,
+    "video": "/videos/client-story-operator-courses-instagram-v1.mp4",
+    "poster": "/images/v2/client-story-operator-courses-instagram-v1.webp"
+  },
+  {
+    "id": "venue-courses",
+    "label": "Your next attraction",
+    "title": "Picture the possibilities.",
+    "description": "Explore Putt Brothers mini golf and imagine a new experience for guests at your venue.",
+    "alt": "Putt Brothers presenting mini golf courses for venues",
+    "sourceFile": "We make the best mini golf courses in the world, and you can own one for your venue 😁Want somet.mp4",
+    "sourceType": "client-supplied-instagram",
+    "audioDescription": "Original audio from the supplied Instagram film.",
+    "duration": 46.933333,
+    "video": "/videos/client-story-venue-courses-instagram-v1.mp4",
+    "poster": "/images/v2/client-story-venue-courses-instagram-v1.webp"
+  }
 ]
