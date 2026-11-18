@@ -1,0 +1,33 @@
+.pb-full-catalogue {
+  display: flex;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1.75rem 2rem;
+  border: 2px solid #ffd400;
+  background: #ffd400;
+  color: #0b0d10;
+  transition: background-color 160ms ease;
+}
+
+.pb-full-catalogue:hover { background: #ffe568; }
+.pb-full-catalogue:focus-visible { outline: 3px solid #4b0087; outline-offset: 6px; }
+.pb-full-catalogue__eyebrow { display: block; margin-bottom: 0.55rem; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
+.pb-full-catalogue strong { font-size: clamp(1.4rem, 2.2vw, 2rem); font-weight: 800; line-height: 1.2; }
+.pb-full-catalogue small { display: block; margin-top: 0.5rem; color: #34302a; font-size: 0.85rem; line-height: 1.6; }
+.pb-full-catalogue__action { display: inline-flex; align-items: center; gap: 0.75rem; flex-shrink: 0; padding: 1rem 1.25rem; border-radius: 0.5rem; background: #0b0d10; color: #ffd400; font-size: 1rem; font-weight: 800; }
+
+.pb-home-catalogue { padding-bottom: clamp(48px, 6vw, 88px); scroll-margin-top: 90px; }
+.pb-home-catalogue .pb-full-catalogue { margin-top: 0; }
+
+@media (max-width: 767px) {
+  .pb-full-catalogue { align-items: flex-start; flex-direction: column; padding: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pb-full-catalogue { transition: none; }
+}

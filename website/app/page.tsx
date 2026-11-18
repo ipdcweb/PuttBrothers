@@ -3,6 +3,7 @@ import { ArrowUpRight, Flag, GlassWater, Target, PencilRuler, Cog, Hammer, Netwo
 import { SceneImage } from "@/components/v2/scene-image"
 import { ScrollHero } from "@/components/v2/scroll-hero"
 import { ClientStories } from "@/components/v2/client-stories"
+import { CatalogueBanner } from "@/components/v2/catalogue-banner"
 import { BorderGlowPanel } from "@/components/ui/border-glow-panel"
 import { Contact } from "@/components/contact"
 
@@ -44,6 +45,10 @@ export default function Home() {
 
         <section className="pb-section pb-paper">
           <div className="pb-container pb-editorial-grid"><div><p className="pb-eyebrow">01 / A bigger game</p><h2 className="pb-title">We don&apos;t just<br />build attractions.<br /><em>We create<br />experiences.</em></h2></div><div className="pb-editorial-copy"><p className="pb-lead">A great venue is more than the sum of its games.</p><p>It&apos;s the anticipation at the door. The first friendly challenge. The conversations that carry on long after the last putt.</p><p>We bring mini golf, hospitality and interactive play together to turn your space into a destination, with one team beside you, from the first idea to opening day and beyond.</p><Link className="pb-text-link" href="/about">Meet Putt Brothers <ArrowUpRight aria-hidden="true" /></Link></div></div>
+        </section>
+
+        <section id="catalogue" className="pb-paper pb-home-catalogue" aria-label="Complete 2026 catalogue">
+          <div className="pb-container"><CatalogueBanner /></div>
         </section>
 
         <section id="experiences" className="pb-section pb-dark">

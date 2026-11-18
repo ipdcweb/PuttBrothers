@@ -6,6 +6,7 @@ import { ProductsShowcase } from "@/components/products-showcase"
 import { SceneImage } from "@/components/v2/scene-image"
 import { PlannerIllustration } from "@/components/v2/planner-illustration"
 import { CatalogueViewer } from "@/components/v2/catalogue-viewer"
+import { CatalogueBanner } from "@/components/v2/catalogue-banner"
 import "@/styles/v2-pages.css"
 
 export const metadata: Metadata = {
@@ -117,7 +118,7 @@ export default function ProductsPage() {
               </article>
             ))}
           </div>
-          <CatalogueViewer catalogueId="complete2026" label="View catalogue" variant="complete" />
+          <CatalogueBanner />
         </div>
       </section>
 
